@@ -5,7 +5,7 @@
  *      Author: havesnag
  */
 
-#include "loop.h"
+#include "ec/loop.h"
 
 thread_local ec::Loop * curThreadLoop;
 

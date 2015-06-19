@@ -1,0 +1,54 @@
+CC = gcc
+CXX = g++
+
+#
+COMPILE_DEF = -g -Wall -std=c++11 -fPIC
+CXXFLAGS = $(if $(COMPILE_OPT), $(COMPILE_OPT), $(COMPILE_DEF)) -I./include
+LIBS = -levent -levent_pthreads
+
+#
+MKDIR = mkdir
+
+#
+TARGET = libec.so
+DIR_OBJ = obj
+
+#
+DIR_SRC = src
+Suffix = c cc cpp
+
+#
+SRCS = $(foreach d, $(DIR_SRC), $(foreach s, $(Suffix), $(wildcard $(d)/*.$(s))))
+OBJS = $(foreach s, $(SRCS), $(DIR_OBJ)/$(basename $(s)).o)
+DEPS = $(foreach s, $(SRCS), $(DIR_OBJ)/$(basename $(s)).d)
+
+all:$(DIR_OBJ) $(TARGET)
+
+
+$(DIR_OBJ):
+	$(MKDIR) -p $(addprefix $(DIR_OBJ)/,$(DIR_SRC))
+
+
+-include $(DEPS)
+
+$(DIR_OBJ)/%.d:%.*
+	@$(MKDIR) -p $(dir $@);
+	@-rm -f $@;
+	@if [ $(suffix $<) = .c ]; then TEMP_CXX=$(CC); else TEMP_CXX=$(CXX); fi; \
+	echo "$$TEMP_CXX -MM $(CXXFLAGS) $< > $@"; $$TEMP_CXX -MM $(CXXFLAGS) $< > $@;	
+	@sed -i 's,\($(basename $(notdir $@))\.o\),$(dir $@)\1 ,g' $@
+
+
+$(DIR_OBJ)/%.o: %.*
+	 @if [ $(suffix $<) = .c ]; then TEMP_CXX=$(CC); else TEMP_CXX=$(CXX); fi; \
+	echo "$$TEMP_CXX -c $(CXXFLAGS) $< -o $@"; $$TEMP_CXX -c $(CXXFLAGS) $< -o $@;  
+
+
+$(TARGET):$(OBJS)
+	$(CXX) -o $@ -shared $(CXXFLAGS) $^ $(LIBS)
+
+clean:
+	-rm -rf $(OBJS) $(TARGET) $(DIR_OBJ)
+
+distclean:
+	-rm -f $(DEPS)

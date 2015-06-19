@@ -5,7 +5,7 @@
  *      Author: havesnag
  */
 
-#include "timer.h"
+#include "ec/timer.h"
 
 namespace ec
 {
