@@ -28,7 +28,9 @@ class Date
 {
 private:
 	static int s_timeZoneOffset;
+
 public:
+	//返回当前时区
 	static int getTimeZoneOffset();
 
 public:
@@ -227,7 +229,7 @@ public:
 	//距离1970-01-01 00:00:00的天数
 	int getFullDays() const;
 
-	//
+	//计算经过的天数
 	int getDayPassed(const Time &refTime);
 
 

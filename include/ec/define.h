@@ -8,15 +8,12 @@
 #ifndef EC_DEFINE_H_
 #define EC_DEFINE_H_
 
-#include <event2/event.h>
-#include <event2/thread.h>
+#include <stdint.h>
 #include <functional>
+#include <algorithm>
 
 namespace ec
 {
-
-typedef evutil_socket_t SocketFd;
-const SocketFd SOCKET_FD_INVALID = -1;
 
 typedef std::function<void ()> EventHandler;
 

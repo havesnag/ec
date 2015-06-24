@@ -8,10 +8,16 @@
 #ifndef EC_LOOP_H_
 #define EC_LOOP_H_
 
-#include "define.h"
 #include <thread>
 #include <mutex>
 #include <map>
+
+#include <event2/event.h>
+#include <event2/thread.h>
+
+#include "ec/define.h"
+#include "ec/safeQueue.h"
+#include "ec/command.h"
 
 namespace ec
 {
@@ -19,7 +25,7 @@ namespace ec
 class Loop
 {
 public:
-	Loop(uint32_t id = 0);
+	Loop();
 	virtual ~Loop();
 
 	inline operator event_base * () const
@@ -46,7 +52,7 @@ public:
 	 * @desc	:在当前线程运行事件循环
 	 * @return	:师傅成功
 	 */
-	bool run();
+	void run();
 
 	/*
 	 * @desc	:启动新线程运行事件循环
@@ -65,10 +71,33 @@ public:
 	 */
 	void stop();
 
+	/*
+	 * @desc	:异步调用命令
+	 */
+	void call(uint16_t cmd, uint8_t *data, uint16_t dataSize, ec::CommandHandler handler);
+
+	/*
+	 * @desc	:异步发送数据
+	 */
+	void post(uint16_t cmd, uint8_t *data, uint16_t dataSize);
+
+	void regCommandHandler(ec::Command cmd, ec::CommandHandler handler);
+
+private:
+	static void frameEventCallback(evutil_socket_t fd, short events, void *ctx);
+	void frameHandler();
+
 private:
 	uint32_t _id;
 	event_base *_base;
 	std::thread *_thread;
+	struct event *_frameEvent;
+
+	ec::SafeQueue<ec::async::Post *> _asyncPosts;
+	ec::SafeQueue<ec::async::Call *> _asyncCallRequests;
+	ec::SafeQueue<ec::async::Call *> _asyncCallResponses;
+
+	std::map<ec::Command, ec::CommandHandler> _commandHandlers;
 
 	EventHandler _onStart;
 	EventHandler _onEnd;
@@ -76,17 +105,12 @@ private:
 
 public:
 	/*
-	 * @desc	:获得默认的Loop
-	 */
-	static Loop & getDefault();
-
-	/*
 	 * @desc	:返回当前线程的Loop
 	 */
 	static Loop * curLoop();
 
 	/*
-	 * @desc	:返回当前线程的Loop
+	 * @desc	:根据id查找Loop
 	 */
 	static Loop * get(uint32_t id);
 
@@ -97,6 +121,7 @@ private:
 private:
 	static std::mutex s_mutex;
 	static std::map<uint32_t, ec::Loop *> s_loops;
+	static uint32_t s_idGenerater;
 };
 
 } /* namespace ec */
