@@ -53,8 +53,8 @@ int main()
 	ec::Timer timer(loop1);
 	timer.startOnce(2000, request);
 
-	loop1.runThread();
-	loop2.runThread();
+	loop1.startThread();
+	loop2.startThread();
 
 	loop1.waitThread();
 	loop2.waitThread();

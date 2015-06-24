@@ -57,43 +57,23 @@ Loop::~Loop()
 	s_mutex.unlock();
 }
 
-void Loop::setStartHandler(ec::EventHandler handler)
+bool Loop::start()
 {
-	_onStart = handler;
-}
-
-void Loop::setEndHandler(ec::EventHandler handler)
-{
-	_onEnd = handler;
-}
-
-void Loop::run()
-{
-	_frameEvent = event_new(_base, -1, EV_PERSIST, frameEventCallback, this);
-	if (NULL == _frameEvent)
+	if (!doEvent(ec::Loop::kEventStart))
 	{
-		return;
+		return false;
 	}
 
-	struct timeval tv = {};
-	evutil_timerclear(&tv);
-	tv.tv_sec = 0;
-	tv.tv_usec = 5000;
-
-	if (0 != event_add(_frameEvent, &tv))
+	run();
+	return true;
+}
+bool Loop::startThread()
+{
+	if (!doEvent(ec::Loop::kEventStart))
 	{
-		event_free(_frameEvent);
-		_frameEvent = NULL;
-		return;
+		return false;
 	}
 
-	curThreadLoop = this;
-	event_base_loop(_base, 0);
-	curThreadLoop = NULL;
-}
-
-bool Loop::runThread()
-{
 	_thread = new std::thread(std::bind(&Loop::run, this));
 	return true;
 }
@@ -138,6 +118,41 @@ void Loop::regCommandHandler(ec::Command cmd, ec::CommandHandler handler)
 	_commandHandlers[cmd] = handler;
 }
 
+void Loop::regEventHandler(ec::Loop::Event event, ec::Loop::EventHandler handler)
+{
+	_eventHandlers[event] = handler;
+}
+
+void Loop::regFrameHandler(ec::Loop::FrameHandler handler)
+{
+	_frameHandler = handler;
+}
+
+void Loop::run()
+{
+	_frameEvent = event_new(_base, -1, EV_PERSIST, frameEventCallback, this);
+	if (NULL == _frameEvent)
+	{
+		return;
+	}
+
+	struct timeval tv = {};
+	evutil_timerclear(&tv);
+	tv.tv_sec = 0;
+	tv.tv_usec = 5000;
+
+	if (0 != event_add(_frameEvent, &tv))
+	{
+		event_free(_frameEvent);
+		_frameEvent = NULL;
+		return;
+	}
+
+	curThreadLoop = this;
+	event_base_loop(_base, 0);
+	curThreadLoop = NULL;
+}
+
 void Loop::frameEventCallback(evutil_socket_t fd, short events, void *ctx)
 {
 	ec::Loop *loop = (ec::Loop *)ctx;
@@ -146,43 +161,67 @@ void Loop::frameEventCallback(evutil_socket_t fd, short events, void *ctx)
 
 void Loop::frameHandler()
 {
+	_frameRound++;
+
+	//处理异步Post
 	auto posts = _asyncPosts.moveAll();
 	for (auto post : posts)
 	{
-		auto iter = _commandHandlers.find(post->cmd);
-		if (iter != _commandHandlers.end())
-		{
-			iter->second(post->cmd, post->data);
-		}
+		doCommand(post->cmd, post->data);
 		delete post;
 	}
 
+	//处理异步Call请求
 	auto requests = _asyncCallRequests.moveAll();
 	for (auto call : requests)
 	{
-		auto iter = _commandHandlers.find(call->cmd);
-		if (iter != _commandHandlers.end())
-		{
-			iter->second(call->cmd, call->data);
-		}
-
+		doCommand(call->cmd, call->data);
 		ec::Loop *fromLoop = ec::Loop::get(call->loopId);
-		if (fromLoop && call->handler)
-		{
-			fromLoop->_asyncCallResponses.push(call);
-		}
-		else
+		if ((NULL == fromLoop) || (!call->handler))
 		{
 			delete call;
+			continue;
 		}
+		fromLoop->_asyncCallResponses.push(call);
 	}
 
+	//处理异步Call返回
 	auto responses = _asyncCallResponses.moveAll();
 	for (auto call : responses)
 	{
 		call->handler(call->cmd, call->data);
 		delete call;
 	}
+
+	//处理每幀逻辑
+	try
+	{
+		_frameHandler ? _frameHandler(_frameRound) : onFrame(_frameRound);
+	}
+	catch (...) {}
+}
+
+bool Loop::doEvent(ec::Loop::Event event)
+{
+	try
+	{
+		ec::Loop::EventHandler handler = _eventHandlers[event];
+		return handler ? handler(event) : onEvent(event);
+	}
+	catch (...)
+	{
+		return false;
+	}
+}
+
+void Loop::doCommand(ec::Command cmd, ec::Data &data)
+{
+	try
+	{
+		auto iter = _commandHandlers.find(cmd);
+		(iter != _commandHandlers.end()) ? iter->second(cmd, data) : onCommand(cmd, data);
+	}
+	catch (...) {}
 }
 
 Loop * Loop::curLoop()

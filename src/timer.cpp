@@ -27,8 +27,8 @@ Timer::~Timer()
 
 bool Timer::startRounds(
 		uint32_t interval,
-		uint32_t round,
-		ec::EventHandler handler)
+		uint64_t round,
+		ec::Timer::Handler handler)
 {
 	if (NULL != _event)
 	{
@@ -60,12 +60,12 @@ bool Timer::startRounds(
 	return true;
 }
 
-bool Timer::startOnce(uint32_t interval, ec::EventHandler handler)
+bool Timer::startOnce(uint32_t interval, ec::Timer::Handler handler)
 {
 	return startRounds(interval, 1, handler);
 }
 
-bool Timer::startForever(uint32_t interval, ec::EventHandler handler)
+bool Timer::startForever(uint32_t interval, ec::Timer::Handler handler)
 {
 	return startRounds(interval, uint32_t(-1), handler);
 }
@@ -73,8 +73,8 @@ bool Timer::startForever(uint32_t interval, ec::EventHandler handler)
 bool Timer::startAfter(
 		uint32_t after,
 		uint32_t interval,
-		uint32_t round,
-		ec::EventHandler handler)
+		uint64_t round,
+		ec::Timer::Handler handler)
 {
 	return startOnce(after, [=]() {
 		startRounds(interval, round, handler);
@@ -98,7 +98,7 @@ void Timer::reset()
 void Timer::eventHandler(evutil_socket_t fd, short events, void *ctx)
 {
 	Timer *timer = (Timer *)ctx;
-	ec::EventHandler handler = timer->_handler;
+	ec::Timer::Handler handler = timer->_handler;
 
 	timer->_curRound++;
 	if (timer->_curRound >= timer->_round)

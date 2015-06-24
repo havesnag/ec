@@ -15,7 +15,7 @@
 namespace ec
 {
 
-typedef std::function<void ()> EventHandler;
+typedef std::function<void ()> Handler;
 
 }
 

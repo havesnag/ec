@@ -25,6 +25,20 @@ namespace ec
 class Loop
 {
 public:
+	enum Event
+	{
+		kEventStart = 0,	/* 启动前将触发此事件 */
+		kEventRun, 		/* 事件循环开始前将触发此事件 */
+		kEventEnd, 		/* 事件循环结束后将触发此事件 */
+		kEventCount
+	};
+
+	/* 事件处理函数，返回错误码，0表示成功 */
+	typedef std::function<bool (ec::Loop::Event)> EventHandler;
+	/* 每幀处理函数 */
+	typedef std::function<void (uint64_t)> FrameHandler;
+
+public:
 	Loop();
 	virtual ~Loop();
 
@@ -33,32 +47,28 @@ public:
 		return _base;
 	};
 
-	inline uint32_t getId()
+	inline uint32_t getId() const
 	{
 		return _id;
 	}
 
-	/*
-	 * @desc	:设计开始事件循环前的回调还数
-	 */
-	void setStartHandler(ec::EventHandler handler);
-
-	/*
-	 * @desc	:设计结束事件循环后的回调还数
-	 */
-	void setEndHandler(ec::EventHandler handler);
+	inline uint64_t getFrameRound() const
+	{
+		return _frameRound;
+	}
 
 	/*
 	 * @desc	:在当前线程运行事件循环
-	 * @return	:师傅成功
+	 * @return	:是否成功
 	 */
-	void run();
+	bool start();
+
 
 	/*
 	 * @desc	:启动新线程运行事件循环
-	 * @return	:师傅成功
+	 * @return	:是否成功
 	 */
-	bool runThread();
+	bool startThread();
 
 	/*
 	 * @desc	:等待线程结束
@@ -81,27 +91,42 @@ public:
 	 */
 	void post(uint16_t cmd, uint8_t *data, uint16_t dataSize);
 
+	//
+	//注册命令回调，没有注册回调的命令将通过onCommand处理
 	void regCommandHandler(ec::Command cmd, ec::CommandHandler handler);
+	//注册事件回调，没有注册回调的事件将通过onEvent处理
+	void regEventHandler(ec::Loop::Event event, ec::Loop::EventHandler handler);
+	//注册每幀回调，没有注册回调将通过onFrame处理
+	void regFrameHandler(ec::Loop::FrameHandler handler);
+
+protected:
+	virtual bool onEvent(ec::Loop::Event event) { return true; };
+	virtual void onCommand(ec::Command cmd, ec::Data &data) {};
+	virtual void onFrame(uint64_t round) {};
 
 private:
+	void run();
+
 	static void frameEventCallback(evutil_socket_t fd, short events, void *ctx);
 	void frameHandler();
+
+	bool doEvent(ec::Loop::Event event);
+	void doCommand(ec::Command cmd, ec::Data &data);
 
 private:
 	uint32_t _id;
 	event_base *_base;
 	std::thread *_thread;
 	struct event *_frameEvent;
+	uint64_t _frameRound;
 
 	ec::SafeQueue<ec::async::Post *> _asyncPosts;
 	ec::SafeQueue<ec::async::Call *> _asyncCallRequests;
 	ec::SafeQueue<ec::async::Call *> _asyncCallResponses;
 
 	std::map<ec::Command, ec::CommandHandler> _commandHandlers;
-
-	EventHandler _onStart;
-	EventHandler _onEnd;
-
+	ec::Loop::EventHandler _eventHandlers[ec::Loop::kEventCount];
+	ec::Loop::FrameHandler _frameHandler;
 
 public:
 	/*

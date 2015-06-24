@@ -17,43 +17,46 @@ namespace ec
 class Timer
 {
 public:
+	typedef std::function<void ()> Handler;
+
+public:
 	Timer(const Loop &loop);
 	virtual ~Timer();
 
 	/*
 	 * @desc	:启动多轮循环定时器
 	 * @param	:uint32_t interval: 定时时长
-	 * 			 uint32_t round: 总周期
+	 * 			 uint64_t round: 总周期
 	 * 			 EventHandler handler: 定时回调函数
 	 */
-	bool startRounds(uint32_t interval, uint32_t round, ec::EventHandler handler);
+	bool startRounds(uint32_t interval, uint64_t round, ec::Timer::Handler handler);
 
 	/*
 	 * @desc	:启动单次定时器
 	 * @param	:uint32_t interval: 定时时长
 	 * 			 EventHandler handler: 定时回调函数
 	 */
-	bool startOnce(uint32_t interval, ec::EventHandler handler);
+	bool startOnce(uint32_t interval, ec::Timer::Handler handler);
 
 	/*
 	 * @desc	:启动无限循环定时器
 	 * @param	:uint32_t interval: 定时时长
 	 * 			 EventHandler handler: 定时回调函数
 	 */
-	bool startForever(uint32_t interval, ec::EventHandler handler);
+	bool startForever(uint32_t interval, ec::Timer::Handler handler);
 
 	/*
 	 * @desc	:启动定时器
 	 * @param	:uint32_t after: 在此时长后开始定时，以毫秒为单位
 	 * 			 uint32_t interval: 定时时长，以毫秒为单位
-	 * 			 uint32_t round: 总周期
+	 * 			 uint64_t round: 总周期
 	 * 			 EventHandler handler: 定时回调函数
 	 */
 	bool startAfter(
 			uint32_t after,
 			uint32_t interval,
-			uint32_t round,
-			ec::EventHandler handler);
+			uint64_t round,
+			ec::Timer::Handler handler);
 
 
 	inline uint32_t getInterval() const
@@ -61,7 +64,7 @@ public:
 		return _interval;
 	}
 
-	inline uint32_t getRound() const
+	inline uint64_t getRound() const
 	{
 		return _round;
 	}
@@ -73,17 +76,15 @@ public:
 
 private:
 	void reset();
-
-private:
 	static void eventHandler(evutil_socket_t fd, short events, void *ctx);
 
 private:
 	const Loop &_loop;
 	struct event *_event;
 	uint32_t _interval; //定时时长，以毫秒为单位
-	uint32_t _round; //总周期
-	std::atomic<uint32_t> _curRound; //当前周期
-	ec::EventHandler _handler;
+	uint64_t _round; //总周期
+	std::atomic<uint64_t> _curRound; //当前周期
+	ec::Timer::Handler _handler;
 };
 
 } /* namespace ec */
