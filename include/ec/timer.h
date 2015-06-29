@@ -9,18 +9,18 @@
 #define EC_TIMER_H_
 
 #include "loop.h"
-#include <atomic>
 
 namespace ec
 {
 
+class Loop;
 class Timer
 {
 public:
 	typedef std::function<void ()> Handler;
 
 public:
-	Timer(const Loop &loop);
+	Timer(const ec::Loop &loop);
 	virtual ~Timer();
 
 	/*
@@ -69,9 +69,14 @@ public:
 		return _round;
 	}
 
-	inline uint32_t getCurRound() const
+	inline uint64_t getCurRound() const
 	{
 		return _curRound;
+	}
+
+	inline bool isFinished() const
+	{
+		return _curRound >= _round;
 	}
 
 private:
@@ -83,7 +88,7 @@ private:
 	struct event *_event;
 	uint32_t _interval; //定时时长，以毫秒为单位
 	uint64_t _round; //总周期
-	std::atomic<uint64_t> _curRound; //当前周期
+	uint64_t _curRound; //当前周期
 	ec::Timer::Handler _handler;
 };
 

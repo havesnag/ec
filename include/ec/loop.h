@@ -5,19 +5,17 @@
  *      Author: havesnag
  */
 
-#ifndef EC_LOOP_H_
-#define EC_LOOP_H_
+#ifndef INCLUDE_EC_LOOP_H_
+#define INCLUDE_EC_LOOP_H_
 
 #include <thread>
 #include <mutex>
+#include <atomic>
 #include <map>
-
-#include <event2/event.h>
-#include <event2/thread.h>
 
 #include "ec/define.h"
 #include "ec/safeQueue.h"
-#include "ec/command.h"
+#include "ec/async.h"
 
 namespace ec
 {
@@ -27,10 +25,10 @@ class Loop
 public:
 	enum Event
 	{
-		kEventStart = 0,	/* 启动前将触发此事件 */
+		kEventStart = 0,/* 启动前将触发此事件 */
 		kEventRun, 		/* 事件循环开始前将触发此事件 */
 		kEventEnd, 		/* 事件循环结束后将触发此事件 */
-		kEventCount
+		kEventMax
 	};
 
 	/* 事件处理函数，返回错误码，0表示成功 */
@@ -46,6 +44,11 @@ public:
 	{
 		return _base;
 	};
+
+	inline event_base * getBase() const
+	{
+		return _base;
+	}
 
 	inline uint32_t getId() const
 	{
@@ -79,29 +82,43 @@ public:
 	 * @desc	:停止事件循环
 	 * @note	:如果以新线程运行的，则会停止新线程。
 	 */
-	void stop();
+	void stop(bool pending = true);
 
 	/*
 	 * @desc	:异步调用命令
 	 */
-	void call(uint16_t cmd, uint8_t *data, uint16_t dataSize, ec::CommandHandler handler);
+	void async(ec::Command cmd, uint8_t *data, uint16_t dataSize, ec::AsyncHandler handler);
+
+	template <typename T>
+	void async(ec::Command cmd, T &value, ec::AsyncHandler handler)
+	{
+		async(cmd, (uint8_t *)(&value), sizeof(value), handler);
+	}
 
 	/*
 	 * @desc	:异步发送数据
 	 */
-	void post(uint16_t cmd, uint8_t *data, uint16_t dataSize);
+	void post(uint8_t *data, uint16_t dataSize);
 
-	//
-	//注册命令回调，没有注册回调的命令将通过onCommand处理
-	void regCommandHandler(ec::Command cmd, ec::CommandHandler handler);
+	template <typename T>
+	void post(T value)
+	{
+		post((uint8_t *)(&value), sizeof(value));
+	}
+
+	//注册async回调，没有注册回调的异步调用将通过onAsync处理
+	void regAsyncHandler(ec::Command cmd, ec::AsyncHandler handler);
+	//注册post回调，不注册将通过onPost处理
+	void regPostHandler(ec::PostHandler handler);
 	//注册事件回调，没有注册回调的事件将通过onEvent处理
 	void regEventHandler(ec::Loop::Event event, ec::Loop::EventHandler handler);
-	//注册每幀回调，没有注册回调将通过onFrame处理
+	//注册每幀回调，不注册将通过onFrame处理
 	void regFrameHandler(ec::Loop::FrameHandler handler);
 
 protected:
+	virtual void onAsync(ec::Command cmd, const ec::Data &request, ec::Data &response) {};
+	virtual void onPost(ec::Data &data) {};
 	virtual bool onEvent(ec::Loop::Event event) { return true; };
-	virtual void onCommand(ec::Command cmd, ec::Data &data) {};
 	virtual void onFrame(uint64_t round) {};
 
 private:
@@ -111,7 +128,6 @@ private:
 	void frameHandler();
 
 	bool doEvent(ec::Loop::Event event);
-	void doCommand(ec::Command cmd, ec::Data &data);
 
 private:
 	uint32_t _id;
@@ -119,13 +135,16 @@ private:
 	std::thread *_thread;
 	struct event *_frameEvent;
 	uint64_t _frameRound;
+	std::atomic<bool> _isStopping;
 
-	ec::SafeQueue<ec::async::Post *> _asyncPosts;
-	ec::SafeQueue<ec::async::Call *> _asyncCallRequests;
-	ec::SafeQueue<ec::async::Call *> _asyncCallResponses;
+	ec::SafeQueue<ec::Data *> _asyncPosts;
+	ec::SafeQueue<ec::AsyncContext *> _asyncRequests;
+	ec::SafeQueue<ec::AsyncContext *> _asyncResponses;
+	std::atomic<int> _asyncPendingCount;
 
-	std::map<ec::Command, ec::CommandHandler> _commandHandlers;
-	ec::Loop::EventHandler _eventHandlers[ec::Loop::kEventCount];
+	std::map<ec::Command, ec::AsyncHandler> _asyncHandlers;
+	ec::PostHandler _postHandler;
+	ec::Loop::EventHandler _eventHandlers[ec::Loop::kEventMax];
 	ec::Loop::FrameHandler _frameHandler;
 
 public:
@@ -151,4 +170,4 @@ private:
 
 } /* namespace ec */
 
-#endif /* EC_LOOP_H_ */
+#endif /* INCLUDE_EC_LOOP_H_ */

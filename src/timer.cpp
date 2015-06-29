@@ -6,11 +6,12 @@
  */
 
 #include "ec/timer.h"
+#include "ec/loop.h"
 
 namespace ec
 {
 
-Timer::Timer(const Loop &loop) :
+Timer::Timer(const ec::Loop &loop) :
 		_loop(loop),
 		_event(NULL),
 		_interval(0),
@@ -89,10 +90,10 @@ void Timer::reset()
 		_event = NULL;
 	}
 
-	_interval = 0;
-	_round = 0;
-	_curRound = 0;
-	_handler = NULL;
+//	_interval = 0;
+//	_round = 0;
+//	_curRound = 0;
+//	_handler = NULL;
 }
 
 void Timer::eventHandler(evutil_socket_t fd, short events, void *ctx)

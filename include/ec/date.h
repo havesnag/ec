@@ -5,8 +5,8 @@
  *      Author: havesnag
  */
 
-#ifndef EC_DATE_H_
-#define EC_DATE_H_
+#ifndef INCLUDE_EC_DATE_H_
+#define INCLUDE_EC_DATE_H_
 
 #include <time.h>
 #include <stdint.h>
@@ -239,4 +239,4 @@ private:
 
 } /* namespace ec */
 
-#endif /* EC_DATE_H_ */
+#endif /* INCLUDE_EC_DATE_H_ */

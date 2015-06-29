@@ -19,7 +19,10 @@ Loop::Loop() :
 	_id(0),
 	_base(NULL),
 	_thread(NULL),
-	_frameEvent(NULL)
+	_frameEvent(NULL),
+	_frameRound(0),
+	_isStopping(false),
+	_asyncPendingCount(0)
 {
 	s_mutex.lock();
 	s_idGenerater++;
@@ -86,36 +89,51 @@ void Loop::waitThread()
 	}
 }
 
-void Loop::stop()
+void Loop::stop(bool pending)
 {
-	event_base_loopexit(_base, NULL);
+	if (pending) {
+		_isStopping = true;
+	} else {
+		event_base_loopexit(_base, NULL);
+	}
 }
 
-void Loop::call(uint16_t cmd, uint8_t *data, uint16_t dataSize, ec::CommandHandler handler)
+void Loop::async(ec::Command cmd, uint8_t *data, uint16_t dataSize, ec::AsyncHandler handler)
 {
-	ec::async::Call *call = new ec::async::Call();
+	ec::AsyncContext *context = new ec::AsyncContext();
 
-	call->cmd = cmd;
-	call->data.set(data, dataSize);
-	call->handler = handler;
+	context->cmd = cmd;
+	context->request.set(data, dataSize);
+	context->handler = handler;
 
 	ec::Loop *curLoop = ec::Loop::curLoop();
-	call->loopId = (NULL != curLoop) ? curLoop->getId() : 0;
+	if (curLoop)
+	{
+		context->loopId = curLoop->getId();
+		if (handler)
+		{
+			_asyncPendingCount++;
+		}
+	} else {
+		context->loopId = 0;
+	}
 
-	_asyncCallRequests.push(call);
+	_asyncRequests.push(context);
 }
 
-void Loop::post(uint16_t cmd, uint8_t *data, uint16_t dataSize)
+void Loop::post(uint8_t *data, uint16_t dataSize)
 {
-	ec::async::Post *post = new ec::async::Post();
-	post->cmd = cmd;
-	post->data.set(data, dataSize);
-	_asyncPosts.push(post);
+	_asyncPosts.push(new ec::Data(data, dataSize));
 }
 
-void Loop::regCommandHandler(ec::Command cmd, ec::CommandHandler handler)
+void Loop::regAsyncHandler(ec::Command cmd, ec::AsyncHandler handler)
 {
-	_commandHandlers[cmd] = handler;
+	_asyncHandlers[cmd] = handler;
+}
+
+void Loop::regPostHandler(ec::PostHandler handler)
+{
+	_postHandler = handler;
 }
 
 void Loop::regEventHandler(ec::Loop::Event event, ec::Loop::EventHandler handler)
@@ -149,7 +167,9 @@ void Loop::run()
 	}
 
 	curThreadLoop = this;
+	doEvent(ec::Loop::kEventRun);
 	event_base_loop(_base, 0);
+	doEvent(ec::Loop::kEventEnd);
 	curThreadLoop = NULL;
 }
 
@@ -165,32 +185,45 @@ void Loop::frameHandler()
 
 	//处理异步Post
 	auto posts = _asyncPosts.moveAll();
-	for (auto post : posts)
+	for (auto data : posts)
 	{
-		doCommand(post->cmd, post->data);
-		delete post;
+		try
+		{
+			_postHandler ? _postHandler(*data) : onPost(*data);
+		}
+		catch (...) {}
+		delete data;
 	}
 
 	//处理异步Call请求
-	auto requests = _asyncCallRequests.moveAll();
-	for (auto call : requests)
+	auto requests = _asyncRequests.moveAll();
+	for (auto context : requests)
 	{
-		doCommand(call->cmd, call->data);
-		ec::Loop *fromLoop = ec::Loop::get(call->loopId);
-		if ((NULL == fromLoop) || (!call->handler))
+		try
 		{
-			delete call;
+			auto asyncHandlerIter = _asyncHandlers.find(context->cmd);
+			(asyncHandlerIter != _asyncHandlers.end()) ?
+				asyncHandlerIter->second(context->cmd, context->request, context->response) :
+				onAsync(context->cmd, context->request, context->response);
+		}
+		catch (...) {};
+
+		ec::Loop *fromLoop = ec::Loop::get(context->loopId);
+		if ((NULL == fromLoop) || (!context->handler))
+		{
+			delete context;
 			continue;
 		}
-		fromLoop->_asyncCallResponses.push(call);
+		fromLoop->_asyncResponses.push(context);
 	}
 
 	//处理异步Call返回
-	auto responses = _asyncCallResponses.moveAll();
-	for (auto call : responses)
+	auto responses = _asyncResponses.moveAll();
+	for (auto context : responses)
 	{
-		call->handler(call->cmd, call->data);
-		delete call;
+		_asyncPendingCount--;
+		context->handler(context->cmd, context->request, context->response);
+		delete context;
 	}
 
 	//处理每幀逻辑
@@ -199,6 +232,11 @@ void Loop::frameHandler()
 		_frameHandler ? _frameHandler(_frameRound) : onFrame(_frameRound);
 	}
 	catch (...) {}
+
+	if (_isStopping && (_asyncPendingCount == 0))
+	{
+		stop(false);
+	}
 }
 
 bool Loop::doEvent(ec::Loop::Event event)
@@ -212,16 +250,6 @@ bool Loop::doEvent(ec::Loop::Event event)
 	{
 		return false;
 	}
-}
-
-void Loop::doCommand(ec::Command cmd, ec::Data &data)
-{
-	try
-	{
-		auto iter = _commandHandlers.find(cmd);
-		(iter != _commandHandlers.end()) ? iter->second(cmd, data) : onCommand(cmd, data);
-	}
-	catch (...) {}
 }
 
 Loop * Loop::curLoop()
