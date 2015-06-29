@@ -12,5 +12,6 @@ void timerExample();
 
 void asyncExample();
 
+void tcpExample();
 
 #endif /* EXAMPLE_INDEX_H_ */

@@ -13,10 +13,10 @@ using namespace std;
 #include "ec/timer.h"
 #include "index.h"
 
-class TimerExampleServer
+class ExampleTimerServer
 {
 public:
-	TimerExampleServer():
+	ExampleTimerServer():
 		_timer(_loop)
 	{
 	}
@@ -27,7 +27,7 @@ public:
 			cout << "startAfter round " << _timer.getCurRound() << endl;
 			if (_timer.isFinished())
 			{
-				_timer.startRounds(200, 2, std::bind(&TimerExampleServer::tick, this));
+				_timer.startRounds(200, 2, std::bind(&ExampleTimerServer::tick, this));
 			}
 		});
 		cout << "before start" << endl;
@@ -57,6 +57,6 @@ private:
 
 void timerExample()
 {
-	TimerExampleServer server;
+	ExampleTimerServer server;
 	server.start();
 }

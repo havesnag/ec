@@ -11,6 +11,6 @@
 
 int main()
 {
-	timerExample();
+	tcpExample();
 	return 0;
 }

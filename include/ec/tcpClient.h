@@ -19,11 +19,15 @@ class TcpClient : public TcpSocket
 public:
 	TcpClient(const ec::Loop &loop);
 
+	inline bool isConnected() const
+	{
+		return _isConnected;
+	}
+
 	bool connect(const char *ip, uint16_t port);
 
 protected:
 	virtual void onRead() {};
-	virtual void onWrite() {};
 	virtual void onDisconnected() {};
 	virtual void onConnected(int error) {};
 

@@ -27,15 +27,22 @@ public:
 
 	void setThreads(uint16_t threads);
 
+	inline const ec::Loop & getLoop() const
+	{
+		return *_master;
+	}
+
 	bool listen(const char *ip, uint16_t port);
-	bool start(bool newThread = true);
+	bool start();
+	bool startThread();
+	void waitThrad();
 	void stop();
 
 protected:
 	virtual void onListenError() {};
-	virtual void onSessionRead(TcpSession *session) {};
-	virtual void onSessionDisconnected(TcpSession *session) {};
-	virtual void onNewSession(TcpSession *session) {};
+	virtual void onSessionRead(ec::TcpSession *session) {};
+	virtual void onSessionDisconnected(ec::TcpSession *session) {};
+	virtual void onNewSession(ec::TcpSession *session) {};
 
 private:
 	ec::TcpServerDispatcher * getSessionDispatcher(ec::SessionId id);

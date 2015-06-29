@@ -81,14 +81,19 @@ bool TcpServer::listen(const char *ip, uint16_t port)
 	return true;
 }
 
-bool TcpServer::start(bool newThread)
+bool TcpServer::start()
 {
-	if (NULL == _eventListener)
-	{
-		return false;
-	}
+	return _master->start();
+}
 
-	return newThread ? _master->startThread() : _master->start();
+bool TcpServer::startThread()
+{
+	return _master->startThread();
+}
+
+void TcpServer::waitThrad()
+{
+	return _master->waitThread();
 }
 
 void TcpServer::stop()

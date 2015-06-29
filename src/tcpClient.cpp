@@ -91,7 +91,7 @@ void TcpClient::readCallback(struct bufferevent *bev, void *ctx)
 void TcpClient::writeCallback(struct bufferevent *bev, void *ctx)
 {
 	TcpClient *socket = (TcpClient *)ctx;
-	socket->onWrite();
+	socket->checkClosing();
 }
 
 void TcpClient::eventCallback(struct bufferevent *bev, short events, void *ctx)

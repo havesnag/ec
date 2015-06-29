@@ -16,19 +16,19 @@ using namespace std;
 #include "index.h"
 
 
-class AsyncExampleServer
+class ExampleAsyncServer
 {
 public:
-	AsyncExampleServer() :
+	ExampleAsyncServer() :
 		_timer(_logicLoop)
 	{
-		_logicLoop.regAsyncHandler(1, std::bind(&AsyncExampleServer::doCommand1, this,
+		_logicLoop.regAsyncHandler(1, std::bind(&ExampleAsyncServer::doCommand1, this,
 				placeholders::_1, placeholders::_2, placeholders::_3));
 	}
 
 	void start()
 	{
-		_timer.startRounds(1000, 2, std::bind(&AsyncExampleServer::tick, this));
+		_timer.startRounds(1000, 2, std::bind(&ExampleAsyncServer::tick, this));
 		_eventLoop.startThread();
 		_logicLoop.startThread();
 		_eventLoop.waitThread();
@@ -77,7 +77,7 @@ private:
 
 void asyncExample()
 {
-	AsyncExampleServer server;
+	ExampleAsyncServer server;
 	server.start();
 	cout << "done" << endl;
 }
