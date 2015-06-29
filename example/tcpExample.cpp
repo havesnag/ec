@@ -64,12 +64,13 @@ protected:
 
 	virtual void onSessionRead(ec::TcpSession *session)
 	{
-		cout << "ExampleTcpServer::" << __FUNCTION__ << endl;
 		uint32_t length = session->getInputBufferLength();
 		char * buff = new char[length + 1];
 		session->readInputBuffer((uint8_t *)buff, length);
 		buff[length] = '\0';
-		cout << "ExampleTcpServer::" << __FUNCTION__ << " " << buff << endl;
+		cout << "ExampleTcpServer::" << __FUNCTION__
+				<< " " << session->getId() << " data:" << buff << endl;
+		session->close();
 	}
 
 	virtual void onSessionDisconnected(ec::TcpSession *session)
@@ -79,7 +80,7 @@ protected:
 
 	virtual void onNewSession(ec::TcpSession *session)
 	{
-		cout << "ExampleTcpServer::" << __FUNCTION__ << endl;
+		cout << "ExampleTcpServer::" << __FUNCTION__ << session->getId() << endl;
 	}
 
 private:
@@ -94,15 +95,7 @@ private:
 		if (_timer->getCurRound() >= 5)
 		{
 			stop();
-			return;
 		}
-
-		if (_timer->getCurRound() >= 3)
-		{
-			_client->close();
-		}
-
-
 	}
 
 private:

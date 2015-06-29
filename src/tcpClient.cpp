@@ -64,6 +64,8 @@ void TcpClient::handleEvent(short events)
 		evutil_closesocket(getSocket());
 		_isConnected = false;
 		onDisconnected();
+		bufferevent_free(_bev);
+		_bev = NULL;
 		return;
 	}
 
