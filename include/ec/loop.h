@@ -60,6 +60,11 @@ public:
 		return _frameRound;
 	}
 
+	inline bool isThread() const
+	{
+		return (NULL != _thread);
+	}
+
 	/*
 	 * @desc	:在当前线程运行事件循环
 	 * @return	:是否成功

@@ -27,16 +27,14 @@ public:
 
 	void setThreads(uint16_t threads);
 
-	inline const ec::Loop & getLoop() const
+	inline ec::Loop & getLoop() const
 	{
 		return *_master;
 	}
 
 	bool listen(const char *ip, uint16_t port);
-	bool start();
-	bool startThread();
-	void waitThrad();
 	void stop();
+	void wait();
 
 protected:
 	virtual void onListenError() {};

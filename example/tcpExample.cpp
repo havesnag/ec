@@ -13,6 +13,7 @@ using namespace std;
 #include "ec/tcpServer.h"
 #include "ec/tcpClient.h"
 #include "ec/timer.h"
+#include "ec/singleton.h"
 
 #include "index.h"
 
@@ -42,20 +43,6 @@ protected:
 
 class ExampleTcpServer : public ec::TcpServer
 {
-public:
-	ExampleTcpServer()
-	{
-		_client = new ExampleTcpClient(getLoop());
-		_timer = new ec::Timer(getLoop());
-		_timer->startForever(1000, std::bind(&ExampleTcpServer::tick, this));
-	}
-
-	~ExampleTcpServer()
-	{
-		delete _client;
-		delete _timer;
-	}
-
 protected:
 	virtual void onListenError()
 	{
@@ -82,33 +69,53 @@ protected:
 	{
 		cout << "ExampleTcpServer::" << __FUNCTION__ << session->getId() << endl;
 	}
+};
 
-private:
+typedef ec::Singleton<ExampleTcpServer> ExampleTcpServerSingleton;
+
+class ExampleTcpClientManager : public ec::Loop
+{
+public:
+	ExampleTcpClientManager():
+		_client(*this),
+		_timer(*this)
+	{
+		_timer.startForever(1000, std::bind(&ExampleTcpClientManager::tick, this));
+	}
+
+protected:
 	void tick()
 	{
-		cout << "round " << _timer->getCurRound() << endl;
-		if (!_client->isConnected())
+		cout << "round " << _timer.getCurRound() << endl;
+		if (!_client.isConnected())
 		{
-			_client->connect("127.0.0.1", 4567);
+			_client.connect("127.0.0.1", 4567);
 		}
 
-		if (_timer->getCurRound() >= 5)
+		if (_timer.getCurRound() >= 3)
 		{
+			ExampleTcpServerSingleton::instance().stop();
 			stop();
 		}
 	}
-
 private:
-	ExampleTcpClient *_client;
-	ec::Timer *_timer;
+	ExampleTcpClient _client;
+	ec::Timer _timer;
 };
-
 
 void tcpExample()
 {
-	ExampleTcpServer tcpServer;
-	tcpServer.listen("127.0.0.1", 4567);
-	tcpServer.start();
+	ExampleTcpServer &tcpServer = ExampleTcpServerSingleton::instance();
+	if (!tcpServer.listen("127.0.0.1", 4567))
+	{
+		cout << "listen failed" << endl;
+		return;
+	}
+
+	ExampleTcpClientManager clientManager;
+	clientManager.startThread();
+	clientManager.waitThread();
+	tcpServer.wait();
 }
 
 

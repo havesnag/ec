@@ -17,9 +17,10 @@ class Data
 {
 public:
 
-	Data()
+	Data() :
+		_data(NULL),
+		_dataSize(0)
 	{
-		reset();
 	}
 
 	Data(Data &data)
@@ -30,7 +31,9 @@ public:
 		data._dataSize = 0;
 	}
 
-	Data(const uint8_t *data, uint16_t dataSize)
+	Data(const uint8_t *data, uint16_t dataSize) :
+		_data(NULL),
+		_dataSize(0)
 	{
 		set(data, dataSize);
 	}

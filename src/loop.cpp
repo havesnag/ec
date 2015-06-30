@@ -171,6 +171,7 @@ void Loop::run()
 	event_base_loop(_base, 0);
 	doEvent(ec::Loop::kEventEnd);
 	curThreadLoop = NULL;
+	_thread = NULL;
 }
 
 void Loop::frameEventCallback(evutil_socket_t fd, short events, void *ctx)

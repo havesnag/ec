@@ -68,42 +68,35 @@ bool TcpServer::listen(const char *ip, uint16_t port)
 	evutil_make_socket_nonblocking(evconnlistener_get_fd(_eventListener));
 	evconnlistener_set_error_cb(_eventListener, listenErrorCallback);
 
+	if (!_master->startThread())
+	{
+		evconnlistener_free(_eventListener);
+		_eventListener = NULL;
+		return false;
+	}
+
 	for (auto dispatcher : _slavers)
 	{
-		if (!dispatcher->startThread())
-		{
-			evconnlistener_free(_eventListener);
-			_eventListener = NULL;
-			return false;
-		}
+		dispatcher->startThread();
 	}
 
 	return true;
 }
 
-bool TcpServer::start()
-{
-	return _master->start();
-}
-
-bool TcpServer::startThread()
-{
-	return _master->startThread();
-}
-
-void TcpServer::waitThrad()
-{
-	return _master->waitThread();
-}
-
 void TcpServer::stop()
 {
 	_master->stop();
-	_master->waitThread();
-
 	for (auto dispatcher : _slavers)
 	{
 		dispatcher->stop();
+	}
+}
+
+void TcpServer::wait()
+{
+	_master->waitThread();
+	for (auto dispatcher : _slavers)
+	{
 		dispatcher->waitThread();
 	}
 }
