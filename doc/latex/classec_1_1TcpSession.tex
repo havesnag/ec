@@ -1,0 +1,64 @@
+\hypertarget{classec_1_1TcpSession}{\section{ec\-:\-:Tcp\-Session Class Reference}
+\label{classec_1_1TcpSession}\index{ec\-::\-Tcp\-Session@{ec\-::\-Tcp\-Session}}
+}
+
+
+服务端\-T\-C\-P连接  
+
+
+
+
+{\ttfamily \#include $<$tcp\-Session.\-h$>$}
+
+Inheritance diagram for ec\-:\-:Tcp\-Session\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classec_1_1TcpSession}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpSession_abfc38f6a02ca6dfce9474a9a1b9dc52d}{{\bfseries Tcp\-Session} (\hyperlink{classec_1_1TcpServerDispatcher}{ec\-::\-Tcp\-Server\-Dispatcher} $\ast$dispatcher, ec\-::\-Session\-Id id)}\label{classec_1_1TcpSession_abfc38f6a02ca6dfce9474a9a1b9dc52d}
+
+\item 
+\hyperlink{classec_1_1TcpServerDispatcher}{ec\-::\-Tcp\-Server\-Dispatcher} $\ast$ \hyperlink{classec_1_1TcpSession_af4ff735c6120233feccc3a1ca29bbf04}{get\-Dispatcher} () const 
+\item 
+ec\-::\-Session\-Id \hyperlink{classec_1_1TcpSession_af00a92d50517f1f26cbe8d23d07452be}{get\-Id} () const 
+\item 
+void \hyperlink{classec_1_1TcpSession_a098cb072909ba5452f47397a787311f4}{attach} (ec\-::\-Socket\-Fd sock)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+服务端\-T\-C\-P连接 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1TcpSession_a098cb072909ba5452f47397a787311f4}{\index{ec\-::\-Tcp\-Session@{ec\-::\-Tcp\-Session}!attach@{attach}}
+\index{attach@{attach}!ec::TcpSession@{ec\-::\-Tcp\-Session}}
+\subsubsection[{attach}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Session\-::attach (
+\begin{DoxyParamCaption}
+\item[{ec\-::\-Socket\-Fd}]{sock}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpSession_a098cb072909ba5452f47397a787311f4}
+关联到某socket \hypertarget{classec_1_1TcpSession_af4ff735c6120233feccc3a1ca29bbf04}{\index{ec\-::\-Tcp\-Session@{ec\-::\-Tcp\-Session}!get\-Dispatcher@{get\-Dispatcher}}
+\index{get\-Dispatcher@{get\-Dispatcher}!ec::TcpSession@{ec\-::\-Tcp\-Session}}
+\subsubsection[{get\-Dispatcher}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ec\-::\-Tcp\-Server\-Dispatcher}$\ast$ ec\-::\-Tcp\-Session\-::get\-Dispatcher (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1TcpSession_af4ff735c6120233feccc3a1ca29bbf04}
+获取管理此连接的调度器 \hypertarget{classec_1_1TcpSession_af00a92d50517f1f26cbe8d23d07452be}{\index{ec\-::\-Tcp\-Session@{ec\-::\-Tcp\-Session}!get\-Id@{get\-Id}}
+\index{get\-Id@{get\-Id}!ec::TcpSession@{ec\-::\-Tcp\-Session}}
+\subsubsection[{get\-Id}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Session\-Id ec\-::\-Tcp\-Session\-::get\-Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1TcpSession_af00a92d50517f1f26cbe8d23d07452be}
+获取唯一会话id 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/tcp\-Session.\-h\item 
+src/tcp\-Session.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,342 @@
+\hypertarget{classec_1_1Loop}{\section{ec\-:\-:Loop Class Reference}
+\label{classec_1_1Loop}\index{ec\-::\-Loop@{ec\-::\-Loop}}
+}
+
+
+事件主循环类，一个线程只能有一个\-Loop对象。  
+
+
+
+
+{\ttfamily \#include $<$loop.\-h$>$}
+
+Inheritance diagram for ec\-:\-:Loop\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classec_1_1Loop}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}{Event} \{ {\bfseries k\-Event\-Start} = 0, 
+\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7}{k\-Event\-Run}, 
+\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8}{k\-Event\-End}, 
+\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c}{k\-Event\-Max}
+ \}
+\begin{DoxyCompactList}\small\item\em Loop内部事件枚举 \end{DoxyCompactList}\item 
+typedef std\-::function$<$ bool(\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}{ec\-::\-Loop\-::\-Event} \\*
+event)$>$ \hyperlink{classec_1_1Loop_a7c68e22f03ea2b4b670a440291438aed}{Event\-Handler}
+\begin{DoxyCompactList}\small\item\em 事件处理函数 \end{DoxyCompactList}\item 
+typedef std\-::function$<$ void(uint64\-\_\-t \\*
+frame)$>$ \hyperlink{classec_1_1Loop_aaa0d9bf951a410663fc354e5be062229}{Frame\-Handler}
+\begin{DoxyCompactList}\small\item\em 每幀处理函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1Loop_ab104699b3b40815f32e5272e85fb01d7}{\hyperlink{classec_1_1Loop_ab104699b3b40815f32e5272e85fb01d7}{operator event\-\_\-base $\ast$} () const }\label{classec_1_1Loop_ab104699b3b40815f32e5272e85fb01d7}
+
+\begin{DoxyCompactList}\small\item\em 转换为event\-\_\-base $\ast$指针 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_af4830e98d557cb3be841f8aa3e9c588b}{event\-\_\-base $\ast$ \hyperlink{classec_1_1Loop_af4830e98d557cb3be841f8aa3e9c588b}{get\-Base} () const }\label{classec_1_1Loop_af4830e98d557cb3be841f8aa3e9c588b}
+
+\begin{DoxyCompactList}\small\item\em 获取event\-\_\-base $\ast$指针 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a57deb8ad44ad522dc64f37e6ceef6595}{uint32\-\_\-t \hyperlink{classec_1_1Loop_a57deb8ad44ad522dc64f37e6ceef6595}{get\-Id} () const }\label{classec_1_1Loop_a57deb8ad44ad522dc64f37e6ceef6595}
+
+\begin{DoxyCompactList}\small\item\em 获得自动生成的\-Id号 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_adc30b5686fd9fb9b820868af4ffea513}{uint64\-\_\-t \hyperlink{classec_1_1Loop_adc30b5686fd9fb9b820868af4ffea513}{get\-Frame\-Round} () const }\label{classec_1_1Loop_adc30b5686fd9fb9b820868af4ffea513}
+
+\begin{DoxyCompactList}\small\item\em 获得经过的幀数 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a134b0eb8eaa83270eb375df11160bea5}{bool \hyperlink{classec_1_1Loop_a134b0eb8eaa83270eb375df11160bea5}{is\-Thread} () const }\label{classec_1_1Loop_a134b0eb8eaa83270eb375df11160bea5}
+
+\begin{DoxyCompactList}\small\item\em 是否是以新线程在运行 \end{DoxyCompactList}\item 
+bool \hyperlink{classec_1_1Loop_aede057b26d3c5a5c54dabb953bb9945b}{start} ()
+\begin{DoxyCompactList}\small\item\em 在当前线程运行事件循环 \end{DoxyCompactList}\item 
+bool \hyperlink{classec_1_1Loop_aa673dc1821347b95f0c1fddb78db41e2}{start\-Thread} ()
+\begin{DoxyCompactList}\small\item\em 启动新线程运行事件循环 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1Loop_a452a6746df86ca3f9e32cbbba8896968}{wait\-Thread} ()
+\begin{DoxyCompactList}\small\item\em 等待线程结束，与start\-Thread配合使用 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1Loop_a9c8926512c35227aa01d1a23cec1fcdf}{stop} (bool pending=true)
+\begin{DoxyCompactList}\small\item\em 停止事件循环 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1Loop_a9e0c3dfd61a2a909644654bb7fc452b9}{async} (ec\-::\-Command cmd, uint8\-\_\-t $\ast$data, uint16\-\_\-t data\-Size, ec\-::\-Async\-Handler handler)
+\begin{DoxyCompactList}\small\item\em 异步调用命令 \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classec_1_1Loop_ac817156aaff57dcb5068c4ca20536c5c}{async} (ec\-::\-Command cmd, T \&value, ec\-::\-Async\-Handler handler)
+\begin{DoxyCompactList}\small\item\em 异步调用命令 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1Loop_a4f34cbbabe5c798b725a61670dd9d6a7}{post} (uint8\-\_\-t $\ast$data, uint16\-\_\-t data\-Size)
+\begin{DoxyCompactList}\small\item\em 异步发送数据 \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classec_1_1Loop_ab120f6b96e2dd165a353e4c2d767dc6c}{post} (T value)
+\begin{DoxyCompactList}\small\item\em 异步发送数据 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a54c8e94f74760c38d0c07c2c7584a1d4}{void \hyperlink{classec_1_1Loop_a54c8e94f74760c38d0c07c2c7584a1d4}{reg\-Async\-Handler} (ec\-::\-Command cmd, ec\-::\-Async\-Handler handler)}\label{classec_1_1Loop_a54c8e94f74760c38d0c07c2c7584a1d4}
+
+\begin{DoxyCompactList}\small\item\em 注册async回调，没有注册回调的异步调用将通过on\-Async处理 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_aa815829ba034e87209d62958d94c1bf9}{void \hyperlink{classec_1_1Loop_aa815829ba034e87209d62958d94c1bf9}{reg\-Post\-Handler} (ec\-::\-Post\-Handler handler)}\label{classec_1_1Loop_aa815829ba034e87209d62958d94c1bf9}
+
+\begin{DoxyCompactList}\small\item\em 注册post回调，不注册将通过on\-Post处理 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a9106028b7c268472a27832fe7812ba7f}{void \hyperlink{classec_1_1Loop_a9106028b7c268472a27832fe7812ba7f}{reg\-Event\-Handler} (\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}{ec\-::\-Loop\-::\-Event} event, \hyperlink{classec_1_1Loop_a7c68e22f03ea2b4b670a440291438aed}{ec\-::\-Loop\-::\-Event\-Handler} handler)}\label{classec_1_1Loop_a9106028b7c268472a27832fe7812ba7f}
+
+\begin{DoxyCompactList}\small\item\em 注册内部事件回调，没有注册回调的事件将通过on\-Event处理 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a6ad6f4a613cad7f4090c98bb370edac7}{void \hyperlink{classec_1_1Loop_a6ad6f4a613cad7f4090c98bb370edac7}{reg\-Frame\-Handler} (\hyperlink{classec_1_1Loop_aaa0d9bf951a410663fc354e5be062229}{ec\-::\-Loop\-::\-Frame\-Handler} handler)}\label{classec_1_1Loop_a6ad6f4a613cad7f4090c98bb370edac7}
+
+\begin{DoxyCompactList}\small\item\em 注册每幀回调，不注册将通过on\-Frame处理 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classec_1_1Loop}{Loop} $\ast$ \hyperlink{classec_1_1Loop_abb797bdabdefdff5b6cc3f2b1b249747}{cur\-Loop} ()
+\begin{DoxyCompactList}\small\item\em 返回当前线程的\-Loop \end{DoxyCompactList}\item 
+static \hyperlink{classec_1_1Loop}{Loop} $\ast$ \hyperlink{classec_1_1Loop_a459fada2bbc382637fab88b3ce914d46}{get} (uint32\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em 根据id查找\-Loop \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1Loop_a2a40b87b2fa1cbb820692c8a10bed3ab}{virtual void \hyperlink{classec_1_1Loop_a2a40b87b2fa1cbb820692c8a10bed3ab}{on\-Async} (ec\-::\-Command cmd, const \hyperlink{classec_1_1Data}{ec\-::\-Data} \&request, \hyperlink{classec_1_1Data}{ec\-::\-Data} \&response)}\label{classec_1_1Loop_a2a40b87b2fa1cbb820692c8a10bed3ab}
+
+\begin{DoxyCompactList}\small\item\em 继承此接口处理异步命令调用 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a3365009f41dd34e57c261485f0eb49cd}{virtual void \hyperlink{classec_1_1Loop_a3365009f41dd34e57c261485f0eb49cd}{on\-Post} (\hyperlink{classec_1_1Data}{ec\-::\-Data} \&data)}\label{classec_1_1Loop_a3365009f41dd34e57c261485f0eb49cd}
+
+\begin{DoxyCompactList}\small\item\em 继承此接口处理异步数据 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a739a3679b5ca8d66dca537cb1df9c5c0}{virtual bool \hyperlink{classec_1_1Loop_a739a3679b5ca8d66dca537cb1df9c5c0}{on\-Event} (\hyperlink{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}{ec\-::\-Loop\-::\-Event} event)}\label{classec_1_1Loop_a739a3679b5ca8d66dca537cb1df9c5c0}
+
+\begin{DoxyCompactList}\small\item\em 继承此接口处理内部事件 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1Loop_a4b904f427bf6568f216692997bd17e15}{virtual void \hyperlink{classec_1_1Loop_a4b904f427bf6568f216692997bd17e15}{on\-Frame} (uint64\-\_\-t round)}\label{classec_1_1Loop_a4b904f427bf6568f216692997bd17e15}
+
+\begin{DoxyCompactList}\small\item\em 继承此接口处理每幀逻辑 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+事件主循环类，一个线程只能有一个\-Loop对象。 
+
+封装了libevent的struct event\-\_\-base时间循环机制；
+
+内部以5毫秒每幀的频率处理异步请求 
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classec_1_1Loop_a7c68e22f03ea2b4b670a440291438aed}{\index{ec\-::\-Loop@{ec\-::\-Loop}!Event\-Handler@{Event\-Handler}}
+\index{Event\-Handler@{Event\-Handler}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{Event\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::function$<$bool ({\bf ec\-::\-Loop\-::\-Event} event)$>$ {\bf ec\-::\-Loop\-::\-Event\-Handler}}}\label{classec_1_1Loop_a7c68e22f03ea2b4b670a440291438aed}
+
+
+事件处理函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Loop内部事件 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+返回错误码，0表示正确 
+\end{DoxyReturn}
+\hypertarget{classec_1_1Loop_aaa0d9bf951a410663fc354e5be062229}{\index{ec\-::\-Loop@{ec\-::\-Loop}!Frame\-Handler@{Frame\-Handler}}
+\index{Frame\-Handler@{Frame\-Handler}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{Frame\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::function$<$void (uint64\-\_\-t frame)$>$ {\bf ec\-::\-Loop\-::\-Frame\-Handler}}}\label{classec_1_1Loop_aaa0d9bf951a410663fc354e5be062229}
+
+
+每幀处理函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & 当前幀号 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}{\index{ec\-::\-Loop@{ec\-::\-Loop}!Event@{Event}}
+\index{Event@{Event}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{Event}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ec\-::\-Loop\-::\-Event}}}\label{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81}
+
+
+Loop内部事件枚举 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\-Event\-Run@{k\-Event\-Run}!ec\-::\-Loop@{ec\-::\-Loop}}\index{ec\-::\-Loop@{ec\-::\-Loop}!k\-Event\-Run@{k\-Event\-Run}}\item[{\em 
+\hypertarget{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7}{k\-Event\-Run}\label{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7}
+}]启动前将触发此事件 \index{k\-Event\-End@{k\-Event\-End}!ec\-::\-Loop@{ec\-::\-Loop}}\index{ec\-::\-Loop@{ec\-::\-Loop}!k\-Event\-End@{k\-Event\-End}}\item[{\em 
+\hypertarget{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8}{k\-Event\-End}\label{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8}
+}]事件循环开始前将触发此事件 \index{k\-Event\-Max@{k\-Event\-Max}!ec\-::\-Loop@{ec\-::\-Loop}}\index{ec\-::\-Loop@{ec\-::\-Loop}!k\-Event\-Max@{k\-Event\-Max}}\item[{\em 
+\hypertarget{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c}{k\-Event\-Max}\label{classec_1_1Loop_ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c}
+}]事件循环结束后将触发此事件 \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1Loop_a9e0c3dfd61a2a909644654bb7fc452b9}{\index{ec\-::\-Loop@{ec\-::\-Loop}!async@{async}}
+\index{async@{async}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{async}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Loop\-::async (
+\begin{DoxyParamCaption}
+\item[{ec\-::\-Command}]{cmd, }
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint16\-\_\-t}]{data\-Size, }
+\item[{ec\-::\-Async\-Handler}]{handler}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_a9e0c3dfd61a2a909644654bb7fc452b9}
+
+
+异步调用命令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & 命令码 \\
+\hline
+{\em data} & 数据块地址 \\
+\hline
+{\em data\-Size} & 数据块大小 \\
+\hline
+{\em handler} & 命令回调函数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+ec\-::\-Async\-Handler 
+\end{DoxySeeAlso}
+\hypertarget{classec_1_1Loop_ac817156aaff57dcb5068c4ca20536c5c}{\index{ec\-::\-Loop@{ec\-::\-Loop}!async@{async}}
+\index{async@{async}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{async}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void ec\-::\-Loop\-::async (
+\begin{DoxyParamCaption}
+\item[{ec\-::\-Command}]{cmd, }
+\item[{T \&}]{value, }
+\item[{ec\-::\-Async\-Handler}]{handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Loop_ac817156aaff57dcb5068c4ca20536c5c}
+
+
+异步调用命令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & 命令码 \\
+\hline
+{\em value} & 数据 \\
+\hline
+{\em handler} & 命令回调函数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+Async\-Handler 
+\end{DoxySeeAlso}
+\hypertarget{classec_1_1Loop_abb797bdabdefdff5b6cc3f2b1b249747}{\index{ec\-::\-Loop@{ec\-::\-Loop}!cur\-Loop@{cur\-Loop}}
+\index{cur\-Loop@{cur\-Loop}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{cur\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Loop} $\ast$ ec\-::\-Loop\-::cur\-Loop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Loop_abb797bdabdefdff5b6cc3f2b1b249747}
+
+
+返回当前线程的\-Loop 
+
+\begin{DoxyReturn}{Returns}
+当前线程\-Loop指针，没有\-Loop则\-N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{classec_1_1Loop_a459fada2bbc382637fab88b3ce914d46}{\index{ec\-::\-Loop@{ec\-::\-Loop}!get@{get}}
+\index{get@{get}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Loop} $\ast$ ec\-::\-Loop\-::get (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Loop_a459fada2bbc382637fab88b3ce914d46}
+
+
+根据id查找\-Loop 
+
+\begin{DoxyReturn}{Returns}
+Loop指针 
+\end{DoxyReturn}
+\hypertarget{classec_1_1Loop_a4f34cbbabe5c798b725a61670dd9d6a7}{\index{ec\-::\-Loop@{ec\-::\-Loop}!post@{post}}
+\index{post@{post}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{post}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Loop\-::post (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint16\-\_\-t}]{data\-Size}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_a4f34cbbabe5c798b725a61670dd9d6a7}
+
+
+异步发送数据 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 数据 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1Loop_ab120f6b96e2dd165a353e4c2d767dc6c}{\index{ec\-::\-Loop@{ec\-::\-Loop}!post@{post}}
+\index{post@{post}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{post}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void ec\-::\-Loop\-::post (
+\begin{DoxyParamCaption}
+\item[{T}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Loop_ab120f6b96e2dd165a353e4c2d767dc6c}
+
+
+异步发送数据 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 数据块地址 \\
+\hline
+{\em data\-Size} & 数据块大小 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1Loop_aede057b26d3c5a5c54dabb953bb9945b}{\index{ec\-::\-Loop@{ec\-::\-Loop}!start@{start}}
+\index{start@{start}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Loop\-::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_aede057b26d3c5a5c54dabb953bb9945b}
+
+
+在当前线程运行事件循环 
+
+运行成功后会阻塞知道停止 \begin{DoxyReturn}{Returns}
+是否成功 
+\end{DoxyReturn}
+\hypertarget{classec_1_1Loop_aa673dc1821347b95f0c1fddb78db41e2}{\index{ec\-::\-Loop@{ec\-::\-Loop}!start\-Thread@{start\-Thread}}
+\index{start\-Thread@{start\-Thread}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{start\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Loop\-::start\-Thread (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_aa673dc1821347b95f0c1fddb78db41e2}
+
+
+启动新线程运行事件循环 
+
+\begin{DoxyReturn}{Returns}
+是否成功 
+\end{DoxyReturn}
+\hypertarget{classec_1_1Loop_a9c8926512c35227aa01d1a23cec1fcdf}{\index{ec\-::\-Loop@{ec\-::\-Loop}!stop@{stop}}
+\index{stop@{stop}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Loop\-::stop (
+\begin{DoxyParamCaption}
+\item[{bool}]{pending = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_a9c8926512c35227aa01d1a23cec1fcdf}
+
+
+停止事件循环 
+
+如果以新线程运行的，则会停止新线程。 
+\begin{DoxyParams}{Parameters}
+{\em pending} & 是否等待事件结束才停止 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1Loop_a452a6746df86ca3f9e32cbbba8896968}{\index{ec\-::\-Loop@{ec\-::\-Loop}!wait\-Thread@{wait\-Thread}}
+\index{wait\-Thread@{wait\-Thread}!ec::Loop@{ec\-::\-Loop}}
+\subsubsection[{wait\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Loop\-::wait\-Thread (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Loop_a452a6746df86ca3f9e32cbbba8896968}
+
+
+等待线程结束，与start\-Thread配合使用 
+
+\begin{DoxySeeAlso}{See Also}
+bool \hyperlink{classec_1_1Loop_aa673dc1821347b95f0c1fddb78db41e2}{Loop\-::start\-Thread()} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/loop.\-h\item 
+src/loop.\-cpp\end{DoxyCompactItemize}

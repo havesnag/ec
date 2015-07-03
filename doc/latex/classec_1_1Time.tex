@@ -1,0 +1,231 @@
+\hypertarget{classec_1_1Time}{\section{ec\-:\-:Time Class Reference}
+\label{classec_1_1Time}\index{ec\-::\-Time@{ec\-::\-Time}}
+}
+
+
+时间类  
+
+
+
+
+{\ttfamily \#include $<$date.\-h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46}{Period\-Type} \{ \\*
+{\bfseries k\-Period\-None} = 0, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a3077b99141eef7503633f22c0424bc8d}{k\-Period\-Minute}, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9f3a401b1323abb49064aeff0e106b12}{k\-Period\-Hour}, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9a5100abd3e34402f2ee8bb574ce6372}{k\-Period\-Day}, 
+\\*
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a54ad8e4b3e752368ee49fb1914d92822}{k\-Period\-Week}, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9ece0fd6329295af0cdc2cc292f07d6d}{k\-Period\-Month}, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a7707ba1e8c424e40a551a48fdc1c3287}{k\-Period\-Year}, 
+\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46ac8bc99ab6b38d8deb3bba6353ba157ef}{k\-Period\-Max}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classec_1_1Time_ad71ce055dce14e6adbe3f1706c21f1ec}{Time} (time\-\_\-t \hyperlink{classec_1_1Time_a01d690a321ce3cdc18dc627761300c44}{stamp})
+\item 
+\hyperlink{classec_1_1Time_a20f81005d631383e457a8032517fdf26}{Time} (const \hyperlink{classec_1_1Date}{Date} \&date)
+\item 
+\hypertarget{classec_1_1Time_aea3741d25cd28cb6322f17da7f3b4b70}{{\bfseries Time} (const \hyperlink{classec_1_1Time}{Time} \&time)}\label{classec_1_1Time_aea3741d25cd28cb6322f17da7f3b4b70}
+
+\item 
+void \hyperlink{classec_1_1Time_a649973da162f122234542498d17cfa5f}{set} (time\-\_\-t \hyperlink{classec_1_1Time_a01d690a321ce3cdc18dc627761300c44}{stamp})
+\item 
+\hyperlink{classec_1_1Time}{Time} \hyperlink{classec_1_1Time_a3abe7344a991a11875c565beb31c099f}{clone} () const 
+\item 
+time\-\_\-t \hyperlink{classec_1_1Time_a01d690a321ce3cdc18dc627761300c44}{stamp} () const 
+\item 
+time\-\_\-t \hyperlink{classec_1_1Time_ae1344f099583fe278563d3d5105025bf}{utc\-Stamp} () const 
+\item 
+\hyperlink{classec_1_1Date}{Date} \hyperlink{classec_1_1Time_af0bc39da85cdbf23c8513a1202d206ff}{to\-Date} () const 
+\item 
+int64\-\_\-t \hyperlink{classec_1_1Time_a404a498705d89d99387c67b7a70f12b9}{ms} () const 
+\item 
+\hyperlink{classec_1_1Time}{Time} \& \hyperlink{classec_1_1Time_afcc17c2d59e9e7cbe996a8c7ae8f9fcd}{add\-Second} (int second)
+\item 
+\hyperlink{classec_1_1Time}{Time} \& \hyperlink{classec_1_1Time_add5a030523e1ea07021c81628ee545f6}{sharp\-Hour} ()
+\item 
+\hyperlink{classec_1_1Time}{Time} \& \hyperlink{classec_1_1Time_acc1ad308e6af04151fcc85818a45936c}{sharp\-Minute} ()
+\item 
+\hyperlink{classec_1_1Time}{Time} \& \hyperlink{classec_1_1Time_a126a19d88d9204dabad89a540de2ef94}{next\-Period} (\hyperlink{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46}{Time\-::\-Period\-Type} type, int times)
+\item 
+int \hyperlink{classec_1_1Time_a672781d41bfac66415d3f91bbea6f453}{get\-Full\-Days} () const 
+\item 
+int \hyperlink{classec_1_1Time_a3e049ae0ad518e44d72e86172f16e15d}{get\-Day\-Passed} (const \hyperlink{classec_1_1Time}{Time} \&ref\-Time)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const time\-\_\-t \hyperlink{classec_1_1Time_a7b380e6d270256754d650e7ab7a70237}{S\-E\-C\-O\-N\-D\-\_\-\-M\-S} = 1000
+\item 
+static const time\-\_\-t \hyperlink{classec_1_1Time_a62df9dad0fe2b844c4402643bf41e99f}{M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S} = 60
+\item 
+static const time\-\_\-t \hyperlink{classec_1_1Time_a7235624a504da44bc4e361bc44184324}{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S} = 3600
+\item 
+static const time\-\_\-t \hyperlink{classec_1_1Time_aea1823b361d59f11f6a0a39b9cd4faea}{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S} = \hyperlink{classec_1_1Time_a7235624a504da44bc4e361bc44184324}{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S}$\ast$24
+\item 
+static const time\-\_\-t \hyperlink{classec_1_1Time_a785218cc22a7610f035cb6b36c84e62c}{W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S} = \hyperlink{classec_1_1Time_aea1823b361d59f11f6a0a39b9cd4faea}{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S}$\ast$7
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+时间类 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46}{\index{ec\-::\-Time@{ec\-::\-Time}!Period\-Type@{Period\-Type}}
+\index{Period\-Type@{Period\-Type}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{Period\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ec\-::\-Time\-::\-Period\-Type}}}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46}
+时间周期类型枚举 \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\-Period\-Minute@{k\-Period\-Minute}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Minute@{k\-Period\-Minute}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a3077b99141eef7503633f22c0424bc8d}{k\-Period\-Minute}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a3077b99141eef7503633f22c0424bc8d}
+}]无效的周期 \index{k\-Period\-Hour@{k\-Period\-Hour}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Hour@{k\-Period\-Hour}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9f3a401b1323abb49064aeff0e106b12}{k\-Period\-Hour}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9f3a401b1323abb49064aeff0e106b12}
+}]周期 分 \index{k\-Period\-Day@{k\-Period\-Day}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Day@{k\-Period\-Day}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9a5100abd3e34402f2ee8bb574ce6372}{k\-Period\-Day}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9a5100abd3e34402f2ee8bb574ce6372}
+}]周期 小时 \index{k\-Period\-Week@{k\-Period\-Week}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Week@{k\-Period\-Week}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a54ad8e4b3e752368ee49fb1914d92822}{k\-Period\-Week}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a54ad8e4b3e752368ee49fb1914d92822}
+}]周期 天 \index{k\-Period\-Month@{k\-Period\-Month}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Month@{k\-Period\-Month}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9ece0fd6329295af0cdc2cc292f07d6d}{k\-Period\-Month}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a9ece0fd6329295af0cdc2cc292f07d6d}
+}]周期 周 \index{k\-Period\-Year@{k\-Period\-Year}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Year@{k\-Period\-Year}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a7707ba1e8c424e40a551a48fdc1c3287}{k\-Period\-Year}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46a7707ba1e8c424e40a551a48fdc1c3287}
+}]周期 月 \index{k\-Period\-Max@{k\-Period\-Max}!ec\-::\-Time@{ec\-::\-Time}}\index{ec\-::\-Time@{ec\-::\-Time}!k\-Period\-Max@{k\-Period\-Max}}\item[{\em 
+\hypertarget{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46ac8bc99ab6b38d8deb3bba6353ba157ef}{k\-Period\-Max}\label{classec_1_1Time_a5a62816a9c7f2df3ca66f54d1544ea46ac8bc99ab6b38d8deb3bba6353ba157ef}
+}]周期 年 \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classec_1_1Time_ad71ce055dce14e6adbe3f1706c21f1ec}{\index{ec\-::\-Time@{ec\-::\-Time}!Time@{Time}}
+\index{Time@{Time}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Time\-::\-Time (
+\begin{DoxyParamCaption}
+\item[{time\-\_\-t}]{stamp}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_ad71ce055dce14e6adbe3f1706c21f1ec}
+以时间戳构造 \hypertarget{classec_1_1Time_a20f81005d631383e457a8032517fdf26}{\index{ec\-::\-Time@{ec\-::\-Time}!Time@{Time}}
+\index{Time@{Time}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Time\-::\-Time (
+\begin{DoxyParamCaption}
+\item[{const {\bf Date} \&}]{date}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_a20f81005d631383e457a8032517fdf26}
+以\-Date对象构造 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1Time_afcc17c2d59e9e7cbe996a8c7ae8f9fcd}{\index{ec\-::\-Time@{ec\-::\-Time}!add\-Second@{add\-Second}}
+\index{add\-Second@{add\-Second}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{add\-Second}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} \& ec\-::\-Time\-::add\-Second (
+\begin{DoxyParamCaption}
+\item[{int}]{second}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_afcc17c2d59e9e7cbe996a8c7ae8f9fcd}
+加/减 秒 \hypertarget{classec_1_1Time_a3abe7344a991a11875c565beb31c099f}{\index{ec\-::\-Time@{ec\-::\-Time}!clone@{clone}}
+\index{clone@{clone}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} ec\-::\-Time\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Time_a3abe7344a991a11875c565beb31c099f}
+克隆当前对象 \hypertarget{classec_1_1Time_a3e049ae0ad518e44d72e86172f16e15d}{\index{ec\-::\-Time@{ec\-::\-Time}!get\-Day\-Passed@{get\-Day\-Passed}}
+\index{get\-Day\-Passed@{get\-Day\-Passed}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{get\-Day\-Passed}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Time\-::get\-Day\-Passed (
+\begin{DoxyParamCaption}
+\item[{const {\bf Time} \&}]{ref\-Time}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_a3e049ae0ad518e44d72e86172f16e15d}
+计算经过的天数 \hypertarget{classec_1_1Time_a672781d41bfac66415d3f91bbea6f453}{\index{ec\-::\-Time@{ec\-::\-Time}!get\-Full\-Days@{get\-Full\-Days}}
+\index{get\-Full\-Days@{get\-Full\-Days}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{get\-Full\-Days}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Time\-::get\-Full\-Days (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Time_a672781d41bfac66415d3f91bbea6f453}
+距离1970-\/01-\/01 00\-:00\-:00的天数 \hypertarget{classec_1_1Time_a404a498705d89d99387c67b7a70f12b9}{\index{ec\-::\-Time@{ec\-::\-Time}!ms@{ms}}
+\index{ms@{ms}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{ms}]{\setlength{\rightskip}{0pt plus 5cm}int64\-\_\-t ec\-::\-Time\-::ms (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Time_a404a498705d89d99387c67b7a70f12b9}
+获取毫秒时间戳 \hypertarget{classec_1_1Time_a126a19d88d9204dabad89a540de2ef94}{\index{ec\-::\-Time@{ec\-::\-Time}!next\-Period@{next\-Period}}
+\index{next\-Period@{next\-Period}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{next\-Period}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} \& ec\-::\-Time\-::next\-Period (
+\begin{DoxyParamCaption}
+\item[{{\bf Time\-::\-Period\-Type}}]{type, }
+\item[{int}]{times}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_a126a19d88d9204dabad89a540de2ef94}
+到下一周期 \hypertarget{classec_1_1Time_a649973da162f122234542498d17cfa5f}{\index{ec\-::\-Time@{ec\-::\-Time}!set@{set}}
+\index{set@{set}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Time\-::set (
+\begin{DoxyParamCaption}
+\item[{time\-\_\-t}]{stamp}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_a649973da162f122234542498d17cfa5f}
+设置时间戳 \hypertarget{classec_1_1Time_add5a030523e1ea07021c81628ee545f6}{\index{ec\-::\-Time@{ec\-::\-Time}!sharp\-Hour@{sharp\-Hour}}
+\index{sharp\-Hour@{sharp\-Hour}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{sharp\-Hour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} \& ec\-::\-Time\-::sharp\-Hour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_add5a030523e1ea07021c81628ee545f6}
+设置为一小时的开始 \hypertarget{classec_1_1Time_acc1ad308e6af04151fcc85818a45936c}{\index{ec\-::\-Time@{ec\-::\-Time}!sharp\-Minute@{sharp\-Minute}}
+\index{sharp\-Minute@{sharp\-Minute}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{sharp\-Minute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} \& ec\-::\-Time\-::sharp\-Minute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Time_acc1ad308e6af04151fcc85818a45936c}
+设置为一分钟的开始 \hypertarget{classec_1_1Time_a01d690a321ce3cdc18dc627761300c44}{\index{ec\-::\-Time@{ec\-::\-Time}!stamp@{stamp}}
+\index{stamp@{stamp}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{stamp}]{\setlength{\rightskip}{0pt plus 5cm}time\-\_\-t ec\-::\-Time\-::stamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Time_a01d690a321ce3cdc18dc627761300c44}
+获取时间戳 \hypertarget{classec_1_1Time_af0bc39da85cdbf23c8513a1202d206ff}{\index{ec\-::\-Time@{ec\-::\-Time}!to\-Date@{to\-Date}}
+\index{to\-Date@{to\-Date}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{to\-Date}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} ec\-::\-Time\-::to\-Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Time_af0bc39da85cdbf23c8513a1202d206ff}
+转换为\-Date对象 \hypertarget{classec_1_1Time_ae1344f099583fe278563d3d5105025bf}{\index{ec\-::\-Time@{ec\-::\-Time}!utc\-Stamp@{utc\-Stamp}}
+\index{utc\-Stamp@{utc\-Stamp}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{utc\-Stamp}]{\setlength{\rightskip}{0pt plus 5cm}time\-\_\-t ec\-::\-Time\-::utc\-Stamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Time_ae1344f099583fe278563d3d5105025bf}
+获取\-U\-T\-C时间戳 
+
+\subsection{Member Data Documentation}
+\hypertarget{classec_1_1Time_aea1823b361d59f11f6a0a39b9cd4faea}{\index{ec\-::\-Time@{ec\-::\-Time}!D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S@{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S}}
+\index{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S@{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}const time\-\_\-t ec\-::\-Time\-::\-D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S = {\bf H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S}$\ast$24\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Time_aea1823b361d59f11f6a0a39b9cd4faea}
+每天包含秒数 \hypertarget{classec_1_1Time_a7235624a504da44bc4e361bc44184324}{\index{ec\-::\-Time@{ec\-::\-Time}!H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S@{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S}}
+\index{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S@{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}const time\-\_\-t ec\-::\-Time\-::\-H\-O\-U\-R\-\_\-\-S\-E\-C\-O\-N\-D\-S = 3600\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Time_a7235624a504da44bc4e361bc44184324}
+每小时包含秒数 \hypertarget{classec_1_1Time_a62df9dad0fe2b844c4402643bf41e99f}{\index{ec\-::\-Time@{ec\-::\-Time}!M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S@{M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S}}
+\index{M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S@{M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}const time\-\_\-t ec\-::\-Time\-::\-M\-I\-N\-U\-T\-E\-\_\-\-S\-E\-C\-O\-N\-D\-S = 60\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Time_a62df9dad0fe2b844c4402643bf41e99f}
+每分钟包含秒数 \hypertarget{classec_1_1Time_a7b380e6d270256754d650e7ab7a70237}{\index{ec\-::\-Time@{ec\-::\-Time}!S\-E\-C\-O\-N\-D\-\_\-\-M\-S@{S\-E\-C\-O\-N\-D\-\_\-\-M\-S}}
+\index{S\-E\-C\-O\-N\-D\-\_\-\-M\-S@{S\-E\-C\-O\-N\-D\-\_\-\-M\-S}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{S\-E\-C\-O\-N\-D\-\_\-\-M\-S}]{\setlength{\rightskip}{0pt plus 5cm}const time\-\_\-t ec\-::\-Time\-::\-S\-E\-C\-O\-N\-D\-\_\-\-M\-S = 1000\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Time_a7b380e6d270256754d650e7ab7a70237}
+每秒包含毫秒数 \hypertarget{classec_1_1Time_a785218cc22a7610f035cb6b36c84e62c}{\index{ec\-::\-Time@{ec\-::\-Time}!W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S@{W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S}}
+\index{W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S@{W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S}!ec::Time@{ec\-::\-Time}}
+\subsubsection[{W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}const time\-\_\-t ec\-::\-Time\-::\-W\-E\-E\-K\-\_\-\-S\-E\-C\-O\-N\-D\-S = {\bf D\-A\-Y\-\_\-\-S\-E\-C\-O\-N\-D\-S}$\ast$7\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Time_a785218cc22a7610f035cb6b36c84e62c}
+每周包含秒数 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/date.\-h\item 
+src/date.\-cpp\end{DoxyCompactItemize}

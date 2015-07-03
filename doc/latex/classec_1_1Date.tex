@@ -1,0 +1,393 @@
+\hypertarget{classec_1_1Date}{\section{ec\-:\-:Date Class Reference}
+\label{classec_1_1Date}\index{ec\-::\-Date@{ec\-::\-Date}}
+}
+
+
+日期类  
+
+
+
+
+{\ttfamily \#include $<$date.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classec_1_1Date_a87b10f3e182109a78d3b68e9b1ed20e2}{Date} ()
+\item 
+\hyperlink{classec_1_1Date_a8862acf628e847927edaea397113036b}{Date} (time\-\_\-t \hyperlink{classec_1_1Date_ae376652bff3f8476f948c14cb00601c5}{stamp})
+\item 
+\hyperlink{classec_1_1Date_aa73c77460f766467202a9695b7b7649c}{Date} (const \hyperlink{classec_1_1Time}{Time} \&time)
+\item 
+\hypertarget{classec_1_1Date_ae3e63bec9accf142fe9a238a43e93626}{{\bfseries Date} (const \hyperlink{classec_1_1Date}{Date} \&date)}\label{classec_1_1Date_ae3e63bec9accf142fe9a238a43e93626}
+
+\item 
+\hyperlink{classec_1_1Date_a1dae4bdb08788d69fcbbb0a0233e27a1}{Date} (int \hyperlink{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}{year}, int \hyperlink{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}{month}, int \hyperlink{classec_1_1Date_a0544c98d04060feb7345092fb60b8065}{day}, int \hyperlink{classec_1_1Date_a5c5252eb904dba193e2347f955d986f6}{hour}=0, int \hyperlink{classec_1_1Date_a572776fe397fd2e25455f23a9de91d2d}{minute}=0, int \hyperlink{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}{second}=0)
+\begin{DoxyCompactList}\small\item\em 以指定时间构造 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1Date_a991e12c24956f398a2d86ddaf8e99e2f}{set} (time\-\_\-t \hyperlink{classec_1_1Date_ae376652bff3f8476f948c14cb00601c5}{stamp})
+\item 
+\hyperlink{classec_1_1Date}{Date} \hyperlink{classec_1_1Date_ae94b1e3c919d58e5539088e863d1ba0d}{clone} () const 
+\item 
+time\-\_\-t \hyperlink{classec_1_1Date_ae376652bff3f8476f948c14cb00601c5}{stamp} () const 
+\item 
+time\-\_\-t \hyperlink{classec_1_1Date_ad9ef9967be21c60db8a78dc5d0e46ab4}{utc\-Stamp} () const 
+\item 
+\hyperlink{classec_1_1Time}{Time} \hyperlink{classec_1_1Date_a37f8cee14d869d9b132700f8568270de}{to\-Time} () const 
+\item 
+std\-::string \hyperlink{classec_1_1Date_a0566e90d744f4d1d8d5490a9be7a5bbc}{to\-String} () const 
+\item 
+int \hyperlink{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}{year} () const 
+\item 
+int \hyperlink{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}{month} () const 
+\item 
+int \hyperlink{classec_1_1Date_a0544c98d04060feb7345092fb60b8065}{day} () const 
+\item 
+int \hyperlink{classec_1_1Date_a5c5252eb904dba193e2347f955d986f6}{hour} () const 
+\item 
+int \hyperlink{classec_1_1Date_a572776fe397fd2e25455f23a9de91d2d}{minute} () const 
+\item 
+int \hyperlink{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}{second} () const 
+\item 
+int \hyperlink{classec_1_1Date_a9fd30981481e444ae07f908b447ce639}{week} () const 
+\item 
+int \hyperlink{classec_1_1Date_a02c5f9f15c4316e6a46d4ee113ab1b15}{year\-Day} () const 
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a9a89c8fd2f2244a6524f0149c31f51f1}{set\-Year} (int \hyperlink{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}{year})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a9de7e244d6d3c0b934c8226ec2a58eb4}{set\-Month} (int \hyperlink{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}{month})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a6e0b3d8c7e82d8d5e0367e3aaf5753e6}{set\-Day} (int \hyperlink{classec_1_1Date_a0544c98d04060feb7345092fb60b8065}{day})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_ace13c15d6883dfdddef61dfaca003a46}{set\-Hour} (int \hyperlink{classec_1_1Date_a5c5252eb904dba193e2347f955d986f6}{hour})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_aca4de51e0906fa33907044f3ac4747b7}{set\-Minute} (int \hyperlink{classec_1_1Date_a572776fe397fd2e25455f23a9de91d2d}{minute})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a2dd73608deaa5f29c14a558190c9a232}{set\-Second} (int \hyperlink{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}{second})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a62f053cb6c9e23173b494fd420c58b7b}{add\-Year} (int \hyperlink{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}{year})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a8611507e4a92fd7abd0b5ba9a3503c1c}{add\-Month} (int \hyperlink{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}{month})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_ae0903b4862d9ffdda4308a7b403235f3}{add\-Second} (int \hyperlink{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}{second})
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a199dad3bfafc2cb4d16bff81683d6cca}{sharp\-Year} ()
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a29f26d3467fcc160ec499da528ddac03}{sharp\-Month} ()
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a98678021cafaa5e9e4679fc4d730bc7c}{sharp\-Week} ()
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a327e2a4dc6386e97b37888b583023eea}{sharp\-Day} ()
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_ad92119be62b4a7389233616ec6570b55}{sharp\-Hour} ()
+\item 
+\hyperlink{classec_1_1Date}{Date} \& \hyperlink{classec_1_1Date_a4e9575e8c724584871afd31c9bd3ff8b}{sharp\-Minute} ()
+\item 
+bool \hyperlink{classec_1_1Date_ab57efb14c24f86b7b3f80457ec4ff930}{is\-Leap\-Year} () const 
+\item 
+bool \hyperlink{classec_1_1Date_a1a7235d7bf12af52f16bccded463eeab}{is\-End\-Of\-Month} () const 
+\item 
+int \hyperlink{classec_1_1Date_a9cfe68c456d2de8aef5e2d168fd9ca61}{get\-Month\-Days} () const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classec_1_1Date_a7003f97919dbfec532a4a37c4daef6d8}{get\-Time\-Zone\-Offset} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+日期类 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classec_1_1Date_a87b10f3e182109a78d3b68e9b1ed20e2}{\index{ec\-::\-Date@{ec\-::\-Date}!Date@{Date}}
+\index{Date@{Date}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Date\-::\-Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a87b10f3e182109a78d3b68e9b1ed20e2}
+以当前时间构造 \hypertarget{classec_1_1Date_a8862acf628e847927edaea397113036b}{\index{ec\-::\-Date@{ec\-::\-Date}!Date@{Date}}
+\index{Date@{Date}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Date\-::\-Date (
+\begin{DoxyParamCaption}
+\item[{time\-\_\-t}]{stamp}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a8862acf628e847927edaea397113036b}
+以时间戳构造 \hypertarget{classec_1_1Date_aa73c77460f766467202a9695b7b7649c}{\index{ec\-::\-Date@{ec\-::\-Date}!Date@{Date}}
+\index{Date@{Date}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Date\-::\-Date (
+\begin{DoxyParamCaption}
+\item[{const {\bf Time} \&}]{time}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_aa73c77460f766467202a9695b7b7649c}
+以\-Time对象构造 \hypertarget{classec_1_1Date_a1dae4bdb08788d69fcbbb0a0233e27a1}{\index{ec\-::\-Date@{ec\-::\-Date}!Date@{Date}}
+\index{Date@{Date}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}ec\-::\-Date\-::\-Date (
+\begin{DoxyParamCaption}
+\item[{int}]{year, }
+\item[{int}]{month, }
+\item[{int}]{day, }
+\item[{int}]{hour = {\ttfamily 0}, }
+\item[{int}]{minute = {\ttfamily 0}, }
+\item[{int}]{second = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a1dae4bdb08788d69fcbbb0a0233e27a1}
+
+
+以指定时间构造 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & 年，\mbox{[}1900) \\
+\hline
+{\em month} & 月，\mbox{[}1,12\mbox{]} \\
+\hline
+{\em day} & 日，\mbox{[}1,31\mbox{]} \\
+\hline
+{\em hour} & 时，\mbox{[}0,23\mbox{]}，默认为0 \\
+\hline
+{\em minute} & 分，\mbox{[}0,59\mbox{]}，默认为0 \\
+\hline
+{\em second} & 秒，\mbox{[}0,60\mbox{]}，默认为0 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1Date_a8611507e4a92fd7abd0b5ba9a3503c1c}{\index{ec\-::\-Date@{ec\-::\-Date}!add\-Month@{add\-Month}}
+\index{add\-Month@{add\-Month}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{add\-Month}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::add\-Month (
+\begin{DoxyParamCaption}
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a8611507e4a92fd7abd0b5ba9a3503c1c}
+加/减 月 \hypertarget{classec_1_1Date_ae0903b4862d9ffdda4308a7b403235f3}{\index{ec\-::\-Date@{ec\-::\-Date}!add\-Second@{add\-Second}}
+\index{add\-Second@{add\-Second}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{add\-Second}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::add\-Second (
+\begin{DoxyParamCaption}
+\item[{int}]{second}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_ae0903b4862d9ffdda4308a7b403235f3}
+加/减 秒 \hypertarget{classec_1_1Date_a62f053cb6c9e23173b494fd420c58b7b}{\index{ec\-::\-Date@{ec\-::\-Date}!add\-Year@{add\-Year}}
+\index{add\-Year@{add\-Year}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{add\-Year}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::add\-Year (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a62f053cb6c9e23173b494fd420c58b7b}
+加/减 年 \hypertarget{classec_1_1Date_ae94b1e3c919d58e5539088e863d1ba0d}{\index{ec\-::\-Date@{ec\-::\-Date}!clone@{clone}}
+\index{clone@{clone}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} ec\-::\-Date\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_ae94b1e3c919d58e5539088e863d1ba0d}
+克隆当前对象 \hypertarget{classec_1_1Date_a0544c98d04060feb7345092fb60b8065}{\index{ec\-::\-Date@{ec\-::\-Date}!day@{day}}
+\index{day@{day}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{day}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::day (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a0544c98d04060feb7345092fb60b8065}
+获取日，\mbox{[}1,31\mbox{]} \hypertarget{classec_1_1Date_a9cfe68c456d2de8aef5e2d168fd9ca61}{\index{ec\-::\-Date@{ec\-::\-Date}!get\-Month\-Days@{get\-Month\-Days}}
+\index{get\-Month\-Days@{get\-Month\-Days}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{get\-Month\-Days}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::get\-Month\-Days (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_a9cfe68c456d2de8aef5e2d168fd9ca61}
+获取在本月中的天数 \hypertarget{classec_1_1Date_a7003f97919dbfec532a4a37c4daef6d8}{\index{ec\-::\-Date@{ec\-::\-Date}!get\-Time\-Zone\-Offset@{get\-Time\-Zone\-Offset}}
+\index{get\-Time\-Zone\-Offset@{get\-Time\-Zone\-Offset}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{get\-Time\-Zone\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::get\-Time\-Zone\-Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classec_1_1Date_a7003f97919dbfec532a4a37c4daef6d8}
+返回当前时区，比如\-U\-T\-C+8的时区为-\/28800 \hypertarget{classec_1_1Date_a5c5252eb904dba193e2347f955d986f6}{\index{ec\-::\-Date@{ec\-::\-Date}!hour@{hour}}
+\index{hour@{hour}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{hour}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::hour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a5c5252eb904dba193e2347f955d986f6}
+获取时，\mbox{[}0,23\mbox{]} \hypertarget{classec_1_1Date_a1a7235d7bf12af52f16bccded463eeab}{\index{ec\-::\-Date@{ec\-::\-Date}!is\-End\-Of\-Month@{is\-End\-Of\-Month}}
+\index{is\-End\-Of\-Month@{is\-End\-Of\-Month}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{is\-End\-Of\-Month}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Date\-::is\-End\-Of\-Month (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_a1a7235d7bf12af52f16bccded463eeab}
+是否是一月的最后一天 \hypertarget{classec_1_1Date_ab57efb14c24f86b7b3f80457ec4ff930}{\index{ec\-::\-Date@{ec\-::\-Date}!is\-Leap\-Year@{is\-Leap\-Year}}
+\index{is\-Leap\-Year@{is\-Leap\-Year}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{is\-Leap\-Year}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Date\-::is\-Leap\-Year (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_ab57efb14c24f86b7b3f80457ec4ff930}
+是否是闰年 \hypertarget{classec_1_1Date_a572776fe397fd2e25455f23a9de91d2d}{\index{ec\-::\-Date@{ec\-::\-Date}!minute@{minute}}
+\index{minute@{minute}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{minute}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::minute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a572776fe397fd2e25455f23a9de91d2d}
+获取分，\mbox{[}0,59\mbox{]} \hypertarget{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}{\index{ec\-::\-Date@{ec\-::\-Date}!month@{month}}
+\index{month@{month}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{month}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::month (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a8f1a6ea36ce7a64d2aa43c93a992bcd5}
+获取月，\mbox{[}1,12\mbox{]} \hypertarget{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}{\index{ec\-::\-Date@{ec\-::\-Date}!second@{second}}
+\index{second@{second}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{second}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::second (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a62f978e3fff3e38682bd9c4876beea5d}
+获取秒，\mbox{[}0,60\mbox{]} \hypertarget{classec_1_1Date_a991e12c24956f398a2d86ddaf8e99e2f}{\index{ec\-::\-Date@{ec\-::\-Date}!set@{set}}
+\index{set@{set}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Date\-::set (
+\begin{DoxyParamCaption}
+\item[{time\-\_\-t}]{stamp}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a991e12c24956f398a2d86ddaf8e99e2f}
+设置时间戳 \hypertarget{classec_1_1Date_a6e0b3d8c7e82d8d5e0367e3aaf5753e6}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Day@{set\-Day}}
+\index{set\-Day@{set\-Day}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Day}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Day (
+\begin{DoxyParamCaption}
+\item[{int}]{day}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a6e0b3d8c7e82d8d5e0367e3aaf5753e6}
+设置日，\mbox{[}1,31\mbox{]} \hypertarget{classec_1_1Date_ace13c15d6883dfdddef61dfaca003a46}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Hour@{set\-Hour}}
+\index{set\-Hour@{set\-Hour}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Hour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Hour (
+\begin{DoxyParamCaption}
+\item[{int}]{hour}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_ace13c15d6883dfdddef61dfaca003a46}
+设置时，\mbox{[}0,23\mbox{]} \hypertarget{classec_1_1Date_aca4de51e0906fa33907044f3ac4747b7}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Minute@{set\-Minute}}
+\index{set\-Minute@{set\-Minute}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Minute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Minute (
+\begin{DoxyParamCaption}
+\item[{int}]{minute}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_aca4de51e0906fa33907044f3ac4747b7}
+设置分，\mbox{[}0,59\mbox{]} \hypertarget{classec_1_1Date_a9de7e244d6d3c0b934c8226ec2a58eb4}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Month@{set\-Month}}
+\index{set\-Month@{set\-Month}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Month}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Month (
+\begin{DoxyParamCaption}
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a9de7e244d6d3c0b934c8226ec2a58eb4}
+设置月，\mbox{[}1,12\mbox{]} \hypertarget{classec_1_1Date_a2dd73608deaa5f29c14a558190c9a232}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Second@{set\-Second}}
+\index{set\-Second@{set\-Second}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Second}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Second (
+\begin{DoxyParamCaption}
+\item[{int}]{second}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a2dd73608deaa5f29c14a558190c9a232}
+设置秒，\mbox{[}0,60\mbox{]} \hypertarget{classec_1_1Date_a9a89c8fd2f2244a6524f0149c31f51f1}{\index{ec\-::\-Date@{ec\-::\-Date}!set\-Year@{set\-Year}}
+\index{set\-Year@{set\-Year}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{set\-Year}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::set\-Year (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a9a89c8fd2f2244a6524f0149c31f51f1}
+设置年，\mbox{[}1900, ) \hypertarget{classec_1_1Date_a327e2a4dc6386e97b37888b583023eea}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Day@{sharp\-Day}}
+\index{sharp\-Day@{sharp\-Day}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Day}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Day (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a327e2a4dc6386e97b37888b583023eea}
+设置为一天的开始 \hypertarget{classec_1_1Date_ad92119be62b4a7389233616ec6570b55}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Hour@{sharp\-Hour}}
+\index{sharp\-Hour@{sharp\-Hour}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Hour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Hour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_ad92119be62b4a7389233616ec6570b55}
+设置为一小时的开始 \hypertarget{classec_1_1Date_a4e9575e8c724584871afd31c9bd3ff8b}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Minute@{sharp\-Minute}}
+\index{sharp\-Minute@{sharp\-Minute}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Minute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Minute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a4e9575e8c724584871afd31c9bd3ff8b}
+设置为一分钟的开始 \hypertarget{classec_1_1Date_a29f26d3467fcc160ec499da528ddac03}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Month@{sharp\-Month}}
+\index{sharp\-Month@{sharp\-Month}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Month}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Month (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a29f26d3467fcc160ec499da528ddac03}
+设置为一月的开始 \hypertarget{classec_1_1Date_a98678021cafaa5e9e4679fc4d730bc7c}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Week@{sharp\-Week}}
+\index{sharp\-Week@{sharp\-Week}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Week}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Week (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a98678021cafaa5e9e4679fc4d730bc7c}
+设置为一周的开始 \hypertarget{classec_1_1Date_a199dad3bfafc2cb4d16bff81683d6cca}{\index{ec\-::\-Date@{ec\-::\-Date}!sharp\-Year@{sharp\-Year}}
+\index{sharp\-Year@{sharp\-Year}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{sharp\-Year}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} \& ec\-::\-Date\-::sharp\-Year (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1Date_a199dad3bfafc2cb4d16bff81683d6cca}
+设置为一年的开始 \hypertarget{classec_1_1Date_ae376652bff3f8476f948c14cb00601c5}{\index{ec\-::\-Date@{ec\-::\-Date}!stamp@{stamp}}
+\index{stamp@{stamp}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{stamp}]{\setlength{\rightskip}{0pt plus 5cm}time\-\_\-t ec\-::\-Date\-::stamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_ae376652bff3f8476f948c14cb00601c5}
+获取时间戳 \hypertarget{classec_1_1Date_a0566e90d744f4d1d8d5490a9be7a5bbc}{\index{ec\-::\-Date@{ec\-::\-Date}!to\-String@{to\-String}}
+\index{to\-String@{to\-String}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{to\-String}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string ec\-::\-Date\-::to\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_a0566e90d744f4d1d8d5490a9be7a5bbc}
+转换为字符串 \hypertarget{classec_1_1Date_a37f8cee14d869d9b132700f8568270de}{\index{ec\-::\-Date@{ec\-::\-Date}!to\-Time@{to\-Time}}
+\index{to\-Time@{to\-Time}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{to\-Time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} ec\-::\-Date\-::to\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_a37f8cee14d869d9b132700f8568270de}
+转换为\-Time \hypertarget{classec_1_1Date_ad9ef9967be21c60db8a78dc5d0e46ab4}{\index{ec\-::\-Date@{ec\-::\-Date}!utc\-Stamp@{utc\-Stamp}}
+\index{utc\-Stamp@{utc\-Stamp}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{utc\-Stamp}]{\setlength{\rightskip}{0pt plus 5cm}time\-\_\-t ec\-::\-Date\-::utc\-Stamp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1Date_ad9ef9967be21c60db8a78dc5d0e46ab4}
+获取\-U\-T\-C时间戳 \hypertarget{classec_1_1Date_a9fd30981481e444ae07f908b447ce639}{\index{ec\-::\-Date@{ec\-::\-Date}!week@{week}}
+\index{week@{week}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{week}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::week (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a9fd30981481e444ae07f908b447ce639}
+获取星期，\mbox{[}1,7\mbox{]} \hypertarget{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}{\index{ec\-::\-Date@{ec\-::\-Date}!year@{year}}
+\index{year@{year}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{year}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::year (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_ad8ff77d7111044313c6d07c1096c7330}
+获取年，\mbox{[}1900, ) \hypertarget{classec_1_1Date_a02c5f9f15c4316e6a46d4ee113ab1b15}{\index{ec\-::\-Date@{ec\-::\-Date}!year\-Day@{year\-Day}}
+\index{year\-Day@{year\-Day}!ec::Date@{ec\-::\-Date}}
+\subsubsection[{year\-Day}]{\setlength{\rightskip}{0pt plus 5cm}int ec\-::\-Date\-::year\-Day (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Date_a02c5f9f15c4316e6a46d4ee113ab1b15}
+获取一年中的天，\mbox{[}0,365\mbox{]} 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/date.\-h\item 
+src/date.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,140 @@
+\hypertarget{classec_1_1TcpServer}{\section{ec\-:\-:Tcp\-Server Class Reference}
+\label{classec_1_1TcpServer}\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}}
+}
+
+
+T\-C\-P服务器  
+
+
+
+
+{\ttfamily \#include $<$tcp\-Server.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpServer_acda2f66f003a4203c17886c3d70c1c77}{{\bfseries Tcp\-Server} (uint16\-\_\-t threads=0)}\label{classec_1_1TcpServer_acda2f66f003a4203c17886c3d70c1c77}
+
+\item 
+void \hyperlink{classec_1_1TcpServer_a5bb66fcd67ba08031fc65c7e2ea7220d}{set\-Threads} (uint16\-\_\-t threads)
+\item 
+\hyperlink{classec_1_1Loop}{ec\-::\-Loop} \& \hyperlink{classec_1_1TcpServer_a9249823c7fb037626df45335dad1c506}{get\-Loop} () const 
+\item 
+bool \hyperlink{classec_1_1TcpServer_a5664dc7c718dd2bd77a4f424ae49361f}{listen} (const char $\ast$ip, uint16\-\_\-t port)
+\begin{DoxyCompactList}\small\item\em 监听 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1TcpServer_ad7312d86be0f2ad13d24de79c77298c3}{stop} ()
+\item 
+void \hyperlink{classec_1_1TcpServer_ad37edaf6e644d00b80c90610f4ca4ad5}{wait} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classec_1_1TcpServer_aa70b8c0ff54b76b78492bd02c1396d40}{on\-Listen\-Error} ()
+\item 
+virtual void \hyperlink{classec_1_1TcpServer_afd151d6640eda1e7de6934292d0ce045}{on\-Session\-Read} (\hyperlink{classec_1_1TcpSession}{ec\-::\-Tcp\-Session} $\ast$session)
+\item 
+virtual void \hyperlink{classec_1_1TcpServer_a6c6e9583952b194f6510b1d67c960682}{on\-Session\-Disconnected} (\hyperlink{classec_1_1TcpSession}{ec\-::\-Tcp\-Session} $\ast$session)
+\item 
+virtual void \hyperlink{classec_1_1TcpServer_a3fb6ace162987df6f7375ef08346f8f8}{on\-New\-Session} (\hyperlink{classec_1_1TcpSession}{ec\-::\-Tcp\-Session} $\ast$session)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpServer_ad821fb654cf0b89cb6245fa831ec471c}{class {\bfseries Tcp\-Session}}\label{classec_1_1TcpServer_ad821fb654cf0b89cb6245fa831ec471c}
+
+\item 
+\hypertarget{classec_1_1TcpServer_aacbf5c26d9d3dde89d5ebccceb97ad3f}{class {\bfseries Tcp\-Server\-Dispatcher}}\label{classec_1_1TcpServer_aacbf5c26d9d3dde89d5ebccceb97ad3f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\-C\-P服务器 
+
+其包含了一个监听线程和多个\-I\-O线程 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1TcpServer_a9249823c7fb037626df45335dad1c506}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!get\-Loop@{get\-Loop}}
+\index{get\-Loop@{get\-Loop}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{get\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ec\-::\-Loop}\& ec\-::\-Tcp\-Server\-::get\-Loop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1TcpServer_a9249823c7fb037626df45335dad1c506}
+获取\-Loop包含的\-Loop对象引用 \hypertarget{classec_1_1TcpServer_a5664dc7c718dd2bd77a4f424ae49361f}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!listen@{listen}}
+\index{listen@{listen}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{listen}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Server\-::listen (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ip, }
+\item[{uint16\-\_\-t}]{port}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpServer_a5664dc7c718dd2bd77a4f424ae49361f}
+
+
+监听 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & 服务器\-I\-P地址 \\
+\hline
+{\em port} & 服务器监听端口 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+返回是否成功 
+\end{DoxyReturn}
+\hypertarget{classec_1_1TcpServer_aa70b8c0ff54b76b78492bd02c1396d40}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!on\-Listen\-Error@{on\-Listen\-Error}}
+\index{on\-Listen\-Error@{on\-Listen\-Error}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{on\-Listen\-Error}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Server\-::on\-Listen\-Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpServer_aa70b8c0ff54b76b78492bd02c1396d40}
+监听失败时处理接口 \hypertarget{classec_1_1TcpServer_a3fb6ace162987df6f7375ef08346f8f8}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!on\-New\-Session@{on\-New\-Session}}
+\index{on\-New\-Session@{on\-New\-Session}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{on\-New\-Session}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Server\-::on\-New\-Session (
+\begin{DoxyParamCaption}
+\item[{{\bf ec\-::\-Tcp\-Session} $\ast$}]{session}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpServer_a3fb6ace162987df6f7375ef08346f8f8}
+有新连接时处理接口 \hypertarget{classec_1_1TcpServer_a6c6e9583952b194f6510b1d67c960682}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!on\-Session\-Disconnected@{on\-Session\-Disconnected}}
+\index{on\-Session\-Disconnected@{on\-Session\-Disconnected}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{on\-Session\-Disconnected}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Server\-::on\-Session\-Disconnected (
+\begin{DoxyParamCaption}
+\item[{{\bf ec\-::\-Tcp\-Session} $\ast$}]{session}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpServer_a6c6e9583952b194f6510b1d67c960682}
+连接断开时处理接口 \hypertarget{classec_1_1TcpServer_afd151d6640eda1e7de6934292d0ce045}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!on\-Session\-Read@{on\-Session\-Read}}
+\index{on\-Session\-Read@{on\-Session\-Read}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{on\-Session\-Read}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Server\-::on\-Session\-Read (
+\begin{DoxyParamCaption}
+\item[{{\bf ec\-::\-Tcp\-Session} $\ast$}]{session}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpServer_afd151d6640eda1e7de6934292d0ce045}
+连接有数据可读时处理接口 \hypertarget{classec_1_1TcpServer_a5bb66fcd67ba08031fc65c7e2ea7220d}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!set\-Threads@{set\-Threads}}
+\index{set\-Threads@{set\-Threads}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{set\-Threads}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Server\-::set\-Threads (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{threads}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpServer_a5bb66fcd67ba08031fc65c7e2ea7220d}
+设置\-I\-O线程数量，需在监听之前调用 \hypertarget{classec_1_1TcpServer_ad7312d86be0f2ad13d24de79c77298c3}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!stop@{stop}}
+\index{stop@{stop}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Server\-::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpServer_ad7312d86be0f2ad13d24de79c77298c3}
+停止 \hypertarget{classec_1_1TcpServer_ad37edaf6e644d00b80c90610f4ca4ad5}{\index{ec\-::\-Tcp\-Server@{ec\-::\-Tcp\-Server}!wait@{wait}}
+\index{wait@{wait}!ec::TcpServer@{ec\-::\-Tcp\-Server}}
+\subsubsection[{wait}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Server\-::wait (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpServer_ad37edaf6e644d00b80c90610f4ca4ad5}
+等待所有线程结束 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/tcp\-Server.\-h\item 
+src/tcp\-Server.\-cpp\end{DoxyCompactItemize}

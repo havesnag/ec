@@ -1,0 +1,152 @@
+\hypertarget{classec_1_1TcpSocket}{\section{ec\-:\-:Tcp\-Socket Class Reference}
+\label{classec_1_1TcpSocket}\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}}
+}
+
+
+T\-C\-P连接基类  
+
+
+
+
+{\ttfamily \#include $<$tcp\-Socket.\-h$>$}
+
+Inheritance diagram for ec\-:\-:Tcp\-Socket\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classec_1_1TcpSocket}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classec_1_1TcpSocket_a75615a2cb729bf1e11f7bf9414dedb6e}{is\-Inited} () const 
+\item 
+Socket\-Fd \hyperlink{classec_1_1TcpSocket_a5612ba87be272ed6dcc50d3dd097070c}{get\-Socket} () const 
+\item 
+void \hyperlink{classec_1_1TcpSocket_ac2b55cbb75000a218b3c1d83c1365611}{get\-Addr} (struct sockaddr\-\_\-in $\ast$dest, uint32\-\_\-t size) const 
+\item 
+bool \hyperlink{classec_1_1TcpSocket_af9e2fdbb732d93537e2867eeebc34ab2}{send} (const char $\ast$data, uint32\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em 发送数据 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}{close} (bool pending=true)
+\begin{DoxyCompactList}\small\item\em 关闭连接 \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{classec_1_1TcpSocket_a73baa70135fad8207968cfc2c7c6fe2a}{get\-Input\-Buffer\-Length} () const 
+\item 
+const uint8\-\_\-t $\ast$ \hyperlink{classec_1_1TcpSocket_a50a9ce465e5c0e0c20fe63f99cc294af}{view\-Input\-Buffer} (uint32\-\_\-t size) const 
+\item 
+bool \hyperlink{classec_1_1TcpSocket_a64a402951553c83c1ba6be46fcf642d0}{read\-Input\-Buffer} (uint8\-\_\-t $\ast$dest, uint32\-\_\-t size)
+\item 
+void \hyperlink{classec_1_1TcpSocket_a55626e2cba2d193b4aa04ee0fc8a197e}{clear\-Input\-Buffer} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpSocket_ae5053578ebd24aac2aaf6e7a697a71d6}{void {\bfseries check\-Closing} ()}\label{classec_1_1TcpSocket_ae5053578ebd24aac2aaf6e7a697a71d6}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpSocket_a13725375b3f583451cc71e907ca9e919}{struct bufferevent $\ast$ {\bfseries \-\_\-bev}}\label{classec_1_1TcpSocket_a13725375b3f583451cc71e907ca9e919}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\-C\-P连接基类 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1TcpSocket_a55626e2cba2d193b4aa04ee0fc8a197e}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!clear\-Input\-Buffer@{clear\-Input\-Buffer}}
+\index{clear\-Input\-Buffer@{clear\-Input\-Buffer}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{clear\-Input\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Socket\-::clear\-Input\-Buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpSocket_a55626e2cba2d193b4aa04ee0fc8a197e}
+清空收数据缓冲区 \hypertarget{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!close@{close}}
+\index{close@{close}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Socket\-::close (
+\begin{DoxyParamCaption}
+\item[{bool}]{pending = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}
+
+
+关闭连接 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pending} & 是否等待数据发送完再关闭 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1TcpSocket_ac2b55cbb75000a218b3c1d83c1365611}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!get\-Addr@{get\-Addr}}
+\index{get\-Addr@{get\-Addr}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{get\-Addr}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Socket\-::get\-Addr (
+\begin{DoxyParamCaption}
+\item[{struct sockaddr\-\_\-in $\ast$}]{dest, }
+\item[{uint32\-\_\-t}]{size}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1TcpSocket_ac2b55cbb75000a218b3c1d83c1365611}
+获取连接地址 \hypertarget{classec_1_1TcpSocket_a73baa70135fad8207968cfc2c7c6fe2a}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!get\-Input\-Buffer\-Length@{get\-Input\-Buffer\-Length}}
+\index{get\-Input\-Buffer\-Length@{get\-Input\-Buffer\-Length}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{get\-Input\-Buffer\-Length}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t ec\-::\-Tcp\-Socket\-::get\-Input\-Buffer\-Length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1TcpSocket_a73baa70135fad8207968cfc2c7c6fe2a}
+获取收数据缓冲区数据长度 \hypertarget{classec_1_1TcpSocket_a5612ba87be272ed6dcc50d3dd097070c}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!get\-Socket@{get\-Socket}}
+\index{get\-Socket@{get\-Socket}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{get\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}Socket\-Fd ec\-::\-Tcp\-Socket\-::get\-Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1TcpSocket_a5612ba87be272ed6dcc50d3dd097070c}
+获取socket \hypertarget{classec_1_1TcpSocket_a75615a2cb729bf1e11f7bf9414dedb6e}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!is\-Inited@{is\-Inited}}
+\index{is\-Inited@{is\-Inited}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{is\-Inited}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Socket\-::is\-Inited (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1TcpSocket_a75615a2cb729bf1e11f7bf9414dedb6e}
+是否已初始化 \hypertarget{classec_1_1TcpSocket_a64a402951553c83c1ba6be46fcf642d0}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!read\-Input\-Buffer@{read\-Input\-Buffer}}
+\index{read\-Input\-Buffer@{read\-Input\-Buffer}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{read\-Input\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Socket\-::read\-Input\-Buffer (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{dest, }
+\item[{uint32\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpSocket_a64a402951553c83c1ba6be46fcf642d0}
+读取收数据缓冲区 \hypertarget{classec_1_1TcpSocket_af9e2fdbb732d93537e2867eeebc34ab2}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!send@{send}}
+\index{send@{send}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{send}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Socket\-::send (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{uint32\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpSocket_af9e2fdbb732d93537e2867eeebc34ab2}
+
+
+发送数据 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 数据地址 \\
+\hline
+{\em size} & 数据字节大小 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+返回是否成功 
+\end{DoxyReturn}
+\hypertarget{classec_1_1TcpSocket_a50a9ce465e5c0e0c20fe63f99cc294af}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!view\-Input\-Buffer@{view\-Input\-Buffer}}
+\index{view\-Input\-Buffer@{view\-Input\-Buffer}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
+\subsubsection[{view\-Input\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\-\_\-t $\ast$ ec\-::\-Tcp\-Socket\-::view\-Input\-Buffer (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{size}
+\end{DoxyParamCaption}
+) const}}\label{classec_1_1TcpSocket_a50a9ce465e5c0e0c20fe63f99cc294af}
+查看收数据缓冲区 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/tcp\-Socket.\-h\item 
+src/tcp\-Socket.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,109 @@
+\hypertarget{classec_1_1TcpClient}{\section{ec\-:\-:Tcp\-Client Class Reference}
+\label{classec_1_1TcpClient}\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}}
+}
+
+
+客户端\-T\-C\-P连接  
+
+
+
+
+{\ttfamily \#include $<$tcp\-Client.\-h$>$}
+
+Inheritance diagram for ec\-:\-:Tcp\-Client\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classec_1_1TcpClient}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classec_1_1TcpClient_aeddd87eefbaf668137546b0232291d8a}{{\bfseries Tcp\-Client} (const \hyperlink{classec_1_1Loop}{ec\-::\-Loop} \&loop)}\label{classec_1_1TcpClient_aeddd87eefbaf668137546b0232291d8a}
+
+\item 
+bool \hyperlink{classec_1_1TcpClient_aea5214d714c2c79d05bf0ff224b19e10}{is\-Connected} () const 
+\item 
+bool \hyperlink{classec_1_1TcpClient_aced7a41792c93f2b8515f2b30b265a3f}{connect} (const char $\ast$ip, uint16\-\_\-t port)
+\begin{DoxyCompactList}\small\item\em 连接服务器 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classec_1_1TcpClient_a5fb6c3ed5388a03de459b6fc233c82ea}{on\-Read} ()
+\item 
+virtual void \hyperlink{classec_1_1TcpClient_ad528b3c242a0f694d5a0bd1f92a614b8}{on\-Disconnected} ()
+\item 
+virtual void \hyperlink{classec_1_1TcpClient_adaedc4e778e2de8fca42217e305ed0da}{on\-Connected} (int error)
+\begin{DoxyCompactList}\small\item\em 连接成功时处理接口 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+客户端\-T\-C\-P连接 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1TcpClient_aced7a41792c93f2b8515f2b30b265a3f}{\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}!connect@{connect}}
+\index{connect@{connect}!ec::TcpClient@{ec\-::\-Tcp\-Client}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Client\-::connect (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ip, }
+\item[{uint16\-\_\-t}]{port}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1TcpClient_aced7a41792c93f2b8515f2b30b265a3f}
+
+
+连接服务器 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & 服务器\-I\-P地址 \\
+\hline
+{\em port} & 服务器监听端口 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+返回是否成功 
+\end{DoxyReturn}
+\hypertarget{classec_1_1TcpClient_aea5214d714c2c79d05bf0ff224b19e10}{\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}!is\-Connected@{is\-Connected}}
+\index{is\-Connected@{is\-Connected}!ec::TcpClient@{ec\-::\-Tcp\-Client}}
+\subsubsection[{is\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Tcp\-Client\-::is\-Connected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1TcpClient_aea5214d714c2c79d05bf0ff224b19e10}
+是否已成功连接 \hypertarget{classec_1_1TcpClient_adaedc4e778e2de8fca42217e305ed0da}{\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}!on\-Connected@{on\-Connected}}
+\index{on\-Connected@{on\-Connected}!ec::TcpClient@{ec\-::\-Tcp\-Client}}
+\subsubsection[{on\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Client\-::on\-Connected (
+\begin{DoxyParamCaption}
+\item[{int}]{error}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpClient_adaedc4e778e2de8fca42217e305ed0da}
+
+
+连接成功时处理接口 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & 连接错误码，0表示成功 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1TcpClient_ad528b3c242a0f694d5a0bd1f92a614b8}{\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}!on\-Disconnected@{on\-Disconnected}}
+\index{on\-Disconnected@{on\-Disconnected}!ec::TcpClient@{ec\-::\-Tcp\-Client}}
+\subsubsection[{on\-Disconnected}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Client\-::on\-Disconnected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpClient_ad528b3c242a0f694d5a0bd1f92a614b8}
+连接断开时处理接口 \hypertarget{classec_1_1TcpClient_a5fb6c3ed5388a03de459b6fc233c82ea}{\index{ec\-::\-Tcp\-Client@{ec\-::\-Tcp\-Client}!on\-Read@{on\-Read}}
+\index{on\-Read@{on\-Read}!ec::TcpClient@{ec\-::\-Tcp\-Client}}
+\subsubsection[{on\-Read}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ec\-::\-Tcp\-Client\-::on\-Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpClient_a5fb6c3ed5388a03de459b6fc233c82ea}
+有数据可读时处理接口 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/tcp\-Client.\-h\item 
+src/tcp\-Client.\-cpp\end{DoxyCompactItemize}

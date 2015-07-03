@@ -1,0 +1,89 @@
+\hypertarget{classec_1_1SafeQueue}{\section{ec\-:\-:Safe\-Queue$<$ T $>$ Class Template Reference}
+\label{classec_1_1SafeQueue}\index{ec\-::\-Safe\-Queue$<$ T $>$@{ec\-::\-Safe\-Queue$<$ T $>$}}
+}
+
+
+线程安全队列  
+
+
+
+
+{\ttfamily \#include $<$safe\-Queue.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classec_1_1SafeQueue_a6382b6971ebff27efd05730cd1f7c01d}{push} (T t)
+\item 
+std\-::list$<$ T $>$ \hyperlink{classec_1_1SafeQueue_adf4ce61718e1f1ef816968bc11673f24}{move\-All} ()
+\begin{DoxyCompactList}\small\item\em 移除所有元素 \end{DoxyCompactList}\item 
+void \hyperlink{classec_1_1SafeQueue_a83fd832b0412534a2f0b040706f3942f}{move\-All} (std\-::list$<$ T $>$ \&elements)
+\begin{DoxyCompactList}\small\item\em 移除所有元素并添加到指定列表队尾中 \end{DoxyCompactList}\item 
+bool \hyperlink{classec_1_1SafeQueue_a227f5edd626c49cb41c9975dc0931918}{empty} ()
+\item 
+size\-\_\-t \hyperlink{classec_1_1SafeQueue_ab5cdb68902f04af1c5bead306accdac5}{size} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$class ec\-::\-Safe\-Queue$<$ T $>$}
+
+线程安全队列 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1SafeQueue_a227f5edd626c49cb41c9975dc0931918}{\index{ec\-::\-Safe\-Queue@{ec\-::\-Safe\-Queue}!empty@{empty}}
+\index{empty@{empty}!ec::SafeQueue@{ec\-::\-Safe\-Queue}}
+\subsubsection[{empty}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ bool {\bf ec\-::\-Safe\-Queue}$<$ T $>$\-::empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1SafeQueue_a227f5edd626c49cb41c9975dc0931918}
+是否为空 \hypertarget{classec_1_1SafeQueue_adf4ce61718e1f1ef816968bc11673f24}{\index{ec\-::\-Safe\-Queue@{ec\-::\-Safe\-Queue}!move\-All@{move\-All}}
+\index{move\-All@{move\-All}!ec::SafeQueue@{ec\-::\-Safe\-Queue}}
+\subsubsection[{move\-All}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ std\-::list$<$T$>$ {\bf ec\-::\-Safe\-Queue}$<$ T $>$\-::move\-All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1SafeQueue_adf4ce61718e1f1ef816968bc11673f24}
+
+
+移除所有元素 
+
+\begin{DoxyReturn}{Returns}
+移除的元素列表 
+\end{DoxyReturn}
+\hypertarget{classec_1_1SafeQueue_a83fd832b0412534a2f0b040706f3942f}{\index{ec\-::\-Safe\-Queue@{ec\-::\-Safe\-Queue}!move\-All@{move\-All}}
+\index{move\-All@{move\-All}!ec::SafeQueue@{ec\-::\-Safe\-Queue}}
+\subsubsection[{move\-All}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ void {\bf ec\-::\-Safe\-Queue}$<$ T $>$\-::move\-All (
+\begin{DoxyParamCaption}
+\item[{std\-::list$<$ T $>$ \&}]{elements}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1SafeQueue_a83fd832b0412534a2f0b040706f3942f}
+
+
+移除所有元素并添加到指定列表队尾中 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elements} & 存储移除的元素 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classec_1_1SafeQueue_a6382b6971ebff27efd05730cd1f7c01d}{\index{ec\-::\-Safe\-Queue@{ec\-::\-Safe\-Queue}!push@{push}}
+\index{push@{push}!ec::SafeQueue@{ec\-::\-Safe\-Queue}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ void {\bf ec\-::\-Safe\-Queue}$<$ T $>$\-::push (
+\begin{DoxyParamCaption}
+\item[{T}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1SafeQueue_a6382b6971ebff27efd05730cd1f7c01d}
+加一个元素到队尾 \hypertarget{classec_1_1SafeQueue_ab5cdb68902f04af1c5bead306accdac5}{\index{ec\-::\-Safe\-Queue@{ec\-::\-Safe\-Queue}!size@{size}}
+\index{size@{size}!ec::SafeQueue@{ec\-::\-Safe\-Queue}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ size\-\_\-t {\bf ec\-::\-Safe\-Queue}$<$ T $>$\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1SafeQueue_ab5cdb68902f04af1c5bead306accdac5}
+获取元素个数 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/safe\-Queue.\-h\end{DoxyCompactItemize}
