@@ -14,21 +14,28 @@ namespace ec
 {
 
 class TcpServerDispatcher;
+
+/**
+ * @brief 服务端TCP连接
+ */
 class TcpSession : public ec::TcpSocket, public std::enable_shared_from_this<TcpSession>
 {
 public:
 	TcpSession(ec::TcpServerDispatcher *dispatcher, ec::SessionId id);
 
+	/** 获取管理此连接的调度器 */
 	inline ec::TcpServerDispatcher * getDispatcher() const
 	{
 		return _dispatcher;
 	}
 
+	/** 获取唯一会话id */
 	inline ec::SessionId getId() const
 	{
 		return _id;
 	}
 
+	/** 关联到某socket */
 	void attach(ec::SocketFd sock);
 
 private:

@@ -13,6 +13,9 @@
 namespace ec
 {
 
+/**
+ * @brief 数据封装类
+ */
 class Data
 {
 public:

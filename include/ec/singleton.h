@@ -11,6 +11,10 @@
 namespace ec
 {
 
+/**
+ * @brief 单件类
+ * @details 继承此类实现单件
+ */
 template <typename T>
 class Singleton : private T
 {
@@ -19,6 +23,7 @@ private:
     ~Singleton();
 
 public:
+    /** 获取单件实例 */
     static T &instance();
 };
 

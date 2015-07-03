@@ -15,17 +15,33 @@
 namespace ec
 {
 
+/**
+ * @brief 命令码
+ */
 typedef uint16_t Command;
-typedef std::function<void (ec::Command, const ec::Data &, ec::Data &)> AsyncHandler;
-typedef std::function<void (ec::Data &)> PostHandler;
 
+/**
+ * @brief 异步命令请求处理函数
+ * @param cmd 请求命令码
+ * @param request 请求数据，只读
+ * @param response 返回数据，可写，修改它向发起异步调用的Loop返回数据
+ */
+typedef std::function<void (ec::Command cmd, const ec::Data &request, ec::Data &response)> AsyncHandler;
+
+/**
+ * @brief 异步数据处理函数
+ * @param data 请求数据
+ */
+typedef std::function<void (ec::Data &data)> PostHandler;
+
+/** @brief 异步命令请求内容 */
 struct AsyncContext
 {
-	uint32_t loopId;
-	ec::Command cmd;
-	ec::Data request;
-	ec::Data response;
-	ec::AsyncHandler handler;
+	uint32_t loopId; /** 发起异步命令请求的Loop标号 */
+	ec::Command cmd; /** 请求命令码 */
+	ec::Data request; /** 请求数据 */
+	ec::Data response; /** 返回数据 */
+	ec::AsyncHandler handler; /** 回调函数 */
 };
 
 } /* namespace ec */

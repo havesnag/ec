@@ -15,6 +15,12 @@ namespace ec
 {
 
 class TcpServer;
+
+/**
+ * @brief TCP服务器会话调度管理器
+ * @details TcpServer负责监听连接，然后分配给TcpServerDispatcher管理
+ * @see ec::TcpServer
+ */
 class TcpServerDispatcher : public ec::Loop
 {
 	friend class TcpSession;
