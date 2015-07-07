@@ -11,6 +11,6 @@
 
 int main()
 {
-	tcpExample();
+	httpExample();
 	return 0;
 }

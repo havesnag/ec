@@ -14,4 +14,6 @@ void asyncExample();
 
 void tcpExample();
 
+void httpExample();
+
 #endif /* EXAMPLE_INDEX_H_ */

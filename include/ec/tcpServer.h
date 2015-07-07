@@ -8,6 +8,7 @@
 #ifndef INCLUDE_EC_TCPSERVER_H_
 #define INCLUDE_EC_TCPSERVER_H_
 
+#include <string>
 #include <map>
 #include <vector>
 #include <event2/listener.h>
