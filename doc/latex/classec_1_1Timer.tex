@@ -22,19 +22,19 @@
 \hypertarget{classec_1_1Timer_a85cc8b047f79f6017b865e3921eb0e95}{{\bfseries Timer} (const \hyperlink{classec_1_1Loop}{ec\-::\-Loop} \&loop)}\label{classec_1_1Timer_a85cc8b047f79f6017b865e3921eb0e95}
 
 \item 
-bool \hyperlink{classec_1_1Timer_ad48f591873f207f843a3fc8b306063bf}{start\-Rounds} (uint32\-\_\-t interval, uint64\-\_\-t round, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
+bool \hyperlink{classec_1_1Timer_ad48f591873f207f843a3fc8b306063bf}{start\-Rounds} (uint32\-\_\-t \hyperlink{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{interval}, uint64\-\_\-t \hyperlink{classec_1_1Timer_ae576336f9adac852fcf1172e0c740960}{round}, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
 \begin{DoxyCompactList}\small\item\em 启动多轮循环定时器 \end{DoxyCompactList}\item 
-bool \hyperlink{classec_1_1Timer_af066807719d25dd78919346b1bc28d17}{start\-Once} (uint32\-\_\-t interval, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
+bool \hyperlink{classec_1_1Timer_af066807719d25dd78919346b1bc28d17}{start\-Once} (uint32\-\_\-t \hyperlink{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{interval}, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
 \begin{DoxyCompactList}\small\item\em 启动单次定时器 \end{DoxyCompactList}\item 
-bool \hyperlink{classec_1_1Timer_ac103f227ad5f5bd44a29c24e37aabc20}{start\-Forever} (uint32\-\_\-t interval, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
+bool \hyperlink{classec_1_1Timer_ac103f227ad5f5bd44a29c24e37aabc20}{start\-Forever} (uint32\-\_\-t \hyperlink{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{interval}, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
 \begin{DoxyCompactList}\small\item\em 启动无限循环定时器 \end{DoxyCompactList}\item 
-bool \hyperlink{classec_1_1Timer_a3bbcca634bad30417438a085abe31d25}{start\-After} (uint32\-\_\-t after, uint32\-\_\-t interval, uint64\-\_\-t round, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
+bool \hyperlink{classec_1_1Timer_a3bbcca634bad30417438a085abe31d25}{start\-After} (uint32\-\_\-t after, uint32\-\_\-t \hyperlink{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{interval}, uint64\-\_\-t \hyperlink{classec_1_1Timer_ae576336f9adac852fcf1172e0c740960}{round}, \hyperlink{classec_1_1Timer_acbf2889a6472ca60ce4d3c8856b717c5}{ec\-::\-Timer\-::\-Handler} handler)
 \begin{DoxyCompactList}\small\item\em 在指定事件后启动定时器 \end{DoxyCompactList}\item 
-uint32\-\_\-t \hyperlink{classec_1_1Timer_ab41f5acea6407574f263ec79e080d764}{get\-Interval} () const 
+uint32\-\_\-t \hyperlink{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{interval} () const 
 \item 
-uint64\-\_\-t \hyperlink{classec_1_1Timer_a1803715952c90a30cb4934e84cb132a1}{get\-Round} () const 
+uint64\-\_\-t \hyperlink{classec_1_1Timer_ae576336f9adac852fcf1172e0c740960}{round} () const 
 \item 
-uint64\-\_\-t \hyperlink{classec_1_1Timer_a448659b37455abd3452a8d9cfe3587e3}{get\-Cur\-Round} () const 
+uint64\-\_\-t \hyperlink{classec_1_1Timer_a447daf396b3eade6cdea14912575525a}{cur\-Round} () const 
 \item 
 bool \hyperlink{classec_1_1Timer_a97095d71c497ae7e47b01bffb9383542}{is\-Finished} () const 
 \end{DoxyCompactItemize}
@@ -46,35 +46,35 @@ bool \hyperlink{classec_1_1Timer_a97095d71c497ae7e47b01bffb9383542}{is\-Finished
 封装了libevent的定时器， 
 
 \subsection{Member Function Documentation}
-\hypertarget{classec_1_1Timer_a448659b37455abd3452a8d9cfe3587e3}{\index{ec\-::\-Timer@{ec\-::\-Timer}!get\-Cur\-Round@{get\-Cur\-Round}}
-\index{get\-Cur\-Round@{get\-Cur\-Round}!ec::Timer@{ec\-::\-Timer}}
-\subsubsection[{get\-Cur\-Round}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t ec\-::\-Timer\-::get\-Cur\-Round (
+\hypertarget{classec_1_1Timer_a447daf396b3eade6cdea14912575525a}{\index{ec\-::\-Timer@{ec\-::\-Timer}!cur\-Round@{cur\-Round}}
+\index{cur\-Round@{cur\-Round}!ec::Timer@{ec\-::\-Timer}}
+\subsubsection[{cur\-Round}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t ec\-::\-Timer\-::cur\-Round (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_a448659b37455abd3452a8d9cfe3587e3}
-获取当前周期 \hypertarget{classec_1_1Timer_ab41f5acea6407574f263ec79e080d764}{\index{ec\-::\-Timer@{ec\-::\-Timer}!get\-Interval@{get\-Interval}}
-\index{get\-Interval@{get\-Interval}!ec::Timer@{ec\-::\-Timer}}
-\subsubsection[{get\-Interval}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t ec\-::\-Timer\-::get\-Interval (
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_a447daf396b3eade6cdea14912575525a}
+获取当前周期 \hypertarget{classec_1_1Timer_af632191a18c3b476fe052404643046c6}{\index{ec\-::\-Timer@{ec\-::\-Timer}!interval@{interval}}
+\index{interval@{interval}!ec::Timer@{ec\-::\-Timer}}
+\subsubsection[{interval}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t ec\-::\-Timer\-::interval (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_ab41f5acea6407574f263ec79e080d764}
-获取定时时长 \hypertarget{classec_1_1Timer_a1803715952c90a30cb4934e84cb132a1}{\index{ec\-::\-Timer@{ec\-::\-Timer}!get\-Round@{get\-Round}}
-\index{get\-Round@{get\-Round}!ec::Timer@{ec\-::\-Timer}}
-\subsubsection[{get\-Round}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t ec\-::\-Timer\-::get\-Round (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_a1803715952c90a30cb4934e84cb132a1}
-获取总周期 \hypertarget{classec_1_1Timer_a97095d71c497ae7e47b01bffb9383542}{\index{ec\-::\-Timer@{ec\-::\-Timer}!is\-Finished@{is\-Finished}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_af632191a18c3b476fe052404643046c6}
+获取定时时长 \hypertarget{classec_1_1Timer_a97095d71c497ae7e47b01bffb9383542}{\index{ec\-::\-Timer@{ec\-::\-Timer}!is\-Finished@{is\-Finished}}
 \index{is\-Finished@{is\-Finished}!ec::Timer@{ec\-::\-Timer}}
 \subsubsection[{is\-Finished}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Timer\-::is\-Finished (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_a97095d71c497ae7e47b01bffb9383542}
-是否已经结束 \hypertarget{classec_1_1Timer_a3bbcca634bad30417438a085abe31d25}{\index{ec\-::\-Timer@{ec\-::\-Timer}!start\-After@{start\-After}}
+是否已经结束 \hypertarget{classec_1_1Timer_ae576336f9adac852fcf1172e0c740960}{\index{ec\-::\-Timer@{ec\-::\-Timer}!round@{round}}
+\index{round@{round}!ec::Timer@{ec\-::\-Timer}}
+\subsubsection[{round}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t ec\-::\-Timer\-::round (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classec_1_1Timer_ae576336f9adac852fcf1172e0c740960}
+获取总周期 \hypertarget{classec_1_1Timer_a3bbcca634bad30417438a085abe31d25}{\index{ec\-::\-Timer@{ec\-::\-Timer}!start\-After@{start\-After}}
 \index{start\-After@{start\-After}!ec::Timer@{ec\-::\-Timer}}
 \subsubsection[{start\-After}]{\setlength{\rightskip}{0pt plus 5cm}bool ec\-::\-Timer\-::start\-After (
 \begin{DoxyParamCaption}

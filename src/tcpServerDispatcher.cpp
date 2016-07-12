@@ -22,31 +22,47 @@ ec::TcpSessionPtr TcpServerDispatcher::getSession(ec::SessionId id)
 	return (iter != _sessions.end()) ? iter->second : NULL;
 }
 
-void TcpServerDispatcher::onPost(ec::Data &data)
-{
-	ec::TcpServerDispatcher::NewSessionData sessionData = data.get<ec::TcpServerDispatcher::NewSessionData>();
-
-	TcpSessionPtr session(new TcpSession(this, sessionData.id));
-	session->attach(sessionData.sock);
-	if (!session->isInited())
-	{
-		return;
-	}
-
-	addSession(session);
-	getServer()->onNewSession(session.get());
-}
-
-void TcpServerDispatcher::addSession(ec::TcpSessionPtr session)
+void TcpServerDispatcher::addSession(ec::SessionId id, ec::SocketFd sock)
 {
 	MutexLock lock(_mutex);
-	_sessions[session->getId()] = session;
+	_actions.push({id, sock});
 }
 
 void TcpServerDispatcher::removeSession(ec::SessionId id)
 {
 	MutexLock lock(_mutex);
-	_sessions.erase(id);
+	_actions.push({id, SOCKET_FD_INVALID});
 }
+
+void TcpServerDispatcher::onFrame()
+{
+	if (_actions.empty())
+	{
+		return;
+	}
+
+	_mutex.lock();
+	while (!_actions.empty())
+	{
+		SessionAction & action = _actions.front();
+
+		if (action.sock != SOCKET_FD_INVALID) //新加session
+		{
+			TcpSessionPtr session(new TcpSession(this, action.id));
+			session->attach(action.sock);
+			if (session->isInited())
+			{
+				_sessions[session->getId()] = session;
+			}
+		}
+		else //删除session
+		{
+			_sessions.erase(action.id);
+		}
+
+		_actions.pop();
+	}
+}
+
 
 } /* namespace ec */

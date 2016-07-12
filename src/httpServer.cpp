@@ -35,7 +35,7 @@ bool HttpServer::listen(const char *ip, uint16_t port)
 		return false;
 	}
 
-	_http = evhttp_new(getBase());
+	_http = evhttp_new(ev());
 	if (NULL == _http)
 	{
 		return false;

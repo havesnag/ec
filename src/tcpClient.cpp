@@ -23,7 +23,7 @@ bool TcpClient::connect(const char *ip, uint16_t port)
 		return false;
 	}
 
-	_bev = bufferevent_socket_new(_loop.getBase(), SOCKET_FD_INVALID,
+	_bev = bufferevent_socket_new(_loop.ev(), SOCKET_FD_INVALID,
 			BEV_OPT_CLOSE_ON_FREE | BEV_OPT_THREADSAFE | BEV_OPT_DEFER_CALLBACKS);
 	if(NULL == _bev)
 	{

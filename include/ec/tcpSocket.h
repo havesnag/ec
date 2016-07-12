@@ -43,12 +43,11 @@ public:
 	 */
 	bool send(const char *data, uint32_t size);
 
-	//关闭连接
 	/**
 	 * @brief 关闭连接
-	 * @param pending 是否等待数据发送完再关闭
+	 * @param waiting 是否等待数据发送完再关闭
 	 */
-	void close(bool pending = true);
+	void close(bool waiting = true);
 
 	/** 获取收数据缓冲区数据长度 */
 	uint32_t getInputBufferLength() const;

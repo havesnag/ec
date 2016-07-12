@@ -89,11 +89,6 @@ void Timer::reset()
 		event_free(_event);
 		_event = NULL;
 	}
-
-//	_interval = 0;
-//	_round = 0;
-//	_curRound = 0;
-//	_handler = NULL;
 }
 
 void Timer::eventHandler(evutil_socket_t fd, short events, void *ctx)

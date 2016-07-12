@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['viewinputbuffer',['viewInputBuffer',['../classec_1_1TcpSocket.html#a50a9ce465e5c0e0c20fe63f99cc294af',1,'ec::TcpSocket']]]
+  ['year',['year',['../classec_1_1Date.html#ad8ff77d7111044313c6d07c1096c7330',1,'ec::Date']]],
+  ['yearday',['yearDay',['../classec_1_1Date.html#a02c5f9f15c4316e6a46d4ee113ab1b15',1,'ec::Date']]]
 ];

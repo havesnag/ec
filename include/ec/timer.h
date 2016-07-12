@@ -65,19 +65,19 @@ public:
 			ec::Timer::Handler handler);
 
 	/** 获取定时时长 */
-	inline uint32_t getInterval() const
+	inline uint32_t interval() const
 	{
 		return _interval;
 	}
 
 	/** 获取总周期 */
-	inline uint64_t getRound() const
+	inline uint64_t round() const
 	{
 		return _round;
 	}
 
 	/** 获取当前周期 */
-	inline uint64_t getCurRound() const
+	inline uint64_t curRound() const
 	{
 		return _curRound;
 	}

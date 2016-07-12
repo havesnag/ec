@@ -87,7 +87,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -97,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>事件主循环类，一个线程只能有一个Loop对象。  
+<p>事件循环，对event_base的封装。  
  <a href="classec_1_1Loop.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="loop_8h_source.html">loop.h</a>&gt;</code></p>
@@ -107,297 +106,68 @@ Inheritance diagram for ec::Loop:</div>
  <div class="center">
   <img src="classec_1_1Loop.png" usemap="#ec::Loop_map" alt=""/>
   <map id="ec::Loop_map" name="ec::Loop_map">
-<area href="classec_1_1TcpServerDispatcher.html" title="TCP服务器会话调度管理器 " alt="ec::TcpServerDispatcher" shape="rect" coords="0,56,153,80"/>
+<area href="classec_1_1FrameLoop.html" title="拥有幀定时器的事件循环 " alt="ec::FrameLoop" shape="rect" coords="0,56,153,80"/>
+<area href="classec_1_1HttpServer.html" alt="ec::HttpServer" shape="rect" coords="163,56,316,80"/>
+<area href="classec_1_1TcpServerDispatcher.html" title="TCP服务器会话调度管理器 " alt="ec::TcpServerDispatcher" shape="rect" coords="0,112,153,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:ac861df4ad2e7779e31932b2171935f81"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">Event</a> { <b>kEventStart</b> = 0, 
-<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7">kEventRun</a>, 
-<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8">kEventEnd</a>, 
-<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c">kEventMax</a>
- }</td></tr>
-<tr class="memdesc:ac861df4ad2e7779e31932b2171935f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop内部事件枚举  <a href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">More...</a><br/></td></tr>
-<tr class="separator:ac861df4ad2e7779e31932b2171935f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c68e22f03ea2b4b670a440291438aed"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; bool(<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> <br class="typebreak"/>
-event)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">EventHandler</a></td></tr>
-<tr class="memdesc:a7c68e22f03ea2b4b670a440291438aed"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件处理函数  <a href="#a7c68e22f03ea2b4b670a440291438aed">More...</a><br/></td></tr>
-<tr class="separator:a7c68e22f03ea2b4b670a440291438aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa0d9bf951a410663fc354e5be062229"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(uint64_t <br class="typebreak"/>
-frame)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">FrameHandler</a></td></tr>
-<tr class="memdesc:aaa0d9bf951a410663fc354e5be062229"><td class="mdescLeft">&#160;</td><td class="mdescRight">每幀处理函数  <a href="#aaa0d9bf951a410663fc354e5be062229">More...</a><br/></td></tr>
-<tr class="separator:aaa0d9bf951a410663fc354e5be062229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab104699b3b40815f32e5272e85fb01d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab104699b3b40815f32e5272e85fb01d7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ab104699b3b40815f32e5272e85fb01d7">operator event_base *</a> () const </td></tr>
 <tr class="memdesc:ab104699b3b40815f32e5272e85fb01d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">转换为event_base *指针 <br/></td></tr>
 <tr class="separator:ab104699b3b40815f32e5272e85fb01d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4830e98d557cb3be841f8aa3e9c588b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4830e98d557cb3be841f8aa3e9c588b"></a>
-event_base *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#af4830e98d557cb3be841f8aa3e9c588b">getBase</a> () const </td></tr>
-<tr class="memdesc:af4830e98d557cb3be841f8aa3e9c588b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取event_base *指针 <br/></td></tr>
-<tr class="separator:af4830e98d557cb3be841f8aa3e9c588b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57deb8ad44ad522dc64f37e6ceef6595"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57deb8ad44ad522dc64f37e6ceef6595"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a57deb8ad44ad522dc64f37e6ceef6595">getId</a> () const </td></tr>
-<tr class="memdesc:a57deb8ad44ad522dc64f37e6ceef6595"><td class="mdescLeft">&#160;</td><td class="mdescRight">获得自动生成的Id号 <br/></td></tr>
-<tr class="separator:a57deb8ad44ad522dc64f37e6ceef6595"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc30b5686fd9fb9b820868af4ffea513"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc30b5686fd9fb9b820868af4ffea513"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#adc30b5686fd9fb9b820868af4ffea513">getFrameRound</a> () const </td></tr>
-<tr class="memdesc:adc30b5686fd9fb9b820868af4ffea513"><td class="mdescLeft">&#160;</td><td class="mdescRight">获得经过的幀数 <br/></td></tr>
-<tr class="separator:adc30b5686fd9fb9b820868af4ffea513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62f9eae725eda092cc52168bdcb9b53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af62f9eae725eda092cc52168bdcb9b53"></a>
+event_base *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#af62f9eae725eda092cc52168bdcb9b53">ev</a> () const </td></tr>
+<tr class="memdesc:af62f9eae725eda092cc52168bdcb9b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取event_base *指针 <br/></td></tr>
+<tr class="separator:af62f9eae725eda092cc52168bdcb9b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae60730f9a1e07de6039de8008293769a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae60730f9a1e07de6039de8008293769a"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">id</a> () const </td></tr>
+<tr class="memdesc:ae60730f9a1e07de6039de8008293769a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获得自动生成的Id号 <br/></td></tr>
+<tr class="separator:ae60730f9a1e07de6039de8008293769a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134b0eb8eaa83270eb375df11160bea5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a134b0eb8eaa83270eb375df11160bea5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">isThread</a> () const </td></tr>
 <tr class="memdesc:a134b0eb8eaa83270eb375df11160bea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否是以新线程在运行 <br/></td></tr>
 <tr class="separator:a134b0eb8eaa83270eb375df11160bea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aede057b26d3c5a5c54dabb953bb9945b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aede057b26d3c5a5c54dabb953bb9945b">start</a> ()</td></tr>
-<tr class="memdesc:aede057b26d3c5a5c54dabb953bb9945b"><td class="mdescLeft">&#160;</td><td class="mdescRight">在当前线程运行事件循环  <a href="#aede057b26d3c5a5c54dabb953bb9945b">More...</a><br/></td></tr>
-<tr class="separator:aede057b26d3c5a5c54dabb953bb9945b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa673dc1821347b95f0c1fddb78db41e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aa673dc1821347b95f0c1fddb78db41e2">startThread</a> ()</td></tr>
-<tr class="memdesc:aa673dc1821347b95f0c1fddb78db41e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动新线程运行事件循环  <a href="#aa673dc1821347b95f0c1fddb78db41e2">More...</a><br/></td></tr>
-<tr class="separator:aa673dc1821347b95f0c1fddb78db41e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a452a6746df86ca3f9e32cbbba8896968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a452a6746df86ca3f9e32cbbba8896968">waitThread</a> ()</td></tr>
-<tr class="memdesc:a452a6746df86ca3f9e32cbbba8896968"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待线程结束，与startThread配合使用  <a href="#a452a6746df86ca3f9e32cbbba8896968">More...</a><br/></td></tr>
-<tr class="separator:a452a6746df86ca3f9e32cbbba8896968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c8926512c35227aa01d1a23cec1fcdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a9c8926512c35227aa01d1a23cec1fcdf">stop</a> (bool pending=true)</td></tr>
-<tr class="memdesc:a9c8926512c35227aa01d1a23cec1fcdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止事件循环  <a href="#a9c8926512c35227aa01d1a23cec1fcdf">More...</a><br/></td></tr>
-<tr class="separator:a9c8926512c35227aa01d1a23cec1fcdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0c3dfd61a2a909644654bb7fc452b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a9e0c3dfd61a2a909644654bb7fc452b9">async</a> (ec::Command cmd, uint8_t *data, uint16_t dataSize, ec::AsyncHandler handler)</td></tr>
-<tr class="memdesc:a9e0c3dfd61a2a909644654bb7fc452b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步调用命令  <a href="#a9e0c3dfd61a2a909644654bb7fc452b9">More...</a><br/></td></tr>
-<tr class="separator:a9e0c3dfd61a2a909644654bb7fc452b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac817156aaff57dcb5068c4ca20536c5c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ac817156aaff57dcb5068c4ca20536c5c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ac817156aaff57dcb5068c4ca20536c5c">async</a> (ec::Command cmd, T &amp;value, ec::AsyncHandler handler)</td></tr>
-<tr class="memdesc:ac817156aaff57dcb5068c4ca20536c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步调用命令  <a href="#ac817156aaff57dcb5068c4ca20536c5c">More...</a><br/></td></tr>
-<tr class="separator:ac817156aaff57dcb5068c4ca20536c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f34cbbabe5c798b725a61670dd9d6a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a4f34cbbabe5c798b725a61670dd9d6a7">post</a> (uint8_t *data, uint16_t dataSize)</td></tr>
-<tr class="memdesc:a4f34cbbabe5c798b725a61670dd9d6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步发送数据  <a href="#a4f34cbbabe5c798b725a61670dd9d6a7">More...</a><br/></td></tr>
-<tr class="separator:a4f34cbbabe5c798b725a61670dd9d6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab120f6b96e2dd165a353e4c2d767dc6c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ab120f6b96e2dd165a353e4c2d767dc6c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ab120f6b96e2dd165a353e4c2d767dc6c">post</a> (T value)</td></tr>
-<tr class="memdesc:ab120f6b96e2dd165a353e4c2d767dc6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步发送数据  <a href="#ab120f6b96e2dd165a353e4c2d767dc6c">More...</a><br/></td></tr>
-<tr class="separator:ab120f6b96e2dd165a353e4c2d767dc6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54c8e94f74760c38d0c07c2c7584a1d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54c8e94f74760c38d0c07c2c7584a1d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a54c8e94f74760c38d0c07c2c7584a1d4">regAsyncHandler</a> (ec::Command cmd, ec::AsyncHandler handler)</td></tr>
-<tr class="memdesc:a54c8e94f74760c38d0c07c2c7584a1d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册async回调，没有注册回调的异步调用将通过onAsync处理 <br/></td></tr>
-<tr class="separator:a54c8e94f74760c38d0c07c2c7584a1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa815829ba034e87209d62958d94c1bf9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa815829ba034e87209d62958d94c1bf9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aa815829ba034e87209d62958d94c1bf9">regPostHandler</a> (ec::PostHandler handler)</td></tr>
-<tr class="memdesc:aa815829ba034e87209d62958d94c1bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册post回调，不注册将通过onPost处理 <br/></td></tr>
-<tr class="separator:aa815829ba034e87209d62958d94c1bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9106028b7c268472a27832fe7812ba7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9106028b7c268472a27832fe7812ba7f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a9106028b7c268472a27832fe7812ba7f">regEventHandler</a> (<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event, <a class="el" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">ec::Loop::EventHandler</a> handler)</td></tr>
-<tr class="memdesc:a9106028b7c268472a27832fe7812ba7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册内部事件回调，没有注册回调的事件将通过onEvent处理 <br/></td></tr>
-<tr class="separator:a9106028b7c268472a27832fe7812ba7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ad6f4a613cad7f4090c98bb370edac7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ad6f4a613cad7f4090c98bb370edac7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a6ad6f4a613cad7f4090c98bb370edac7">regFrameHandler</a> (<a class="el" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">ec::Loop::FrameHandler</a> handler)</td></tr>
-<tr class="memdesc:a6ad6f4a613cad7f4090c98bb370edac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册每幀回调，不注册将通过onFrame处理 <br/></td></tr>
-<tr class="separator:a6ad6f4a613cad7f4090c98bb370edac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e4e5650fbd4f1716429205c84ca51fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a5e4e5650fbd4f1716429205c84ca51fd">start</a> (bool newThread=true)</td></tr>
+<tr class="memdesc:a5e4e5650fbd4f1716429205c84ca51fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动事件循环  <a href="#a5e4e5650fbd4f1716429205c84ca51fd">More...</a><br/></td></tr>
+<tr class="separator:a5e4e5650fbd4f1716429205c84ca51fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476329b5b1b32a9d91957fdf820ed35b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a476329b5b1b32a9d91957fdf820ed35b">wait</a> ()</td></tr>
+<tr class="memdesc:a476329b5b1b32a9d91957fdf820ed35b"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待时间循环(线程)结束  <a href="#a476329b5b1b32a9d91957fdf820ed35b">More...</a><br/></td></tr>
+<tr class="separator:a476329b5b1b32a9d91957fdf820ed35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa96af9467ac7882e3cea7a4dcb51005a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aa96af9467ac7882e3cea7a4dcb51005a">stop</a> (bool waiting=true)</td></tr>
+<tr class="memdesc:aa96af9467ac7882e3cea7a4dcb51005a"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止事件循环  <a href="#aa96af9467ac7882e3cea7a4dcb51005a">More...</a><br/></td></tr>
+<tr class="separator:aa96af9467ac7882e3cea7a4dcb51005a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:abb797bdabdefdff5b6cc3f2b1b249747"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classec_1_1Loop.html">Loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#abb797bdabdefdff5b6cc3f2b1b249747">curLoop</a> ()</td></tr>
 <tr class="memdesc:abb797bdabdefdff5b6cc3f2b1b249747"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前线程的Loop  <a href="#abb797bdabdefdff5b6cc3f2b1b249747">More...</a><br/></td></tr>
 <tr class="separator:abb797bdabdefdff5b6cc3f2b1b249747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a459fada2bbc382637fab88b3ce914d46"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classec_1_1Loop.html">Loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a459fada2bbc382637fab88b3ce914d46">get</a> (uint32_t id)</td></tr>
+<tr class="memitem:a459fada2bbc382637fab88b3ce914d46"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classec_1_1Loop.html">Loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a459fada2bbc382637fab88b3ce914d46">get</a> (uint32_t <a class="el" href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">id</a>)</td></tr>
 <tr class="memdesc:a459fada2bbc382637fab88b3ce914d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据id查找Loop  <a href="#a459fada2bbc382637fab88b3ce914d46">More...</a><br/></td></tr>
 <tr class="separator:a459fada2bbc382637fab88b3ce914d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a2a40b87b2fa1cbb820692c8a10bed3ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a40b87b2fa1cbb820692c8a10bed3ab"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a2a40b87b2fa1cbb820692c8a10bed3ab">onAsync</a> (ec::Command cmd, const <a class="el" href="classec_1_1Data.html">ec::Data</a> &amp;request, <a class="el" href="classec_1_1Data.html">ec::Data</a> &amp;response)</td></tr>
-<tr class="memdesc:a2a40b87b2fa1cbb820692c8a10bed3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">继承此接口处理异步命令调用 <br/></td></tr>
-<tr class="separator:a2a40b87b2fa1cbb820692c8a10bed3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3365009f41dd34e57c261485f0eb49cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3365009f41dd34e57c261485f0eb49cd"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a3365009f41dd34e57c261485f0eb49cd">onPost</a> (<a class="el" href="classec_1_1Data.html">ec::Data</a> &amp;data)</td></tr>
-<tr class="memdesc:a3365009f41dd34e57c261485f0eb49cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">继承此接口处理异步数据 <br/></td></tr>
-<tr class="separator:a3365009f41dd34e57c261485f0eb49cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a739a3679b5ca8d66dca537cb1df9c5c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a739a3679b5ca8d66dca537cb1df9c5c0"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a739a3679b5ca8d66dca537cb1df9c5c0">onEvent</a> (<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event)</td></tr>
-<tr class="memdesc:a739a3679b5ca8d66dca537cb1df9c5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">继承此接口处理内部事件 <br/></td></tr>
-<tr class="separator:a739a3679b5ca8d66dca537cb1df9c5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b904f427bf6568f216692997bd17e15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b904f427bf6568f216692997bd17e15"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a4b904f427bf6568f216692997bd17e15">onFrame</a> (uint64_t round)</td></tr>
-<tr class="memdesc:a4b904f427bf6568f216692997bd17e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">继承此接口处理每幀逻辑 <br/></td></tr>
-<tr class="separator:a4b904f427bf6568f216692997bd17e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab09acf916e8d3ad94cc2ceb483b1cac6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ab09acf916e8d3ad94cc2ceb483b1cac6">onBeforeStart</a> ()</td></tr>
+<tr class="memdesc:ab09acf916e8d3ad94cc2ceb483b1cac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动前触发  <a href="#ab09acf916e8d3ad94cc2ceb483b1cac6">More...</a><br/></td></tr>
+<tr class="separator:ab09acf916e8d3ad94cc2ceb483b1cac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab50d820e5c09ef53af2aa97a1912025a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#ab50d820e5c09ef53af2aa97a1912025a">onBeforeLoop</a> ()</td></tr>
+<tr class="memdesc:ab50d820e5c09ef53af2aa97a1912025a"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件循环运行前触发  <a href="#ab50d820e5c09ef53af2aa97a1912025a">More...</a><br/></td></tr>
+<tr class="separator:ab50d820e5c09ef53af2aa97a1912025a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3fec1a0d05dfdb73ceee20b6fd55b0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#a9d3fec1a0d05dfdb73ceee20b6fd55b0">onAfterLoop</a> ()</td></tr>
+<tr class="memdesc:a9d3fec1a0d05dfdb73ceee20b6fd55b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件循环结束后触发  <a href="#a9d3fec1a0d05dfdb73ceee20b6fd55b0">More...</a><br/></td></tr>
+<tr class="separator:a9d3fec1a0d05dfdb73ceee20b6fd55b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa52a4ac0232b307a08e7857748ebdd3f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classec_1_1Loop.html#aa52a4ac0232b307a08e7857748ebdd3f">onAfterStop</a> ()</td></tr>
+<tr class="memdesc:aa52a4ac0232b307a08e7857748ebdd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止后触发  <a href="#aa52a4ac0232b307a08e7857748ebdd3f">More...</a><br/></td></tr>
+<tr class="separator:aa52a4ac0232b307a08e7857748ebdd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>事件主循环类，一个线程只能有一个Loop对象。 </p>
-<p>封装了libevent的struct event_base时间循环机制；</p>
-<p>内部以5毫秒每幀的频率处理异步请求 </p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="a7c68e22f03ea2b4b670a440291438aed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::function&lt;bool (<a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event)&gt; <a class="el" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">ec::Loop::EventHandler</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>事件处理函数 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">event</td><td>Loop内部事件 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>返回错误码，0表示正确 </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aaa0d9bf951a410663fc354e5be062229"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::function&lt;void (uint64_t frame)&gt; <a class="el" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">ec::Loop::FrameHandler</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>每幀处理函数 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frame</td><td>当前幀号 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="ac861df4ad2e7779e31932b2171935f81"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Loop内部事件枚举 </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7"></a>kEventRun</em>&#160;</td><td class="fielddoc">
-<p>启动前将触发此事件 </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8"></a>kEventEnd</em>&#160;</td><td class="fielddoc">
-<p>事件循环开始前将触发此事件 </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c"></a>kEventMax</em>&#160;</td><td class="fielddoc">
-<p>事件循环结束后将触发此事件 </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a9e0c3dfd61a2a909644654bb7fc452b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ec::Loop::async </td>
-          <td>(</td>
-          <td class="paramtype">ec::Command&#160;</td>
-          <td class="paramname"><em>cmd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>dataSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ec::AsyncHandler&#160;</td>
-          <td class="paramname"><em>handler</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>异步调用命令 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cmd</td><td>命令码 </td></tr>
-    <tr><td class="paramname">data</td><td>数据块地址 </td></tr>
-    <tr><td class="paramname">dataSize</td><td>数据块大小 </td></tr>
-    <tr><td class="paramname">handler</td><td>命令回调函数 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See Also</dt><dd>ec::AsyncHandler </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac817156aaff57dcb5068c4ca20536c5c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ec::Loop::async </td>
-          <td>(</td>
-          <td class="paramtype">ec::Command&#160;</td>
-          <td class="paramname"><em>cmd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ec::AsyncHandler&#160;</td>
-          <td class="paramname"><em>handler</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>异步调用命令 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cmd</td><td>命令码 </td></tr>
-    <tr><td class="paramname">value</td><td>数据 </td></tr>
-    <tr><td class="paramname">handler</td><td>命令回调函数 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See Also</dt><dd>AsyncHandler </dd></dl>
-
-</div>
-</div>
+<div class="textblock"><p>事件循环，对event_base的封装。 </p>
+<p>类本身是线程安全的，然而事件循环只能运行在一个线程中。 如果没有已注册的事件，事件则会自动结束 </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="abb797bdabdefdff5b6cc3f2b1b249747"></a>
 <div class="memitem">
 <div class="memproto">
@@ -451,113 +221,141 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a4f34cbbabe5c798b725a61670dd9d6a7"></a>
+<a class="anchor" id="a9d3fec1a0d05dfdb73ceee20b6fd55b0"></a>
 <div class="memitem">
 <div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ec::Loop::post </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>dataSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>异步发送数据 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>数据 </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ab120f6b96e2dd165a353e4c2d767dc6c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ec::Loop::post </td>
+          <td class="memname">void ec::Loop::onAfterLoop </td>
           <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>异步发送数据 </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>数据块地址 </td></tr>
-    <tr><td class="paramname">dataSize</td><td>数据块大小 </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>事件循环结束后触发 </p>
+<p>运行在事件循环所在线程 </p>
 
 </div>
 </div>
-<a class="anchor" id="aede057b26d3c5a5c54dabb953bb9945b"></a>
+<a class="anchor" id="aa52a4ac0232b307a08e7857748ebdd3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ec::Loop::onAfterStop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>停止后触发 </p>
+<p>运行在调用stop时所在的线程，一般实现此函数处理启动前的准备工作 </p>
+
+</div>
+</div>
+<a class="anchor" id="ab50d820e5c09ef53af2aa97a1912025a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ec::Loop::onBeforeLoop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>事件循环运行前触发 </p>
+<p>运行在事件循环所在线程 </p>
+
+<p>Reimplemented in <a class="el" href="classec_1_1FrameLoop.html#a8b20b1f76ed9020484a73faa80e35eb5">ec::FrameLoop</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab09acf916e8d3ad94cc2ceb483b1cac6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ec::Loop::onBeforeStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>启动前触发 </p>
+<p>运行在调用start时所在的线程，一般实现此函数处理启动前的准备工作。 </p>
+<dl class="section return"><dt>Returns</dt><dd>返回false幀 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e4e5650fbd4f1716429205c84ca51fd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool ec::Loop::start </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>newThread</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>在当前线程运行事件循环 </p>
-<p>运行成功后会阻塞知道停止 </p>
+<p>启动事件循环 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newThread</td><td>是否启动新线程运行时间循环</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>在当前线程运行会阻塞当前线程直到时间循环结束，</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classec_1_1Loop.html#ab09acf916e8d3ad94cc2ceb483b1cac6" title="启动前触发 ">onBeforeStart</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>是否成功 </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aa673dc1821347b95f0c1fddb78db41e2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ec::Loop::startThread </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>启动新线程运行事件循环 </p>
-<dl class="section return"><dt>Returns</dt><dd>是否成功 </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9c8926512c35227aa01d1a23cec1fcdf"></a>
+<a class="anchor" id="aa96af9467ac7882e3cea7a4dcb51005a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -565,7 +363,7 @@ template&lt;typename T &gt; </div>
           <td class="memname">void ec::Loop::stop </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>pending</em> = <code>true</code></td><td>)</td>
+          <td class="paramname"><em>waiting</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -575,19 +373,19 @@ template&lt;typename T &gt; </div>
 <p>如果以新线程运行的，则会停止新线程。 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pending</td><td>是否等待事件结束才停止 </td></tr>
+    <tr><td class="paramname">waiting</td><td>是否直到运行所有激活事件的回调才退出 </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a452a6746df86ca3f9e32cbbba8896968"></a>
+<a class="anchor" id="a476329b5b1b32a9d91957fdf820ed35b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ec::Loop::waitThread </td>
+          <td class="memname">void ec::Loop::wait </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -595,8 +393,9 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>等待线程结束，与startThread配合使用 </p>
-<dl class="section see"><dt>See Also</dt><dd>bool <a class="el" href="classec_1_1Loop.html#aa673dc1821347b95f0c1fddb78db41e2" title="启动新线程运行事件循环 ">Loop::startThread()</a> </dd></dl>
+<p>等待时间循环(线程)结束 </p>
+<p>不是以新线程运行的调用此函数不会有任何效果 </p>
+<dl class="section see"><dt>See Also</dt><dd>bool Loop::startThread() </dd></dl>
 
 </div>
 </div>
@@ -607,7 +406,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 3 2015 02:15:14 for ec by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 14:15:09 for ec by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

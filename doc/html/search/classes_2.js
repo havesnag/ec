@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['extendablesinglequeue',['ExtendableSingleQueue',['../classec_1_1ExtendableSingleQueue.html',1,'ec']]]
+  ['httprequest',['HttpRequest',['../classec_1_1HttpRequest.html',1,'ec']]],
+  ['httpserver',['HttpServer',['../classec_1_1HttpServer.html',1,'ec']]]
 ];

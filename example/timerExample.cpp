@@ -24,7 +24,7 @@ public:
 	void start()
 	{
 		_timer.startAfter(1000, 100, 2, [this]() {
-			cout << "startAfter round " << _timer.getCurRound() << endl;
+			cout << "startAfter round " << _timer.curRound() << endl;
 			if (_timer.isFinished())
 			{
 				_timer.startRounds(200, 2, std::bind(&ExampleTimerServer::tick, this));
@@ -42,7 +42,7 @@ public:
 private:
 	void tick()
 	{
-		uint64_t round = _timer.getCurRound();
+		uint64_t round = _timer.curRound();
 		cout << "round " << round << " begin" << endl;
 		if (_timer.isFinished())
 		{

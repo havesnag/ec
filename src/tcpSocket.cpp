@@ -52,14 +52,14 @@ bool TcpSocket::send(const char *data, uint32_t size)
 	return (-1 != bufferevent_write(_bev, data, size));
 }
 
-void TcpSocket::close(bool pending)
+void TcpSocket::close(bool waiting)
 {
 	if (NULL == _bev)
 	{
 		return;
 	}
 
-	if (pending && (evbuffer_get_length(OUTPUT_BUFFER) > 0))
+	if (waiting && (evbuffer_get_length(OUTPUT_BUFFER) > 0))
 	{
 		_isClosing = true;
 		return;

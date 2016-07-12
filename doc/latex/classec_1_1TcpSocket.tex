@@ -27,7 +27,7 @@ void \hyperlink{classec_1_1TcpSocket_ac2b55cbb75000a218b3c1d83c1365611}{get\-Add
 \item 
 bool \hyperlink{classec_1_1TcpSocket_af9e2fdbb732d93537e2867eeebc34ab2}{send} (const char $\ast$data, uint32\-\_\-t size)
 \begin{DoxyCompactList}\small\item\em 发送数据 \end{DoxyCompactList}\item 
-void \hyperlink{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}{close} (bool pending=true)
+void \hyperlink{classec_1_1TcpSocket_aac8cfc7de1d70f850ec304a40ef814a6}{close} (bool waiting=true)
 \begin{DoxyCompactList}\small\item\em 关闭连接 \end{DoxyCompactList}\item 
 uint32\-\_\-t \hyperlink{classec_1_1TcpSocket_a73baa70135fad8207968cfc2c7c6fe2a}{get\-Input\-Buffer\-Length} () const 
 \item 
@@ -62,20 +62,20 @@ T\-C\-P连接基类
 {}
 \end{DoxyParamCaption}
 )}}\label{classec_1_1TcpSocket_a55626e2cba2d193b4aa04ee0fc8a197e}
-清空收数据缓冲区 \hypertarget{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!close@{close}}
+清空收数据缓冲区 \hypertarget{classec_1_1TcpSocket_aac8cfc7de1d70f850ec304a40ef814a6}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!close@{close}}
 \index{close@{close}!ec::TcpSocket@{ec\-::\-Tcp\-Socket}}
 \subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Socket\-::close (
 \begin{DoxyParamCaption}
-\item[{bool}]{pending = {\ttfamily true}}
+\item[{bool}]{waiting = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}}\label{classec_1_1TcpSocket_a7eadbeae0d9939522a1138056905b354}
+)}}\label{classec_1_1TcpSocket_aac8cfc7de1d70f850ec304a40ef814a6}
 
 
 关闭连接 
 
 
 \begin{DoxyParams}{Parameters}
-{\em pending} & 是否等待数据发送完再关闭 \\
+{\em waiting} & 是否等待数据发送完再关闭 \\
 \hline
 \end{DoxyParams}
 \hypertarget{classec_1_1TcpSocket_ac2b55cbb75000a218b3c1d83c1365611}{\index{ec\-::\-Tcp\-Socket@{ec\-::\-Tcp\-Socket}!get\-Addr@{get\-Addr}}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eventhandler',['EventHandler',['../classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed',1,'ec::Loop']]]
+  ['handler',['Handler',['../classec_1_1Timer.html#acbf2889a6472ca60ce4d3c8856b717c5',1,'ec::Timer']]]
 ];

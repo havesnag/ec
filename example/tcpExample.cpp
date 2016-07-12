@@ -13,7 +13,6 @@ using namespace std;
 #include "ec/tcpServer.h"
 #include "ec/tcpClient.h"
 #include "ec/timer.h"
-#include "ec/singleton.h"
 
 #include "index.h"
 
@@ -43,6 +42,13 @@ protected:
 
 class ExampleTcpServer : public ec::TcpServer
 {
+public:
+	static ExampleTcpServer & instance()
+	{
+		static ExampleTcpServer ins;
+		return ins;
+	}
+
 protected:
 	virtual void onListenError()
 	{
@@ -71,8 +77,6 @@ protected:
 	}
 };
 
-typedef ec::Singleton<ExampleTcpServer> ExampleTcpServerSingleton;
-
 class ExampleTcpClientManager : public ec::Loop
 {
 public:
@@ -86,15 +90,15 @@ public:
 protected:
 	void tick()
 	{
-		cout << "round " << _timer.getCurRound() << endl;
+		cout << "round " << _timer.curRound() << endl;
 		if (!_client.isConnected())
 		{
 			_client.connect("127.0.0.1", 4567);
 		}
 
-		if (_timer.getCurRound() >= 3)
+		if (_timer.curRound() >= 3)
 		{
-			ExampleTcpServerSingleton::instance().stop();
+			ExampleTcpServer::instance().stop();
 			stop();
 		}
 	}
@@ -105,7 +109,7 @@ private:
 
 void tcpExample()
 {
-	ExampleTcpServer &tcpServer = ExampleTcpServerSingleton::instance();
+	ExampleTcpServer &tcpServer = ExampleTcpServer::instance();
 	if (!tcpServer.listen("127.0.0.1", 4567))
 	{
 		cout << "listen failed" << endl;
@@ -113,8 +117,8 @@ void tcpExample()
 	}
 
 	ExampleTcpClientManager clientManager;
-	clientManager.startThread();
-	clientManager.waitThread();
+	clientManager.start();
+	clientManager.wait();
 	tcpServer.wait();
 }
 

@@ -55,7 +55,7 @@ bool TcpServer::listen(const char *ip, uint16_t port)
 	evutil_inet_pton(AF_INET, ip, &serverAddr.sin_addr);
 	serverAddr.sin_port = htons(port);
 
-	_eventListener = evconnlistener_new_bind(_master->getBase(),
+	_eventListener = evconnlistener_new_bind(_master->ev(),
 			listenEventCallback, this,
 			LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE | LEV_OPT_THREADSAFE, -1,
 			(struct sockaddr *)&serverAddr, sizeof(serverAddr));
@@ -68,7 +68,7 @@ bool TcpServer::listen(const char *ip, uint16_t port)
 	evutil_make_socket_nonblocking(evconnlistener_get_fd(_eventListener));
 	evconnlistener_set_error_cb(_eventListener, listenErrorCallback);
 
-	if (!_master->startThread())
+	if (!_master->start())
 	{
 		evconnlistener_free(_eventListener);
 		_eventListener = NULL;
@@ -77,7 +77,7 @@ bool TcpServer::listen(const char *ip, uint16_t port)
 
 	for (auto dispatcher : _slavers)
 	{
-		dispatcher->startThread();
+		dispatcher->start();
 	}
 
 	return true;
@@ -94,10 +94,10 @@ void TcpServer::stop()
 
 void TcpServer::wait()
 {
-	_master->waitThread();
+	_master->wait();
 	for (auto dispatcher : _slavers)
 	{
-		dispatcher->waitThread();
+		dispatcher->wait();
 	}
 }
 
@@ -116,9 +116,8 @@ void TcpServer::listenEventCallback(
 	TcpServer *server = (TcpServer *)ctx;
 	evutil_make_socket_nonblocking(sock);
 	ec::SessionId id = ++s_sessionIdGenerator;
-	ec::TcpServerDispatcher::NewSessionData data = {sock, id};
 	ec::TcpServerDispatcher *dispatcher = server->getSessionDispatcher(id);
-	dispatcher->post<ec::TcpServerDispatcher::NewSessionData>(data);
+	dispatcher->addSession(id, sock);
 }
 
 void TcpServer::listenErrorCallback(struct evconnlistener *listener, void *ctx)

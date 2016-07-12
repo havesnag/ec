@@ -1,0 +1,82 @@
+\hypertarget{classec_1_1FrameLoop}{\section{ec\-:\-:Frame\-Loop Class Reference}
+\label{classec_1_1FrameLoop}\index{ec\-::\-Frame\-Loop@{ec\-::\-Frame\-Loop}}
+}
+
+
+拥有幀定时器的事件循环  
+
+
+
+
+{\ttfamily \#include $<$frame\-Loop.\-h$>$}
+
+Inheritance diagram for ec\-:\-:Frame\-Loop\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classec_1_1FrameLoop}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classec_1_1FrameLoop_a95cd06861a99da652b30661e5238398c}{set\-Frame\-Interval} (uint32\-\_\-t interval)
+\begin{DoxyCompactList}\small\item\em 设置幀时长(毫秒) \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1FrameLoop_a9390e3b33b561bd958a63059d67dd286}{uint64\-\_\-t \hyperlink{classec_1_1FrameLoop_a9390e3b33b561bd958a63059d67dd286}{cur\-Frame\-Round} () const }\label{classec_1_1FrameLoop_a9390e3b33b561bd958a63059d67dd286}
+
+\begin{DoxyCompactList}\small\item\em 获取当前幀周期 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classec_1_1FrameLoop_a8b20b1f76ed9020484a73faa80e35eb5}{on\-Before\-Loop} ()
+\item 
+\hypertarget{classec_1_1FrameLoop_ae4d174514e47953d75071101c49aee06}{virtual void \hyperlink{classec_1_1FrameLoop_ae4d174514e47953d75071101c49aee06}{on\-Frame} ()}\label{classec_1_1FrameLoop_ae4d174514e47953d75071101c49aee06}
+
+\begin{DoxyCompactList}\small\item\em 每幀事件处理 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+拥有幀定时器的事件循环 
+
+由于有无限循环定时器，所以一直存在已注册的事件，不会有自动结束。默认幀时长为10毫秒 
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1FrameLoop_a8b20b1f76ed9020484a73faa80e35eb5}{\index{ec\-::\-Frame\-Loop@{ec\-::\-Frame\-Loop}!on\-Before\-Loop@{on\-Before\-Loop}}
+\index{on\-Before\-Loop@{on\-Before\-Loop}!ec::FrameLoop@{ec\-::\-Frame\-Loop}}
+\subsubsection[{on\-Before\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Frame\-Loop\-::on\-Before\-Loop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1FrameLoop_a8b20b1f76ed9020484a73faa80e35eb5}
+
+
+Reimplemented from \hyperlink{classec_1_1Loop_ab50d820e5c09ef53af2aa97a1912025a}{ec\-::\-Loop}.
+
+\hypertarget{classec_1_1FrameLoop_a95cd06861a99da652b30661e5238398c}{\index{ec\-::\-Frame\-Loop@{ec\-::\-Frame\-Loop}!set\-Frame\-Interval@{set\-Frame\-Interval}}
+\index{set\-Frame\-Interval@{set\-Frame\-Interval}!ec::FrameLoop@{ec\-::\-Frame\-Loop}}
+\subsubsection[{set\-Frame\-Interval}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Frame\-Loop\-::set\-Frame\-Interval (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{interval}
+\end{DoxyParamCaption}
+)}}\label{classec_1_1FrameLoop_a95cd06861a99da652b30661e5238398c}
+
+
+设置幀时长(毫秒) 
+
+\begin{DoxyNote}{Note}
+应该在启动事件循环调用
+\end{DoxyNote}
+没调用此函数则默认幀时长为10毫秒 
+\begin{DoxyParams}{Parameters}
+{\em interval} & 幀时长(毫秒)，为0不会生效 \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classec_1_1Loop_a5e4e5650fbd4f1716429205c84ca51fd}{Loop\-::start} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/ec/frame\-Loop.\-h\item 
+src/frame\-Loop.\-cpp\end{DoxyCompactItemize}

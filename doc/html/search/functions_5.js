@@ -1,19 +1,4 @@
 var searchData=
 [
-  ['get',['get',['../classec_1_1Loop.html#a459fada2bbc382637fab88b3ce914d46',1,'ec::Loop']]],
-  ['getaddr',['getAddr',['../classec_1_1TcpSocket.html#ac2b55cbb75000a218b3c1d83c1365611',1,'ec::TcpSocket']]],
-  ['getbase',['getBase',['../classec_1_1Loop.html#af4830e98d557cb3be841f8aa3e9c588b',1,'ec::Loop']]],
-  ['getcurround',['getCurRound',['../classec_1_1Timer.html#a448659b37455abd3452a8d9cfe3587e3',1,'ec::Timer']]],
-  ['getdaypassed',['getDayPassed',['../classec_1_1Time.html#a3e049ae0ad518e44d72e86172f16e15d',1,'ec::Time']]],
-  ['getdispatcher',['getDispatcher',['../classec_1_1TcpSession.html#af4ff735c6120233feccc3a1ca29bbf04',1,'ec::TcpSession']]],
-  ['getframeround',['getFrameRound',['../classec_1_1Loop.html#adc30b5686fd9fb9b820868af4ffea513',1,'ec::Loop']]],
-  ['getfulldays',['getFullDays',['../classec_1_1Time.html#a672781d41bfac66415d3f91bbea6f453',1,'ec::Time']]],
-  ['getid',['getId',['../classec_1_1Loop.html#a57deb8ad44ad522dc64f37e6ceef6595',1,'ec::Loop::getId()'],['../classec_1_1TcpSession.html#af00a92d50517f1f26cbe8d23d07452be',1,'ec::TcpSession::getId()']]],
-  ['getinputbufferlength',['getInputBufferLength',['../classec_1_1TcpSocket.html#a73baa70135fad8207968cfc2c7c6fe2a',1,'ec::TcpSocket']]],
-  ['getinterval',['getInterval',['../classec_1_1Timer.html#ab41f5acea6407574f263ec79e080d764',1,'ec::Timer']]],
-  ['getloop',['getLoop',['../classec_1_1TcpServer.html#a9249823c7fb037626df45335dad1c506',1,'ec::TcpServer']]],
-  ['getmonthdays',['getMonthDays',['../classec_1_1Date.html#a9cfe68c456d2de8aef5e2d168fd9ca61',1,'ec::Date']]],
-  ['getround',['getRound',['../classec_1_1Timer.html#a1803715952c90a30cb4934e84cb132a1',1,'ec::Timer']]],
-  ['getsocket',['getSocket',['../classec_1_1TcpSocket.html#a5612ba87be272ed6dcc50d3dd097070c',1,'ec::TcpSocket']]],
-  ['gettimezoneoffset',['getTimeZoneOffset',['../classec_1_1Date.html#a7003f97919dbfec532a4a37c4daef6d8',1,'ec::Date']]]
+  ['hour',['hour',['../classec_1_1Date.html#a5c5252eb904dba193e2347f955d986f6',1,'ec::Date']]]
 ];

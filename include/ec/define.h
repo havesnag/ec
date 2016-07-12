@@ -8,13 +8,18 @@
 #ifndef INCLUDE_EC_DEFINE_H_
 #define INCLUDE_EC_DEFINE_H_
 
-#include <stdint.h>
 #include <functional>
 #include <algorithm>
 #include <memory>
+#include <stdint.h>
+#include <string.h>
 
 #include <event2/event.h>
 #include <event2/thread.h>
+
+#include <thread>
+#include <mutex>
+#include <atomic>
 
 namespace ec
 {
@@ -26,6 +31,9 @@ typedef evutil_socket_t SocketFd;
 const SocketFd SOCKET_FD_INVALID = -1;
 
 typedef std::function<void ()> Handler;
+
+typedef std::recursive_mutex Mutex;
+typedef std::lock_guard<std::recursive_mutex> MutexLock;
 
 } /* namespace ec */
 

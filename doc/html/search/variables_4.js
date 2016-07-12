@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['request',['request',['../structec_1_1AsyncContext.html#ae2421cc415943bfbe6587336bafed5e4',1,'ec::AsyncContext']]],
-  ['response',['response',['../structec_1_1AsyncContext.html#a4cba44af18997a45d803e4d2533bc303',1,'ec::AsyncContext']]]
+  ['week_5fseconds',['WEEK_SECONDS',['../classec_1_1Time.html#a785218cc22a7610f035cb6b36c84e62c',1,'ec::Time']]]
 ];

@@ -25,7 +25,7 @@ void TcpSession::attach(ec::SocketFd sock)
 		return;
 	}
 
-	_bev = bufferevent_socket_new(_dispatcher->getBase(),
+	_bev = bufferevent_socket_new(_dispatcher->ev(),
 			sock, BEV_OPT_THREADSAFE | BEV_OPT_DEFER_CALLBACKS);
 	if (NULL == _bev)
 	{
@@ -45,14 +45,14 @@ void TcpSession::handleEvent(short events)
 {
 	bufferevent_disable(_bev, EV_READ | EV_WRITE);
 	evutil_closesocket(getSocket());
-	_dispatcher->getServer()->onSessionDisconnected(this);
+	_dispatcher->server()->onSessionDisconnected(this);
 	_dispatcher->removeSession(getId());
 }
 
 void TcpSession::readCallback(struct bufferevent *bev, void *data)
 {
 	TcpSession *session = (TcpSession *)data;
-	session->_dispatcher->getServer()->onSessionRead(session);
+	session->_dispatcher->server()->onSessionRead(session);
 }
 
 void TcpSession::writeCallback(struct bufferevent *bev, void *data)

@@ -13,37 +13,31 @@ T\-C\-P服务器会话调度管理器
 Inheritance diagram for ec\-:\-:Tcp\-Server\-Dispatcher\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classec_1_1TcpServerDispatcher}
+\includegraphics[height=3.000000cm]{classec_1_1TcpServerDispatcher}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structec_1_1TcpServerDispatcher_1_1NewSessionData}{New\-Session\-Data}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classec_1_1TcpServerDispatcher_a0fcac28c897fdccaabf54ddd1f718caa}{{\bfseries Tcp\-Server\-Dispatcher} (\hyperlink{classec_1_1TcpServer}{Tcp\-Server} $\ast$server)}\label{classec_1_1TcpServerDispatcher_a0fcac28c897fdccaabf54ddd1f718caa}
+\hypertarget{classec_1_1TcpServerDispatcher_a0fcac28c897fdccaabf54ddd1f718caa}{{\bfseries Tcp\-Server\-Dispatcher} (\hyperlink{classec_1_1TcpServer}{Tcp\-Server} $\ast$\hyperlink{classec_1_1TcpServerDispatcher_a39d87af5d64dda19f3312c37456c2418}{server})}\label{classec_1_1TcpServerDispatcher_a0fcac28c897fdccaabf54ddd1f718caa}
 
 \item 
-\hypertarget{classec_1_1TcpServerDispatcher_a039333f36785f4405a0fac6661a1398a}{\hyperlink{classec_1_1TcpServer}{ec\-::\-Tcp\-Server} $\ast$ {\bfseries get\-Server} () const }\label{classec_1_1TcpServerDispatcher_a039333f36785f4405a0fac6661a1398a}
+\hypertarget{classec_1_1TcpServerDispatcher_a39d87af5d64dda19f3312c37456c2418}{\hyperlink{classec_1_1TcpServer}{ec\-::\-Tcp\-Server} $\ast$ \hyperlink{classec_1_1TcpServerDispatcher_a39d87af5d64dda19f3312c37456c2418}{server} () const }\label{classec_1_1TcpServerDispatcher_a39d87af5d64dda19f3312c37456c2418}
+
+\begin{DoxyCompactList}\small\item\em 返回所在\-T\-C\-P\-Server \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1TcpServerDispatcher_acdc755e605191a51778baddf03b425cd}{ec\-::\-Tcp\-Session\-Ptr \hyperlink{classec_1_1TcpServerDispatcher_acdc755e605191a51778baddf03b425cd}{get\-Session} (ec\-::\-Session\-Id \hyperlink{classec_1_1Loop_ae60730f9a1e07de6039de8008293769a}{id})}\label{classec_1_1TcpServerDispatcher_acdc755e605191a51778baddf03b425cd}
+
+\begin{DoxyCompactList}\small\item\em 获取\-T\-C\-P监听服务器 \end{DoxyCompactList}\item 
+\hypertarget{classec_1_1TcpServerDispatcher_a4a0971bd2d689ddb929dafc14a1f67c3}{void {\bfseries add\-Session} (ec\-::\-Session\-Id \hyperlink{classec_1_1Loop_ae60730f9a1e07de6039de8008293769a}{id}, ec\-::\-Socket\-Fd sock)}\label{classec_1_1TcpServerDispatcher_a4a0971bd2d689ddb929dafc14a1f67c3}
 
 \item 
-\hypertarget{classec_1_1TcpServerDispatcher_acdc755e605191a51778baddf03b425cd}{ec\-::\-Tcp\-Session\-Ptr {\bfseries get\-Session} (ec\-::\-Session\-Id id)}\label{classec_1_1TcpServerDispatcher_acdc755e605191a51778baddf03b425cd}
+\hypertarget{classec_1_1TcpServerDispatcher_a321009d6e4803ec04ecfddb5af7988de}{void {\bfseries remove\-Session} (ec\-::\-Session\-Id \hyperlink{classec_1_1Loop_ae60730f9a1e07de6039de8008293769a}{id})}\label{classec_1_1TcpServerDispatcher_a321009d6e4803ec04ecfddb5af7988de}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classec_1_1TcpServerDispatcher_a5dbcd5063ae16237b7228f87832832db}{virtual void \hyperlink{classec_1_1TcpServerDispatcher_a5dbcd5063ae16237b7228f87832832db}{on\-Post} (\hyperlink{classec_1_1Data}{ec\-::\-Data} \&data)}\label{classec_1_1TcpServerDispatcher_a5dbcd5063ae16237b7228f87832832db}
-
-\begin{DoxyCompactList}\small\item\em 继承此接口处理异步数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Friends}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classec_1_1TcpServerDispatcher_ad821fb654cf0b89cb6245fa831ec471c}{class {\bfseries Tcp\-Session}}\label{classec_1_1TcpServerDispatcher_ad821fb654cf0b89cb6245fa831ec471c}
-
+virtual void \hyperlink{classec_1_1TcpServerDispatcher_ab4160764b265dc9a629a55fdd40ff1d3}{on\-Frame} ()
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -54,6 +48,20 @@ T\-C\-P服务器会话调度管理器
 Tcp\-Server负责监听连接，然后分配给\-Tcp\-Server\-Dispatcher管理 \begin{DoxySeeAlso}{See Also}
 \hyperlink{classec_1_1TcpServer}{ec\-::\-Tcp\-Server} 
 \end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classec_1_1TcpServerDispatcher_ab4160764b265dc9a629a55fdd40ff1d3}{\index{ec\-::\-Tcp\-Server\-Dispatcher@{ec\-::\-Tcp\-Server\-Dispatcher}!on\-Frame@{on\-Frame}}
+\index{on\-Frame@{on\-Frame}!ec::TcpServerDispatcher@{ec\-::\-Tcp\-Server\-Dispatcher}}
+\subsubsection[{on\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}void ec\-::\-Tcp\-Server\-Dispatcher\-::on\-Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classec_1_1TcpServerDispatcher_ab4160764b265dc9a629a55fdd40ff1d3}
+
+
+Reimplemented from \hyperlink{classec_1_1FrameLoop_ae4d174514e47953d75071101c49aee06}{ec\-::\-Frame\-Loop}.
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

@@ -120,47 +120,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1TcpSocket.html#af9e2fdbb732d93537e2867eeebc34ab2">send</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *data, uint32_t size);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//关闭连接</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classec_1_1TcpSocket.html#a7eadbeae0d9939522a1138056905b354">close</a>(<span class="keywordtype">bool</span> pending = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    uint32_t <a class="code" href="classec_1_1TcpSocket.html#a73baa70135fad8207968cfc2c7c6fe2a">getInputBufferLength</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> uint8_t * <a class="code" href="classec_1_1TcpSocket.html#a50a9ce465e5c0e0c20fe63f99cc294af">viewInputBuffer</a>(uint32_t size) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1TcpSocket.html#a64a402951553c83c1ba6be46fcf642d0">readInputBuffer</a>(uint8_t * dest, uint32_t size);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1TcpSocket.html#a55626e2cba2d193b4aa04ee0fc8a197e">clearInputBuffer</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">//子类需要调用此接口检查正在关闭的数据</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> checkClosing();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> closeImpl();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">struct </span>bufferevent *_bev;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::atomic&lt;bool&gt; _isClosing;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;} <span class="comment">/* namespace ec */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1TcpSocket.html#aac8cfc7de1d70f850ec304a40ef814a6">close</a>(<span class="keywordtype">bool</span> waiting = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    uint32_t <a class="code" href="classec_1_1TcpSocket.html#a73baa70135fad8207968cfc2c7c6fe2a">getInputBufferLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> uint8_t * <a class="code" href="classec_1_1TcpSocket.html#a50a9ce465e5c0e0c20fe63f99cc294af">viewInputBuffer</a>(uint32_t size) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1TcpSocket.html#a64a402951553c83c1ba6be46fcf642d0">readInputBuffer</a>(uint8_t * dest, uint32_t size);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1TcpSocket.html#a55626e2cba2d193b4aa04ee0fc8a197e">clearInputBuffer</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//子类需要调用此接口检查正在关闭的数据</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> checkClosing();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> closeImpl();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">struct </span>bufferevent *_bev;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::atomic&lt;bool&gt; _isClosing;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <span class="comment">/* namespace ec */</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_EC_TCPSOCKET_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_EC_TCPSOCKET_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a55626e2cba2d193b4aa04ee0fc8a197e"><div class="ttname"><a href="classec_1_1TcpSocket.html#a55626e2cba2d193b4aa04ee0fc8a197e">ec::TcpSocket::clearInputBuffer</a></div><div class="ttdeci">void clearInputBuffer()</div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:86</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a64a402951553c83c1ba6be46fcf642d0"><div class="ttname"><a href="classec_1_1TcpSocket.html#a64a402951553c83c1ba6be46fcf642d0">ec::TcpSocket::readInputBuffer</a></div><div class="ttdeci">bool readInputBuffer(uint8_t *dest, uint32_t size)</div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:81</div></div>
-<div class="ttc" id="classec_1_1TcpSocket_html_a7eadbeae0d9939522a1138056905b354"><div class="ttname"><a href="classec_1_1TcpSocket.html#a7eadbeae0d9939522a1138056905b354">ec::TcpSocket::close</a></div><div class="ttdeci">void close(bool pending=true)</div><div class="ttdoc">关闭连接 </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:55</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a50a9ce465e5c0e0c20fe63f99cc294af"><div class="ttname"><a href="classec_1_1TcpSocket.html#a50a9ce465e5c0e0c20fe63f99cc294af">ec::TcpSocket::viewInputBuffer</a></div><div class="ttdeci">const uint8_t * viewInputBuffer(uint32_t size) const </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:76</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html"><div class="ttname"><a href="classec_1_1TcpSocket.html">ec::TcpSocket</a></div><div class="ttdoc">TCP连接基类 </div><div class="ttdef"><b>Definition:</b> tcpSocket.h:21</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a5612ba87be272ed6dcc50d3dd097070c"><div class="ttname"><a href="classec_1_1TcpSocket.html#a5612ba87be272ed6dcc50d3dd097070c">ec::TcpSocket::getSocket</a></div><div class="ttdeci">SocketFd getSocket() const </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:31</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a73baa70135fad8207968cfc2c7c6fe2a"><div class="ttname"><a href="classec_1_1TcpSocket.html#a73baa70135fad8207968cfc2c7c6fe2a">ec::TcpSocket::getInputBufferLength</a></div><div class="ttdeci">uint32_t getInputBufferLength() const </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:71</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_af9e2fdbb732d93537e2867eeebc34ab2"><div class="ttname"><a href="classec_1_1TcpSocket.html#af9e2fdbb732d93537e2867eeebc34ab2">ec::TcpSocket::send</a></div><div class="ttdeci">bool send(const char *data, uint32_t size)</div><div class="ttdoc">发送数据 </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:46</div></div>
+<div class="ttc" id="classec_1_1TcpSocket_html_aac8cfc7de1d70f850ec304a40ef814a6"><div class="ttname"><a href="classec_1_1TcpSocket.html#aac8cfc7de1d70f850ec304a40ef814a6">ec::TcpSocket::close</a></div><div class="ttdeci">void close(bool waiting=true)</div><div class="ttdoc">关闭连接 </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:55</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_a75615a2cb729bf1e11f7bf9414dedb6e"><div class="ttname"><a href="classec_1_1TcpSocket.html#a75615a2cb729bf1e11f7bf9414dedb6e">ec::TcpSocket::isInited</a></div><div class="ttdeci">bool isInited() const </div><div class="ttdef"><b>Definition:</b> tcpSocket.h:28</div></div>
 <div class="ttc" id="classec_1_1TcpSocket_html_ac2b55cbb75000a218b3c1d83c1365611"><div class="ttname"><a href="classec_1_1TcpSocket.html#ac2b55cbb75000a218b3c1d83c1365611">ec::TcpSocket::getAddr</a></div><div class="ttdeci">void getAddr(struct sockaddr_in *dest, uint32_t size) const </div><div class="ttdef"><b>Definition:</b> tcpSocket.cpp:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 3 2015 02:15:14 for ec by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 14:15:08 for ec by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

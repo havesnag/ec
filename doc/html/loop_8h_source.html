@@ -97,183 +97,94 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INCLUDE_EC_LOOP_H_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define INCLUDE_EC_LOOP_H_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;ec/define.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;ec/safeQueue.h&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;ec/async.h&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>ec</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classec_1_1Loop.html">Loop</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">   32</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">Event</a></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        kEventStart = 0,</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7">   35</a></span>&#160;        <a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7">kEventRun</a>,      </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8">   36</a></span>&#160;        <a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8">kEventEnd</a>,      </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c">   37</a></span>&#160;        <a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c">kEventMax</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">   45</a></span>&#160;    <span class="keyword">typedef</span> std::function&lt;bool (ec::Loop::Event event)&gt; <a class="code" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">EventHandler</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;ec/define.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>ec</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classec_1_1Loop.html">Loop</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classec_1_1Loop.html">Loop</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classec_1_1Loop.html">Loop</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ab104699b3b40815f32e5272e85fb01d7">   30</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">operator</span> event_base * () <span class="keyword">const</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> _base;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#af62f9eae725eda092cc52168bdcb9b53">   36</a></span>&#160;    <span class="keyword">inline</span> event_base * <a class="code" href="classec_1_1Loop.html#af62f9eae725eda092cc52168bdcb9b53">ev</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> _base;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">   42</a></span>&#160;    <span class="keyword">inline</span> uint32_t <a class="code" href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">id</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> _id;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">   51</a></span>&#160;    <span class="keyword">typedef</span> std::function&lt;void (uint64_t frame)&gt; <a class="code" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">FrameHandler</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">   48</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">isThread</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> (NULL != _thread);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classec_1_1Loop.html">Loop</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classec_1_1Loop.html">Loop</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ab104699b3b40815f32e5272e85fb01d7">   58</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">operator</span> event_base * () <span class="keyword">const</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> _base;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    };</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#af4830e98d557cb3be841f8aa3e9c588b">   64</a></span>&#160;    <span class="keyword">inline</span> event_base * <a class="code" href="classec_1_1Loop.html#af4830e98d557cb3be841f8aa3e9c588b">getBase</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> _base;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a57deb8ad44ad522dc64f37e6ceef6595">   70</a></span>&#160;    <span class="keyword">inline</span> uint32_t <a class="code" href="classec_1_1Loop.html#a57deb8ad44ad522dc64f37e6ceef6595">getId</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> _id;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#a5e4e5650fbd4f1716429205c84ca51fd">start</a>(<span class="keywordtype">bool</span> newThread = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a476329b5b1b32a9d91957fdf820ed35b">wait</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#aa96af9467ac7882e3cea7a4dcb51005a">stop</a>(<span class="keywordtype">bool</span> waiting = <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#adc30b5686fd9fb9b820868af4ffea513">   76</a></span>&#160;    <span class="keyword">inline</span> uint64_t <a class="code" href="classec_1_1Loop.html#adc30b5686fd9fb9b820868af4ffea513">getFrameRound</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> _frameRound;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">   82</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">isThread</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> (NULL != _thread);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#aede057b26d3c5a5c54dabb953bb9945b">start</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#ab09acf916e8d3ad94cc2ceb483b1cac6">onBeforeStart</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#ab50d820e5c09ef53af2aa97a1912025a">onBeforeLoop</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a9d3fec1a0d05dfdb73ceee20b6fd55b0">onAfterLoop</a>();</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#aa673dc1821347b95f0c1fddb78db41e2">startThread</a>();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a452a6746df86ca3f9e32cbbba8896968">waitThread</a>();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a9c8926512c35227aa01d1a23cec1fcdf">stop</a>(<span class="keywordtype">bool</span> pending = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a9e0c3dfd61a2a909644654bb7fc452b9">async</a>(ec::Command cmd, uint8_t *data, uint16_t dataSize, ec::AsyncHandler handler);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#aa52a4ac0232b307a08e7857748ebdd3f">onAfterStop</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> run();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    uint32_t _id;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    event_base *_base;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//线程</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::thread *_thread;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">//停止标志</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::atomic&lt;bool&gt; _isStopping;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">static</span> <a class="code" href="classec_1_1Loop.html">Loop</a> * <a class="code" href="classec_1_1Loop.html#abb797bdabdefdff5b6cc3f2b1b249747">curLoop</a>();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">static</span> <a class="code" href="classec_1_1Loop.html">Loop</a> * <span class="keyword">get</span>(uint32_t <a class="code" href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">id</a>);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ac817156aaff57dcb5068c4ca20536c5c">  132</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#ac817156aaff57dcb5068c4ca20536c5c">async</a>(ec::Command cmd, T &amp;value, ec::AsyncHandler handler)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="classec_1_1Loop.html#a9e0c3dfd61a2a909644654bb7fc452b9">async</a>(cmd, (uint8_t *)(&amp;value), <span class="keyword">sizeof</span>(value), handler);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a4f34cbbabe5c798b725a61670dd9d6a7">post</a>(uint8_t *data, uint16_t dataSize);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#ab120f6b96e2dd165a353e4c2d767dc6c">  149</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#ab120f6b96e2dd165a353e4c2d767dc6c">post</a>(T value)</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="classec_1_1Loop.html#a4f34cbbabe5c798b725a61670dd9d6a7">post</a>((uint8_t *)(&amp;value), <span class="keyword">sizeof</span>(value));</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a54c8e94f74760c38d0c07c2c7584a1d4">regAsyncHandler</a>(ec::Command cmd, ec::AsyncHandler handler);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#aa815829ba034e87209d62958d94c1bf9">regPostHandler</a>(ec::PostHandler handler);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a9106028b7c268472a27832fe7812ba7f">regEventHandler</a>(<a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event, <a class="code" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">ec::Loop::EventHandler</a> handler);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a6ad6f4a613cad7f4090c98bb370edac7">regFrameHandler</a>(<a class="code" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">ec::Loop::FrameHandler</a> handler);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a2a40b87b2fa1cbb820692c8a10bed3ab">  165</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a2a40b87b2fa1cbb820692c8a10bed3ab">onAsync</a>(ec::Command cmd, <span class="keyword">const</span> <a class="code" href="classec_1_1Data.html">ec::Data</a> &amp;request, <a class="code" href="classec_1_1Data.html">ec::Data</a> &amp;response) {};</div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a3365009f41dd34e57c261485f0eb49cd">  167</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a3365009f41dd34e57c261485f0eb49cd">onPost</a>(<a class="code" href="classec_1_1Data.html">ec::Data</a> &amp;data) {};</div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a739a3679b5ca8d66dca537cb1df9c5c0">  169</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classec_1_1Loop.html#a739a3679b5ca8d66dca537cb1df9c5c0">onEvent</a>(<a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event) { <span class="keywordflow">return</span> <span class="keyword">true</span>; };</div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classec_1_1Loop.html#a4b904f427bf6568f216692997bd17e15">  171</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classec_1_1Loop.html#a4b904f427bf6568f216692997bd17e15">onFrame</a>(uint64_t round) {};</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordtype">void</span> run();</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> frameEventCallback(evutil_socket_t fd, <span class="keywordtype">short</span> events, <span class="keywordtype">void</span> *ctx);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordtype">void</span> frameHandler();</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordtype">bool</span> doEvent(<a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a> event);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    uint32_t _id;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    event_base *_base;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">//线程</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    std::thread *_thread;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="comment">//幀定时句柄</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">struct </span>event *_frameEvent;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">//当前幀数</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    uint64_t _frameRound;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    std::atomic&lt;bool&gt; _isStopping;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">//异步post列表</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="classec_1_1SafeQueue.html">ec::SafeQueue&lt;ec::Data *&gt;</a> _asyncPosts;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="comment">//异步命令请求列表</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="classec_1_1SafeQueue.html">ec::SafeQueue&lt;ec::AsyncContext *&gt;</a> _asyncRequests;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="comment">//异步命令返回列表</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="classec_1_1SafeQueue.html">ec::SafeQueue&lt;ec::AsyncContext *&gt;</a> _asyncResponses;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">//未完成的异步请求数量</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    std::atomic&lt;int&gt; _asyncPendingCount;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    std::map&lt;ec::Command, ec::AsyncHandler&gt; _asyncHandlers;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    ec::PostHandler _postHandler;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">ec::Loop::EventHandler</a> _eventHandlers[<a class="code" href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c">ec::Loop::kEventMax</a>];</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">ec::Loop::FrameHandler</a> _frameHandler;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keyword">static</span> <a class="code" href="classec_1_1Loop.html">Loop</a> * <a class="code" href="classec_1_1Loop.html#abb797bdabdefdff5b6cc3f2b1b249747">curLoop</a>();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keyword">static</span> <a class="code" href="classec_1_1Loop.html">Loop</a> * <span class="keyword">get</span>(uint32_t id);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> init();</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> uninit();</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keyword">static</span> std::mutex s_mutex;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keyword">static</span> std::map&lt;uint32_t, ec::Loop *&gt; s_loops;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">static</span> uint32_t s_idGenerater;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;};</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;} <span class="comment">/* namespace ec */</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_EC_LOOP_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classec_1_1Loop_html_a4f34cbbabe5c798b725a61670dd9d6a7"><div class="ttname"><a href="classec_1_1Loop.html#a4f34cbbabe5c798b725a61670dd9d6a7">ec::Loop::post</a></div><div class="ttdeci">void post(uint8_t *data, uint16_t dataSize)</div><div class="ttdoc">异步发送数据 </div><div class="ttdef"><b>Definition:</b> loop.cpp:124</div></div>
-<div class="ttc" id="classec_1_1Data_html"><div class="ttname"><a href="classec_1_1Data.html">ec::Data</a></div><div class="ttdoc">数据封装类 </div><div class="ttdef"><b>Definition:</b> data.h:19</div></div>
-<div class="ttc" id="classec_1_1Loop_html_adc30b5686fd9fb9b820868af4ffea513"><div class="ttname"><a href="classec_1_1Loop.html#adc30b5686fd9fb9b820868af4ffea513">ec::Loop::getFrameRound</a></div><div class="ttdeci">uint64_t getFrameRound() const </div><div class="ttdoc">获得经过的幀数 </div><div class="ttdef"><b>Definition:</b> loop.h:76</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a452a6746df86ca3f9e32cbbba8896968"><div class="ttname"><a href="classec_1_1Loop.html#a452a6746df86ca3f9e32cbbba8896968">ec::Loop::waitThread</a></div><div class="ttdeci">void waitThread()</div><div class="ttdoc">等待线程结束，与startThread配合使用 </div><div class="ttdef"><b>Definition:</b> loop.cpp:84</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a9e0c3dfd61a2a909644654bb7fc452b9"><div class="ttname"><a href="classec_1_1Loop.html#a9e0c3dfd61a2a909644654bb7fc452b9">ec::Loop::async</a></div><div class="ttdeci">void async(ec::Command cmd, uint8_t *data, uint16_t dataSize, ec::AsyncHandler handler)</div><div class="ttdoc">异步调用命令 </div><div class="ttdef"><b>Definition:</b> loop.cpp:101</div></div>
-<div class="ttc" id="classec_1_1Loop_html_aa673dc1821347b95f0c1fddb78db41e2"><div class="ttname"><a href="classec_1_1Loop.html#aa673dc1821347b95f0c1fddb78db41e2">ec::Loop::startThread</a></div><div class="ttdeci">bool startThread()</div><div class="ttdoc">启动新线程运行事件循环 </div><div class="ttdef"><b>Definition:</b> loop.cpp:73</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a57deb8ad44ad522dc64f37e6ceef6595"><div class="ttname"><a href="classec_1_1Loop.html#a57deb8ad44ad522dc64f37e6ceef6595">ec::Loop::getId</a></div><div class="ttdeci">uint32_t getId() const </div><div class="ttdoc">获得自动生成的Id号 </div><div class="ttdef"><b>Definition:</b> loop.h:70</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a7c68e22f03ea2b4b670a440291438aed"><div class="ttname"><a href="classec_1_1Loop.html#a7c68e22f03ea2b4b670a440291438aed">ec::Loop::EventHandler</a></div><div class="ttdeci">std::function&lt; bool(ec::Loop::Event event)&gt; EventHandler</div><div class="ttdoc">事件处理函数 </div><div class="ttdef"><b>Definition:</b> loop.h:45</div></div>
-<div class="ttc" id="classec_1_1SafeQueue_html"><div class="ttname"><a href="classec_1_1SafeQueue.html">ec::SafeQueue</a></div><div class="ttdoc">线程安全队列 </div><div class="ttdef"><b>Definition:</b> safeQueue.h:21</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a9106028b7c268472a27832fe7812ba7f"><div class="ttname"><a href="classec_1_1Loop.html#a9106028b7c268472a27832fe7812ba7f">ec::Loop::regEventHandler</a></div><div class="ttdeci">void regEventHandler(ec::Loop::Event event, ec::Loop::EventHandler handler)</div><div class="ttdoc">注册内部事件回调，没有注册回调的事件将通过onEvent处理 </div><div class="ttdef"><b>Definition:</b> loop.cpp:139</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a134b0eb8eaa83270eb375df11160bea5"><div class="ttname"><a href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">ec::Loop::isThread</a></div><div class="ttdeci">bool isThread() const </div><div class="ttdoc">是否是以新线程在运行 </div><div class="ttdef"><b>Definition:</b> loop.h:82</div></div>
-<div class="ttc" id="classec_1_1Loop_html_aa815829ba034e87209d62958d94c1bf9"><div class="ttname"><a href="classec_1_1Loop.html#aa815829ba034e87209d62958d94c1bf9">ec::Loop::regPostHandler</a></div><div class="ttdeci">void regPostHandler(ec::PostHandler handler)</div><div class="ttdoc">注册post回调，不注册将通过onPost处理 </div><div class="ttdef"><b>Definition:</b> loop.cpp:134</div></div>
-<div class="ttc" id="classec_1_1Loop_html_aede057b26d3c5a5c54dabb953bb9945b"><div class="ttname"><a href="classec_1_1Loop.html#aede057b26d3c5a5c54dabb953bb9945b">ec::Loop::start</a></div><div class="ttdeci">bool start()</div><div class="ttdoc">在当前线程运行事件循环 </div><div class="ttdef"><b>Definition:</b> loop.cpp:63</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a4b904f427bf6568f216692997bd17e15"><div class="ttname"><a href="classec_1_1Loop.html#a4b904f427bf6568f216692997bd17e15">ec::Loop::onFrame</a></div><div class="ttdeci">virtual void onFrame(uint64_t round)</div><div class="ttdoc">继承此接口处理每幀逻辑 </div><div class="ttdef"><b>Definition:</b> loop.h:171</div></div>
-<div class="ttc" id="classec_1_1Loop_html_aaa0d9bf951a410663fc354e5be062229"><div class="ttname"><a href="classec_1_1Loop.html#aaa0d9bf951a410663fc354e5be062229">ec::Loop::FrameHandler</a></div><div class="ttdeci">std::function&lt; void(uint64_t frame)&gt; FrameHandler</div><div class="ttdoc">每幀处理函数 </div><div class="ttdef"><b>Definition:</b> loop.h:51</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a9c8926512c35227aa01d1a23cec1fcdf"><div class="ttname"><a href="classec_1_1Loop.html#a9c8926512c35227aa01d1a23cec1fcdf">ec::Loop::stop</a></div><div class="ttdeci">void stop(bool pending=true)</div><div class="ttdoc">停止事件循环 </div><div class="ttdef"><b>Definition:</b> loop.cpp:92</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ac861df4ad2e7779e31932b2171935f81"><div class="ttname"><a href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81">ec::Loop::Event</a></div><div class="ttdeci">Event</div><div class="ttdoc">Loop内部事件枚举 </div><div class="ttdef"><b>Definition:</b> loop.h:32</div></div>
-<div class="ttc" id="classec_1_1Loop_html_af4830e98d557cb3be841f8aa3e9c588b"><div class="ttname"><a href="classec_1_1Loop.html#af4830e98d557cb3be841f8aa3e9c588b">ec::Loop::getBase</a></div><div class="ttdeci">event_base * getBase() const </div><div class="ttdoc">获取event_base *指针 </div><div class="ttdef"><b>Definition:</b> loop.h:64</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a739a3679b5ca8d66dca537cb1df9c5c0"><div class="ttname"><a href="classec_1_1Loop.html#a739a3679b5ca8d66dca537cb1df9c5c0">ec::Loop::onEvent</a></div><div class="ttdeci">virtual bool onEvent(ec::Loop::Event event)</div><div class="ttdoc">继承此接口处理内部事件 </div><div class="ttdef"><b>Definition:</b> loop.h:169</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8"><div class="ttname"><a href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81af538557b2dd5e6dd576a16a8b510f9d8">ec::Loop::kEventEnd</a></div><div class="ttdef"><b>Definition:</b> loop.h:36</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a54c8e94f74760c38d0c07c2c7584a1d4"><div class="ttname"><a href="classec_1_1Loop.html#a54c8e94f74760c38d0c07c2c7584a1d4">ec::Loop::regAsyncHandler</a></div><div class="ttdeci">void regAsyncHandler(ec::Command cmd, ec::AsyncHandler handler)</div><div class="ttdoc">注册async回调，没有注册回调的异步调用将通过onAsync处理 </div><div class="ttdef"><b>Definition:</b> loop.cpp:129</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ac817156aaff57dcb5068c4ca20536c5c"><div class="ttname"><a href="classec_1_1Loop.html#ac817156aaff57dcb5068c4ca20536c5c">ec::Loop::async</a></div><div class="ttdeci">void async(ec::Command cmd, T &amp;value, ec::AsyncHandler handler)</div><div class="ttdoc">异步调用命令 </div><div class="ttdef"><b>Definition:</b> loop.h:132</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7"><div class="ttname"><a href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81ae18354c950ca663c8eeb805eb0635ce7">ec::Loop::kEventRun</a></div><div class="ttdef"><b>Definition:</b> loop.h:35</div></div>
-<div class="ttc" id="classec_1_1Loop_html"><div class="ttname"><a href="classec_1_1Loop.html">ec::Loop</a></div><div class="ttdoc">事件主循环类，一个线程只能有一个Loop对象。 </div><div class="ttdef"><b>Definition:</b> loop.h:28</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a6ad6f4a613cad7f4090c98bb370edac7"><div class="ttname"><a href="classec_1_1Loop.html#a6ad6f4a613cad7f4090c98bb370edac7">ec::Loop::regFrameHandler</a></div><div class="ttdeci">void regFrameHandler(ec::Loop::FrameHandler handler)</div><div class="ttdoc">注册每幀回调，不注册将通过onFrame处理 </div><div class="ttdef"><b>Definition:</b> loop.cpp:144</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ab120f6b96e2dd165a353e4c2d767dc6c"><div class="ttname"><a href="classec_1_1Loop.html#ab120f6b96e2dd165a353e4c2d767dc6c">ec::Loop::post</a></div><div class="ttdeci">void post(T value)</div><div class="ttdoc">异步发送数据 </div><div class="ttdef"><b>Definition:</b> loop.h:149</div></div>
-<div class="ttc" id="classec_1_1Loop_html_ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c"><div class="ttname"><a href="classec_1_1Loop.html#ac861df4ad2e7779e31932b2171935f81a4ce3e65585742fda1ced3e6ba87bb80c">ec::Loop::kEventMax</a></div><div class="ttdef"><b>Definition:</b> loop.h:37</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a2a40b87b2fa1cbb820692c8a10bed3ab"><div class="ttname"><a href="classec_1_1Loop.html#a2a40b87b2fa1cbb820692c8a10bed3ab">ec::Loop::onAsync</a></div><div class="ttdeci">virtual void onAsync(ec::Command cmd, const ec::Data &amp;request, ec::Data &amp;response)</div><div class="ttdoc">继承此接口处理异步命令调用 </div><div class="ttdef"><b>Definition:</b> loop.h:165</div></div>
-<div class="ttc" id="classec_1_1Loop_html_abb797bdabdefdff5b6cc3f2b1b249747"><div class="ttname"><a href="classec_1_1Loop.html#abb797bdabdefdff5b6cc3f2b1b249747">ec::Loop::curLoop</a></div><div class="ttdeci">static Loop * curLoop()</div><div class="ttdoc">返回当前线程的Loop </div><div class="ttdef"><b>Definition:</b> loop.cpp:256</div></div>
-<div class="ttc" id="classec_1_1Loop_html_a3365009f41dd34e57c261485f0eb49cd"><div class="ttname"><a href="classec_1_1Loop.html#a3365009f41dd34e57c261485f0eb49cd">ec::Loop::onPost</a></div><div class="ttdeci">virtual void onPost(ec::Data &amp;data)</div><div class="ttdoc">继承此接口处理异步数据 </div><div class="ttdef"><b>Definition:</b> loop.h:167</div></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">static</span> std::mutex _sMutex;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">static</span> std::map&lt;uint32_t, ec::Loop *&gt; _sLoops;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keyword">static</span> uint32_t _sIdGenerater;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;} <span class="comment">/* namespace ec */</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_EC_LOOP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classec_1_1Loop_html_ab09acf916e8d3ad94cc2ceb483b1cac6"><div class="ttname"><a href="classec_1_1Loop.html#ab09acf916e8d3ad94cc2ceb483b1cac6">ec::Loop::onBeforeStart</a></div><div class="ttdeci">virtual bool onBeforeStart()</div><div class="ttdoc">启动前触发 </div><div class="ttdef"><b>Definition:</b> loop.cpp:111</div></div>
+<div class="ttc" id="classec_1_1Loop_html_ae60730f9a1e07de6039de8008293769a"><div class="ttname"><a href="classec_1_1Loop.html#ae60730f9a1e07de6039de8008293769a">ec::Loop::id</a></div><div class="ttdeci">uint32_t id() const </div><div class="ttdoc">获得自动生成的Id号 </div><div class="ttdef"><b>Definition:</b> loop.h:42</div></div>
+<div class="ttc" id="classec_1_1Loop_html_a476329b5b1b32a9d91957fdf820ed35b"><div class="ttname"><a href="classec_1_1Loop.html#a476329b5b1b32a9d91957fdf820ed35b">ec::Loop::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">等待时间循环(线程)结束 </div><div class="ttdef"><b>Definition:</b> loop.cpp:85</div></div>
+<div class="ttc" id="classec_1_1Loop_html_ab50d820e5c09ef53af2aa97a1912025a"><div class="ttname"><a href="classec_1_1Loop.html#ab50d820e5c09ef53af2aa97a1912025a">ec::Loop::onBeforeLoop</a></div><div class="ttdeci">virtual void onBeforeLoop()</div><div class="ttdoc">事件循环运行前触发 </div><div class="ttdef"><b>Definition:</b> loop.cpp:116</div></div>
+<div class="ttc" id="classec_1_1Loop_html_a134b0eb8eaa83270eb375df11160bea5"><div class="ttname"><a href="classec_1_1Loop.html#a134b0eb8eaa83270eb375df11160bea5">ec::Loop::isThread</a></div><div class="ttdeci">bool isThread() const </div><div class="ttdoc">是否是以新线程在运行 </div><div class="ttdef"><b>Definition:</b> loop.h:48</div></div>
+<div class="ttc" id="classec_1_1Loop_html_a9d3fec1a0d05dfdb73ceee20b6fd55b0"><div class="ttname"><a href="classec_1_1Loop.html#a9d3fec1a0d05dfdb73ceee20b6fd55b0">ec::Loop::onAfterLoop</a></div><div class="ttdeci">virtual void onAfterLoop()</div><div class="ttdoc">事件循环结束后触发 </div><div class="ttdef"><b>Definition:</b> loop.cpp:120</div></div>
+<div class="ttc" id="classec_1_1Loop_html_a5e4e5650fbd4f1716429205c84ca51fd"><div class="ttname"><a href="classec_1_1Loop.html#a5e4e5650fbd4f1716429205c84ca51fd">ec::Loop::start</a></div><div class="ttdeci">bool start(bool newThread=true)</div><div class="ttdoc">启动事件循环 </div><div class="ttdef"><b>Definition:</b> loop.cpp:67</div></div>
+<div class="ttc" id="classec_1_1Loop_html_af62f9eae725eda092cc52168bdcb9b53"><div class="ttname"><a href="classec_1_1Loop.html#af62f9eae725eda092cc52168bdcb9b53">ec::Loop::ev</a></div><div class="ttdeci">event_base * ev() const </div><div class="ttdoc">获取event_base *指针 </div><div class="ttdef"><b>Definition:</b> loop.h:36</div></div>
+<div class="ttc" id="classec_1_1Loop_html"><div class="ttname"><a href="classec_1_1Loop.html">ec::Loop</a></div><div class="ttdoc">事件循环，对event_base的封装。 </div><div class="ttdef"><b>Definition:</b> loop.h:23</div></div>
+<div class="ttc" id="classec_1_1Loop_html_aa52a4ac0232b307a08e7857748ebdd3f"><div class="ttname"><a href="classec_1_1Loop.html#aa52a4ac0232b307a08e7857748ebdd3f">ec::Loop::onAfterStop</a></div><div class="ttdeci">virtual void onAfterStop()</div><div class="ttdoc">停止后触发 </div><div class="ttdef"><b>Definition:</b> loop.cpp:124</div></div>
+<div class="ttc" id="classec_1_1Loop_html_abb797bdabdefdff5b6cc3f2b1b249747"><div class="ttname"><a href="classec_1_1Loop.html#abb797bdabdefdff5b6cc3f2b1b249747">ec::Loop::curLoop</a></div><div class="ttdeci">static Loop * curLoop()</div><div class="ttdoc">返回当前线程的Loop </div><div class="ttdef"><b>Definition:</b> loop.cpp:128</div></div>
+<div class="ttc" id="classec_1_1Loop_html_aa96af9467ac7882e3cea7a4dcb51005a"><div class="ttname"><a href="classec_1_1Loop.html#aa96af9467ac7882e3cea7a4dcb51005a">ec::Loop::stop</a></div><div class="ttdeci">void stop(bool waiting=true)</div><div class="ttdoc">停止事件循环 </div><div class="ttdef"><b>Definition:</b> loop.cpp:93</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 3 2015 02:15:14 for ec by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 14:15:08 for ec by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

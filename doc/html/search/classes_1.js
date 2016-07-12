@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['data',['Data',['../classec_1_1Data.html',1,'ec']]],
-  ['date',['Date',['../classec_1_1Date.html',1,'ec']]]
+  ['frameloop',['FrameLoop',['../classec_1_1FrameLoop.html',1,'ec']]]
 ];
