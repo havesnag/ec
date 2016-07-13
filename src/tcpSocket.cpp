@@ -28,7 +28,7 @@ TcpSocket::~TcpSocket()
 	}
 }
 
-SocketFd TcpSocket::getSocket() const
+SocketFd TcpSocket::socket() const
 {
 	return (NULL == _bev) ? SOCKET_FD_INVALID : bufferevent_getfd(_bev);
 }
@@ -40,7 +40,7 @@ void TcpSocket::getAddr(struct sockaddr_in * dest, uint32_t size) const
 	{
 		return;
 	}
-	getpeername(getSocket(), (struct sockaddr *)dest, &addrSize);
+	getpeername(socket(), (struct sockaddr *)dest, &addrSize);
 }
 
 bool TcpSocket::send(const char *data, uint32_t size)
@@ -105,7 +105,7 @@ void TcpSocket::closeImpl()
 	_isClosing = false;
 	clearInputBuffer();
 	bufferevent_disable(_bev, EV_WRITE);
-	shutdown(getSocket(), 2);
+	shutdown(socket(), 2);
 }
 
 } /* namespace ec */

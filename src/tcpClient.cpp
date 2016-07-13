@@ -52,7 +52,7 @@ bool TcpClient::connect(const char *ip, uint16_t port)
 		return false;
 	}
 
-	evutil_make_socket_nonblocking(getSocket());
+	evutil_make_socket_nonblocking(socket());
 	return true;
 }
 
@@ -61,7 +61,7 @@ void TcpClient::handleEvent(short events)
 	if (events & (BEV_EVENT_EOF | BEV_EVENT_ERROR | BEV_EVENT_TIMEOUT))
 	{
 		bufferevent_disable(_bev, EV_READ | EV_WRITE);
-		evutil_closesocket(getSocket());
+		evutil_closesocket(socket());
 		_isConnected = false;
 		onDisconnected();
 		bufferevent_free(_bev);

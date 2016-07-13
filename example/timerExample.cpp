@@ -21,17 +21,24 @@ public:
 	{
 	}
 
+	static ExampleTimerServer & instance()
+	{
+		static ExampleTimerServer ins;
+		return ins;
+	}
+
 	void start()
 	{
 		_timer.startAfter(1000, 100, 2, [this]() {
 			cout << "startAfter round " << _timer.curRound() << endl;
 			if (_timer.isFinished())
 			{
-				_timer.startRounds(200, 2, std::bind(&ExampleTimerServer::tick, this));
+				_timer.startRounds(1000, 5, std::bind(&ExampleTimerServer::tick, this));
 			}
 		});
 		cout << "before start" << endl;
 		_loop.start();
+		_loop.wait();
 	}
 
 	void stop()
@@ -57,6 +64,5 @@ private:
 
 void timerExample()
 {
-	ExampleTimerServer server;
-	server.start();
+	ExampleTimerServer::instance().start();
 }

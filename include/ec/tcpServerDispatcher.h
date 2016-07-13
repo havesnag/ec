@@ -11,7 +11,7 @@
 #include <queue>
 #include "ec/frameLoop.h"
 #include "ec/tcpSession.h"
-
+#include "ec/tcpSessionFactory.h"
 
 namespace ec
 {
@@ -41,9 +41,11 @@ public:
 		return _server;
 	}
 
-	/** @brief 获取TCP监听服务器 */
+	/** 根据id获取Session */
 	ec::TcpSessionPtr getSession(ec::SessionId id);
+	/** 添加Session */
 	void addSession(ec::SessionId id, ec::SocketFd sock);
+	/** 删除Session */
 	void removeSession(ec::SessionId id);
 
 protected:

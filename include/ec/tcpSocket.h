@@ -24,14 +24,8 @@ public:
 	TcpSocket();
 	virtual ~TcpSocket();
 
-	/** 是否已初始化 */
-	inline bool isInited() const
-	{
-		return (NULL != _bev);
-	}
-
 	/** 获取socket */
-	SocketFd getSocket() const;
+	SocketFd socket() const;
 	/** 获取连接地址 */
 	void getAddr(struct sockaddr_in * dest, uint32_t size) const;
 

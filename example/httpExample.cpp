@@ -48,4 +48,6 @@ void httpExample()
 	{
 		cout << "start failed" << endl;
 	}
+
+	server.wait();
 }

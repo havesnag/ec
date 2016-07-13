@@ -10,8 +10,6 @@
 
 void timerExample();
 
-void asyncExample();
-
 void tcpExample();
 
 void httpExample();

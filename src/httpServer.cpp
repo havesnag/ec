@@ -6,6 +6,7 @@
  */
 
 #include "ec/httpServer.h"
+#include <string.h>
 #include <vector>
 
 namespace ec

@@ -12,24 +12,30 @@
 namespace ec
 {
 
-TcpSession::TcpSession(ec::TcpServerDispatcher *dispatcher, ec::SessionId id):
-		_dispatcher(dispatcher),
-		_id(id)
+TcpSession::TcpSession():
+		_dispatcher(NULL),
+		_id(0)
 {
 }
 
-void TcpSession::attach(ec::SocketFd sock)
+bool TcpSession::attach(
+		ec::TcpServerDispatcher * dispatcher,
+		ec::SessionId id,
+		ec::SocketFd sock)
 {
+	_id = id;
+	_dispatcher = dispatcher;
+
 	if (SOCKET_FD_INVALID == sock)
 	{
-		return;
+		return false;
 	}
 
 	_bev = bufferevent_socket_new(_dispatcher->ev(),
 			sock, BEV_OPT_THREADSAFE | BEV_OPT_DEFER_CALLBACKS);
 	if (NULL == _bev)
 	{
-		return;
+		return false;
 	}
 
 	bufferevent_setcb(_bev, readCallback, writeCallback, eventCallback, this);
@@ -37,22 +43,29 @@ void TcpSession::attach(ec::SocketFd sock)
 	{
 		bufferevent_free(_bev);
 		_bev = NULL;
-		return;
+		return false;
 	}
+
+	return true;
+}
+
+void TcpSession::onRead()
+{
+	_dispatcher->server()->onSessionRead(this);
 }
 
 void TcpSession::handleEvent(short events)
 {
 	bufferevent_disable(_bev, EV_READ | EV_WRITE);
-	evutil_closesocket(getSocket());
+	evutil_closesocket(socket());
 	_dispatcher->server()->onSessionDisconnected(this);
-	_dispatcher->removeSession(getId());
+	_dispatcher->removeSession(id());
 }
 
 void TcpSession::readCallback(struct bufferevent *bev, void *data)
 {
 	TcpSession *session = (TcpSession *)data;
-	session->_dispatcher->server()->onSessionRead(session);
+	session->onRead();
 }
 
 void TcpSession::writeCallback(struct bufferevent *bev, void *data)

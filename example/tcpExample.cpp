@@ -62,7 +62,7 @@ protected:
 		session->readInputBuffer((uint8_t *)buff, length);
 		buff[length] = '\0';
 		cout << "ExampleTcpServer::" << __FUNCTION__
-				<< " " << session->getId() << " data:" << buff << endl;
+				<< " " << session->id() << " data:" << buff << endl;
 		session->close();
 	}
 
@@ -73,7 +73,7 @@ protected:
 
 	virtual void onNewSession(ec::TcpSession *session)
 	{
-		cout << "ExampleTcpServer::" << __FUNCTION__ << session->getId() << endl;
+		cout << "ExampleTcpServer::" << __FUNCTION__ << session->id() << endl;
 	}
 };
 
@@ -117,7 +117,7 @@ void tcpExample()
 	}
 
 	ExampleTcpClientManager clientManager;
-	clientManager.start();
+	clientManager.start(false);
 	clientManager.wait();
 	tcpServer.wait();
 }

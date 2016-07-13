@@ -41,18 +41,17 @@ void TcpServerDispatcher::onFrame()
 		return;
 	}
 
-	_mutex.lock();
+	MutexLock lock(_mutex);
 	while (!_actions.empty())
 	{
 		SessionAction & action = _actions.front();
 
 		if (action.sock != SOCKET_FD_INVALID) //新加session
 		{
-			TcpSessionPtr session(new TcpSession(this, action.id));
-			session->attach(action.sock);
-			if (session->isInited())
+			TcpSessionPtr session = server()->sessionFactory()->create();
+			if (session->attach(this, action.id, action.sock))
 			{
-				_sessions[session->getId()] = session;
+				_sessions[session->id()] = session;
 			}
 		}
 		else //删除session

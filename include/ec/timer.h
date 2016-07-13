@@ -55,7 +55,7 @@ public:
 	 * @brief 在指定事件后启动定时器
 	 * @param after 在此时长后开始定时，以毫秒为单位
 	 * @param interval 定时时长，以毫秒为单位
-	 * param round 总周期
+	 * @param round 总周期
 	 * @param handler 定时回调函数
 	 */
 	bool startAfter(

@@ -27,16 +27,22 @@ class TcpServer
 	friend class TcpSession;
 	friend class TcpServerDispatcher;
 public:
-	TcpServer(uint16_t threads = 0);
+	TcpServer(ec::TcpSessionFactory * sessionFactory = NULL, uint16_t threads = 0);
 	virtual ~TcpServer();
 
 	/** 设置IO线程数量，需在监听之前调用 */
 	void setThreads(uint16_t threads);
 
-	/** 获取Loop包含的Loop对象引用 */
-	inline ec::Loop & getLoop() const
+	/** 获取Loop对象引用 */
+	inline ec::Loop & getMasterLoop() const
 	{
 		return *_master;
+	}
+
+	/** 获取Session工厂类 */
+	inline ec::TcpSessionFactory * sessionFactory() const
+	{
+		return _sessionFactory;
 	}
 
 	/**
@@ -54,12 +60,22 @@ public:
 	void wait();
 
 protected:
-	/** 监听失败时处理接口 */
+	/**
+	 * @brief 监听失败时处理接口
+	 * @details 比如监听端口被占用时
+	 */
 	virtual void onListenError() {};
-	/** 连接有数据可读时处理接口 */
+
+	/**
+	 * @brief 连接有数据可读时处理接口
+	 * @note TcpSession数据可读时默认行为是通知TcpServer，重载TcpSession的onRead函数修改
+	 * @see TcpSession::onRead
+	 */
 	virtual void onSessionRead(ec::TcpSession *session) {};
+
 	/** 连接断开时处理接口 */
 	virtual void onSessionDisconnected(ec::TcpSession *session) {};
+
 	/** 有新连接时处理接口 */
 	virtual void onNewSession(ec::TcpSession *session) {};
 
@@ -79,6 +95,7 @@ private:
 	struct evconnlistener *_eventListener;
 	ec::TcpServerDispatcher * _master;
 	std::vector<ec::TcpServerDispatcher *> _slavers;
+	ec::TcpSessionFactory * _sessionFactory;
 
 private:
 	static ec::SessionId s_sessionIdGenerator;

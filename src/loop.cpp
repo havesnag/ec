@@ -43,14 +43,16 @@ Loop::Loop() :
 
 Loop::~Loop()
 {
+	if (NULL != _thread)
+	{
+		stop();
+		wait();
+		delete _thread;
+	}
+
 	if (NULL != _base)
 	{
 		event_base_free(_base);
-	}
-
-	if (NULL != _thread)
-	{
-		delete _thread;
 	}
 
 	_sMutex.lock();
@@ -90,11 +92,9 @@ void Loop::wait()
 	}
 }
 
-void Loop::stop(bool pending)
+void Loop::stop(bool waiting)
 {
-	pending ? event_base_loopexit(_base, NULL) : event_base_loopbreak(_base);
-	event_base_free(_base);
-	_base = NULL;
+	waiting ? event_base_loopexit(_base, NULL) : event_base_loopbreak(_base);
 	onAfterStop();
 }
 

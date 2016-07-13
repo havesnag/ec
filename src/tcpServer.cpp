@@ -12,10 +12,16 @@ namespace ec
 
 ec::SessionId TcpServer::s_sessionIdGenerator = 0;
 
-TcpServer::TcpServer(uint16_t threads) :
+TcpServer::TcpServer(ec::TcpSessionFactory * sessionFactory, uint16_t threads) :
 		_eventListener(NULL),
-		_master(NULL)
+		_master(NULL),
+		_sessionFactory(sessionFactory)
 {
+	if (NULL == _sessionFactory)
+	{
+		_sessionFactory = new ec::TcpSessionFactory();
+	}
+
 	_master = new ec::TcpServerDispatcher(this);
 	setThreads(threads);
 }
@@ -32,6 +38,8 @@ TcpServer::~TcpServer()
 	{
 		evconnlistener_free(_eventListener);
 	}
+
+	delete _sessionFactory;
 }
 
 void TcpServer::setThreads(uint16_t threads)
