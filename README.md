@@ -1,5 +1,11 @@
 ec是基于libevet的C++11封装。
 
+#### 联系方式
+QQ: 405026523
+
+邮件：xiacengx@qq.com
+
+欢迎大家恶贡献代码！
 # 编译
 
 ### 依赖条件
@@ -69,15 +75,15 @@ int main(int argc, char *argv[])
 ### 测试代码
 test.cpp 为主入口，具体功能实现在example目录中
 
-\/\/定时器示例
+定时器示例
 
 void timerExample();
 
-\/\/TCP示例
+TCP示例
 
 void tcpExample();
 
-\/\/HTTP示例
+HTTP示例
 
 void httpExample();
 
