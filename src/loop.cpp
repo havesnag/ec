@@ -19,7 +19,7 @@ Loop::Loop() :
 	_id(0),
 	_base(NULL),
 	_thread(NULL),
-	_isStopping(false)
+	_status(StatusInit)
 {
 	_sMutex.lock();
 	_sIdGenerater++;
@@ -27,13 +27,13 @@ Loop::Loop() :
 
 	if (_sLoops.empty())
 	{
-#if (defined _WIN32) || (defined WIN32) || (defined _WIN64) || (defined WIN64)
+#ifdef PLATFORM_WINDOWS
 		WSADATA wsadata;
 		WSAStartup(MAKEWORD(2, 2), &wsadata);
 		evthread_use_windows_threads();
 #else
 		evthread_use_pthreads();
-#endif//_WIN32
+#endif//PLATFORM_WINDOWS
 	}
 
 	_sLoops[_id] = this;
@@ -53,40 +53,45 @@ Loop::~Loop()
 	if (NULL != _base)
 	{
 		event_base_free(_base);
+		_base = NULL;
 	}
 
 	_sMutex.lock();
 	_sLoops.erase(_id);
 	if (_sLoops.empty())
 	{
-#if (defined _WIN32) || (defined WIN32) || (defined _WIN64) || (defined WIN64)
+#ifdef PLATFORM_WINDOWS
 		WSACleanup();
-#endif//_WIN32
+#endif//PLATFORM_WINDOWS
 	}
 	_sMutex.unlock();
 }
 
 bool Loop::start(bool newThread)
 {
+	if (_status != StatusInit) {
+		return false;
+	}
+
 	if (!onBeforeStart()) {
 		return false;
 	}
 
 	if (newThread)
 	{
-		_thread = new std::thread(std::bind(&Loop::run, this));
-		return (NULL != _thread);
+		_thread = new std::thread(std::bind(&Loop::_run, this));
 	}
 	else
 	{
-		run();
-		return true;
+		_run();
 	}
+
+	return true;
 }
 
 void Loop::wait()
 {
-	if (NULL != _thread)
+	if (NULL != _thread && StatusFinished != _status)
 	{
 		_thread->join();
 	}
@@ -94,18 +99,23 @@ void Loop::wait()
 
 void Loop::stop(bool waiting)
 {
+	if (StatusFinished == _status) {
+		return;
+	}
+
 	waiting ? event_base_loopexit(_base, NULL) : event_base_loopbreak(_base);
 	onAfterStop();
 }
 
-void Loop::run()
+void Loop::_run()
 {
+	_status = StatusRunning;
 	curThreadLoop = this;
 	onBeforeLoop();
 	event_base_loop(_base, 0);
 	onAfterLoop();
 	curThreadLoop = NULL;
-	_thread = NULL;
+	_status = StatusFinished;
 }
 
 bool Loop::onBeforeStart()

@@ -15,7 +15,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string cmd = "default";
+	string cmd = "timer";
 	if (argc > 1) {
 		cmd = argv[1];
 	}

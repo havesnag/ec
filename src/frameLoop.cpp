@@ -18,6 +18,7 @@ FrameLoop::FrameLoop() : Loop()
 
 FrameLoop::~FrameLoop()
 {
+	delete _frameTimer;
 }
 
 void FrameLoop::setFrameInterval(uint32_t interval)

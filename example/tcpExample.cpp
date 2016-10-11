@@ -63,6 +63,7 @@ protected:
 		buff[length] = '\0';
 		cout << "ExampleTcpServer::" << __FUNCTION__
 				<< " " << session->id() << " data:" << buff << endl;
+		delete [] buff;
 		session->close();
 	}
 

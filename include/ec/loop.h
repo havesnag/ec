@@ -23,6 +23,13 @@ namespace ec
 class Loop
 {
 public:
+	/** @brief 初始状态 */
+	static const int StatusInit = 0;
+	/** @brief 运行中 */
+	static const int StatusRunning = 2;
+	/** @brief 已结束 */
+	static const int StatusFinished = 4;
+
 	Loop();
 	virtual ~Loop();
 
@@ -48,6 +55,12 @@ public:
 	inline bool isThread() const
 	{
 		return (NULL != _thread);
+	}
+
+	/** @brief 当前运行状态 */
+	inline int status() const
+	{
+		return _status;
 	}
 
 	/**
@@ -97,16 +110,17 @@ protected:
 	 * @details 运行在调用stop时所在的线程，一般实现此函数处理启动前的准备工作
 	 */
 	virtual void onAfterStop();
+
 private:
-	void run();
+	void _run();
 
 private:
 	uint32_t _id;
 	event_base *_base;
 	//线程
 	std::thread *_thread;
-	//停止标志
-	std::atomic<bool> _isStopping;
+	//运行状态
+	std::atomic<int> _status;
 
 public:
 	/**

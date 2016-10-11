@@ -21,6 +21,10 @@
 #include <mutex>
 #include <atomic>
 
+#if (defined _WIN32) || (defined WIN32) || (defined _WIN64) || (defined WIN64)
+#define PLATFORM_WINDOWS
+#endif
+
 namespace ec
 {
 
